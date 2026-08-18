@@ -5,46 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Videorgasmatron | Pipeline Architect & VFX R&D</title>
     
-    <!-- Cargamos las fuentes exactas de tu blog original -->
+    <!-- Google Fonts integration directly from your core theme layout -->
     <link rel='stylesheet' href='https://googleapis.com|Source+Code+Pro:400&subset=latin' type='text/css' media='all' />
     
     <style type="text/css">
-        /* DESACTIVAR FORZADO DE MODO OSCURO DEL NAVEGADOR */
-        html {
-            color-scheme: light !important;
-            background-color: #ffffff !important;
-        }
-
-        /* FUERZA EN BLANCO Y TRANSPARENCIA PARA TODOS LOS BLOQUES */
-        html, body, div, p, span, header, section, article {
-            background-color: transparent !important;
-            background-image: none;
+        /* 1. BRUTAL CORE LIGHT-MODE ENFORCEMENT ON EVERY BLOCK */
+        * {
+            color-scheme: light !important; /* Shuts down browser-injected dark sheets globally */
         }
 
         img { border: none; }
         
-        /* EL FONDO MOSAICO CLÁSICO CON BASE BLANCA SÓLIDA */
-        body { 
-            font-size: 13px; 
-            background-position: top left; 
-            padding: 0px; 
-            margin: 0px; 
-            text-transform: normal; 
+        /* 2. CORE BACKGROUND SPECIFICATIONS FROM YOUR PDF CONFIGURATION */
+        html, body { 
+            background-color: #ffffff !important; /* Solid underlying base to pop the stripes */
+            background-image: url('stripes.gif') !important; /* Your solid black & white texture image */
             background-repeat: repeat !important; 
             background-attachment: fixed !important; 
-            background-image: url('stripes.gif') !important; /* Tu textura sólida de rayas */
-            background-color: #ffffff !important; /* Base blanca obligatoria */
-            font-family: "Source Code Pro", arial, sans-serif !important;
-            color: #0f0f0f !important;
+            background-position: top left;
+            margin: 0px; 
+            padding: 0px; 
+            text-transform: normal;
         }
 
-        /* FUERZA LA TIPOGRAFÍA DE TERMINAL "SOURCE CODE PRO" EN TODO EL TEXTO RECTO */
-        body, p, div, span, b, strong, li { 
-            font-family: "Source Code Pro", arial, sans-serif !important;
-            color: #0f0f0f !important; /* Todo el texto en negro puro */
+        /* 3. STRICT OVERRIDES FOR ALL CONTAINERS TO REMOVE BROWSER GREY BLOCKS */
+        #main, #titleentry, #sidebar, #content, .project-entry, div, p, span, header {
+            background-color: transparent !important; /* Forces total opacity breakdown to reveal stripes */
+            background-image: none !important;
         }
 
-        /* TIPOGRAFÍA ROBOTO EXCLUSIVA PARA TÍTULOS GRANDES */
+        /* 4. TOTAL FONT DOMINANCE: OVERWRITES FORCED WHITE CHARACTERS */
+        body, #main, #sidebar, #content, p, div, span, b, strong, li { 
+            font-family: "Source Code Pro", arial, sans-serif !important; /* Your signature terminal typography */
+            color: #0f0f0f !important; /* Hardcoded typography depth to kill white text injection */
+        }
+
+        /* 5. ROBOTO SPECIFIC ASSIGNMENT FOR CORE TITLES ONLY */
         h1, h2, h3, h4, h5, h6 { 
             font-family: "Roboto", arial, sans-serif !important;
             color: #0f0f0f !important;
@@ -60,10 +56,10 @@
         
         a:hover { 
             transition: all 0.2s linear; 
-            color: #ff0051 !important; /* El rosa/magenta insignia */
+            color: #ff0051 !important; /* Signature brand pink/magenta accent */
         }
 
-        /* MEDIDAS EXACTAS DE TU PLANTILLA DE TUMBLR */
+        /* 6. STRUCTURAL GEOMETRY MATCHING YOUR ORIGINAL DESIGN */
         #main { 
             width: 920px; 
             overflow: hidden; 
@@ -134,12 +130,12 @@
 <body>
 
 <div id="main">
-    <!-- Encabezado con tu logo estático -->
+    <!-- Header with your legacy logo linked directly via relative path -->
     <div id="titleentry">
         <a href="/" title="Home"><img src="logo.png" alt="videorgasmatron logo"></a>
     </div>
 
-    <!-- Menú Lateral Izquierdo -->
+    <!-- Left Sidebar -->
     <div id="sidebar">
         <div style="color: #ff0051 !important; font-weight: bold; margin-bottom: 15px;">
             Pipeline Architect & VFX R&D
@@ -149,14 +145,14 @@
         
         <div class="sidebarborder"></div>
         
-        <!-- Lanzadores directos -->
+        <!-- Launcher Anchor Links -->
         <p><b><a href="https://instagram.com" target="_blank">INSTAGRAM | PORTFOLIO</a></b></p>
         <p><b><a href="https://github.com" target="_blank">GITHUB | SOURCE CODE</a></b></p>
         
         <div class="sidebarborder"></div>
     </div>
 
-    <!-- Lanzador de Proyectos Central -->
+    <!-- Central Content / Pipeline Taxonomy Launchpad -->
     <div id="content">
         
         <div class="project-entry">
