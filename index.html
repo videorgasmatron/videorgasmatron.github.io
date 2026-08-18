@@ -5,143 +5,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Videorgasmatron | Pipeline Architect & VFX R&D</title>
     
-    <!-- Cargamos las familias tipográficas oficiales de tu tema clásico -->
+    <!-- Fuentes oficiales de tu bitácora clásica -->
     <link rel='stylesheet' href='https://googleapis.com|Source+Code+Pro:400&subset=latin' type='text/css' media='all' />
     
     <style type="text/css">
-        /* 1. SECCIÓN ANTI-FORZADO DE MODO OSCURO PARA FIREFOX */
-        html {
-            color-scheme: light !important; /* Desactiva la inyección de hojas oscuras del sistema */
-            background-color: #ffffff !important;
-        }
-
-        /* Fuerza transparencia absoluta en cada elemento para revelar stripes.gif */
-        html, body, div, p, span, header, section, h1, h2, a {
-            background-color: transparent !important;
+        /* FORZADO BRUTALISTA DE LIGHT-MODE ELEMENTO POR ELEMENTO */
+        html, body, h2, p, a, b, br, hr, img {
+            color-scheme: light !important;
+            background-color: transparent !important; /* Destruye cualquier inyección de cajas grises */
             background-image: none;
+            box-shadow: none !important;
+            border: none;
         }
 
         img { border: none; }
         
-        /* 2. CONFIGURACIÓN DEL FONDO SÓLIDO EN MOSAICO (STRIPES) */
+        /* TEXTURA DE FONDO SÓLIDA DESPLEGADA EN EL CUERPO PRINCIPAL */
         body { 
             font-size: 13px; 
             background-position: top left; 
-            padding: 0px; 
+            padding: 80px 20px; 
             margin: 0px; 
             text-transform: normal; 
             background-repeat: repeat !important; 
             background-attachment: fixed !important; 
-            background-image: url('stripes.gif') !important; /* Tu archivo sólido negro y blanco */
-            background-color: #ffffff !important; /* Forzado de base blanca debajo */
+            background-image: url('stripes.gif') !important; /* Tu textura original de rayas */
+            background-color: #ffffff !important; /* Base blanca sólida debajo */
             font-family: "Source Code Pro", arial, sans-serif !important;
             color: #0f0f0f !important;
+            /* Control de centrado brutalista de una sola columna sin usar divs */
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* 3. TAXONOMÍA TIPOGRÁFICA EXACTA */
-        /* Cuerpo de texto y datos generales en tu tipografía monospaciada favorita */
-        body, p, div, span, b, strong, li, a { 
+        /* FUERZA LA TIPOGRAFÍA DE TERMINAL MONOSPACIADA EN TEXTO REGULAR */
+        body, p, b, strong, li, a { 
             font-family: "Source Code Pro", arial, sans-serif !important;
-            color: #0f0f0f !important; /* Texto negro puro */
+            color: #0f0f0f !important; /* Negro puro directo */
         }
 
-        /* TÍTULOS DE PROYECTOS CON PATINES (SERIF / CON REMATES) */
+        /* TIPOGRAFÍA CON PATINES (SERIF) EXACTA PARA TÍTULOS */
         h2 { 
-            font-family: "Georgia", "Times New Roman", serif !important; /* Tipografía clásica con patines */
-            font-size: 28px;
-            line-height: 32px;
-            text-transform: none; /* Quitamos las mayúsculas forzadas automáticas */
+            font-family: "Georgia", "Times New Roman", serif !important; /* Patines idénticos a tu captura */
+            font-size: 26px;
+            line-height: 30px;
+            text-transform: uppercase; /* Forzado a mayúsculas como tu guía de Arch Linux */
             letter-spacing: -0.5px;
-            margin: 0 0 12px 0;
+            margin-top: 50px;
+            margin-bottom: 12px;
             color: #0f0f0f !important;
+        }
+
+        p {
+            line-height: 1.6;
+            text-align: justify;
+            margin-top: 0px;
+            margin-bottom: 25px;
         }
 
         a { 
             text-decoration: none; 
-            padding: 0 8px 0 0; 
-            transition: all 0.2s linear; 
+            padding: 0 4px; 
+            transition: all 0.1s linear; 
             color: #0f0f0f !important;
+            font-weight: bold;
         }
         
         a:hover { 
-            transition: all 0.2s linear; 
-            color: #ff0051 !important; /* El rosa insignia para el hover de enlaces */
+            color: #ff0051 !important; /* Tu rosa insignia para el feedback visual */
+            text-decoration: underline;
         }
 
-        /* 4. ACOMODO EN UNA SOLA COLUMNA CENTRAL (SIN COLUMNA IZQUIERDA) */
-        #main { 
-            width: 700px; /* Ancho idéntico al bloque de contenido original de tu PDF */
-            overflow: hidden; 
-            margin-left: auto; 
-            margin-right: auto; 
-            padding-bottom: 80px;
-        }
-
-        #titleentry { 
-            width: 700px; 
-            border-bottom: 2px solid #0f0f0f !important; 
-            padding-top: 120px; 
-            padding-bottom: 30px; 
-            text-align: left; 
-            margin-bottom: 40px;
-        }
-
-        #titleentry img {
+        /* DISEÑO DE TU LOGOTIPO ANTES DE LA INTERFAZ */
+        .logo-header {
             max-width: 100%;
             display: block;
+            margin: 0 auto 60px auto; /* Centrado absoluto en el eje central */
         }
 
-        /* Formato lineal continuo para la información */
-        .info-entry {
-            margin-bottom: 55px; 
-            width: 100%; 
-            text-align: justify; 
-            line-height: 1.6;
-        }
-
-        .divider {
-            border-bottom: 1px dashed #0f0f0f;
-            margin: 40px 0;
+        /* LÍNEA DIVISORIA DISCRETA DE TU TEXTO ORIGINAL */
+        hr {
+            border: none;
+            border-bottom: 2px solid #0f0f0f !important;
+            margin: 50px 0;
+            display: block;
             width: 100%;
         }
     </style>
 </head>
 <body>
 
-<div id="main">
-    <!-- El encabezado con tu logo antiguo (logo.png) centrado y limpio -->
-    <div id="titleentry">
-        <a href="/" title="Home"><img src="logo.png" alt="videorgasmatron"></a>
-    </div>
+    <!-- Tu logotipo pixelado (logo.png) centrado en el tope de la columna -->
+    <a href="/"><img src="logo.png" alt="videorgasmatron" class="logo-header"></a>
 
-    <!-- Lanzador de Información en una Sola Columna Continua -->
-    <div class="info-entry">
-        <h2>Standalone Nodal VFX Suite</h2>
-        <p>Native C++ pipeline architecture designed for professional-grade rotoscoping and tracking operations. Real-time core performance heavily optimized for production environments.</p>
-    </div>
+    <!-- Flujo continuo lineal de información (Brutalista puro) -->
+    <h2>Standalone Nodal VFX Suite</h2>
+    <p>Native C++ pipeline architecture designed for professional-grade rotoscoping and tracking operations. Real-time core performance heavily optimized for production environments.</p>
 
-    <div class="info-entry">
-        <h2>Python-Free AI Generation</h2>
-        <p>Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.</p>
-    </div>
+    <h2>Python-Free AI Generation</h2>
+    <p>Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.</p>
 
-    <div class="info-entry">
-        <h2>VFX Preservation Archive</h2>
-        <p>Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.</p>
-    </div>
+    <h2>VFX Preservation Archive</h2>
+    <p>Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.</p>
 
-    <!-- Línea divisoria discreta de tu estilo original antes de los enlaces -->
-    <div class="divider"></div>
+    <!-- Línea sólida negra idéntica a la que separa el título en tu captura -->
+    <hr>
 
-    <!-- Enlaces directos a tus plataformas al final del flujo -->
-    <div class="info-entry" style="text-align: center;">
-        <p>
-            <b><a href="https://instagram.com" target="_blank">INSTAGRAM | PORTFOLIO</a></b> 
-            &nbsp;&nbsp;&bull;&nbsp;&nbsp;
-            <b><a href="https://github.com" target="_blank">GITHUB | SOURCE CODE</a></b>
-        </p>
-    </div>
-</div>
+    <!-- Enlaces limpios alineados en el centro del flujo final -->
+    <p style="text-align: center;">
+        <a href="https://instagram.com" target="_blank">INSTAGRAM | PORTFOLIO</a> 
+        &nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;
+        <a href="https://github.com" target="_blank">GITHUB | SOURCE CODE</a>
+    </p>
 
 </body>
 </html>
