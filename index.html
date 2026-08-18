@@ -1,56 +1,93 @@
+<!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Videorgasmatron | Pipeline Architect & VFX R&D</title>
+    <!-- Importación necesaria de tipografías web para que Zilla Slab funcione -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
+
+    <!-- Micro-CSS de control total: fuerza el gif en TODO el fondo y bloquea el render de Firefox -->
+    <style>
+        html, body {
+            height: 100% !important;
+            min-height: 100vh !important;
+            margin: 0;
+            padding: 0;
+            background-image: url('stripes.gif') !important;
+            background-repeat: repeat !important;
+            background-attachment: fixed !important;
+            background-color: #000000;
+            color: #000000 !important;
+        }
+        h2 {
+            font-family: 'Zilla Slab', serif !important;
+            font-size: 22px !important;
+            color: #000000 !important;
+            margin-bottom: 5px;
+        }
+        p, td, font {
+            font-family: 'Source Code Pro', monospace !important;
+            color: #000000 !important;
+        }
+        a, a:visited {
+            color: #0f0f0f !important;
+            text-decoration: underline;
+        }
+        a:hover, a:active {
+            color: #ff0051 !important;
+        }
+    </style>
 </head>
 
-<!-- Atributos nativos directos al hardware: fondo stripes, letras negras, enlaces negros -->
 <body background="stripes.gif" bgcolor="#000000" text="#000000" link="#0f0f0f" vlink="#0f0f0f" alink="#ff0051" topmargin="80">
 
-    <!-- Centrado del logotipo antiguo usando etiquetas nativas -->
+    <br><br>
+
+    <!-- Centrado del logotipo -->
     <center>
         <a href="/"><img src="logo.png" alt="videorgasmatron" border="0"></a>
     </center>
 
     <br><br><br>
 
-    <!-- Forzamos la columna central usando una tabla transparente para que no genere cajas grises ni negras -->
+    <!-- Columna central en tabla transparente -->
     <table width="700" border="0" cellspacing="0" cellpadding="0" align="center">
         <tr>
             <td>
 
-                <!-- TÍTULOS EN ROBOTO SLAB CON PATINES CUADRADOS (MAYÚSCULAS) -->
-                <h2><font face="Zilla Slab" size="5">STANDALONE NODAL VFX SUITE</font></h2>
-                
-                <!-- CONTENIDO REGULAR EN FUENTE DE TERMINAL SOURCE CODE PRO -->
-                <p align="justify"><font face="Source Code Pro, monospace" size="3">Native C++ pipeline architecture designed for professional-grade rotoscopia and tracking operations. Real-time core performance heavily optimized for production environments.</font></p>
+                <h2>STANDALONE NODAL VFX SUITE</h2>
+                <p align="justify">Native C++ pipeline architecture designed for professional-grade rotoscopia and tracking operations. Real-time core performance heavily optimized for production environments.</p>
                 
                 <br>
 
-                <h2><font face="Zilla Slab" size="5">PYTHON-FREE AI GENERATION</font></h2>
-                <p align="justify"><font face="Source Code Pro, monospace" size="3">Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.</font></p>
+                <h2>PYTHON-FREE AI GENERATION</h2>
+                <p align="justify">Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.</p>
                 
                 <br>
 
-                <h2><font face="Zilla Slab" size="5">VFX PRESERVATION ARCHIVE</font></h2>
-                <p align="justify"><font face="Source Code Pro, monospace" size="3">Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.</font></p>
+                <h2>VFX PRESERVATION ARCHIVE</h2>
+                <p align="justify">Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.</p>
 
                 <br><br>
-                <!-- Línea sólida negra nativa de HTML para separar el bloque final -->
                 <hr size="2" color="#0f0f0f" noshade>
                 <br>
 
-                <!-- Enlaces del lanzador final perfectamente centrados -->
+                <!-- Enlaces del lanzador final -->
                 <p align="center">
-                    <b><font face="Source Code Pro, monospace" size="3">
+                    <b>
                         <a href="https://instagram.com" target="_blank">INSTAGRAM | PORTFOLIO</a>
                         &nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;
                         <a href="https://github.com" target="_blank">GITHUB | SOURCE CODE</a>
-                    </font></b>
+                    </b>
                 </p>
 
             </td>
         </tr>
     </table>
+
+    <br><br><br>
 
 </body>
 </html>
