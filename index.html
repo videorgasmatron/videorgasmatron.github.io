@@ -3,86 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <title>Videorgasmatron | Pipeline Architect & VFX R&D</title>
+    
+    <!-- Forzado de esquema de color claro para matar extensiones de Dark Mode -->
+    <meta name="color-scheme" content="only light">
+    <meta name="supported-color-schemes" content="light">
 
-    <!-- Importación exacta de Zilla Slab y Source Code Pro -->
+    <!-- Carga directa de fuentes con fallback brutalista exacto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
 
     <style>
-        /* Desactivar cualquier intento de Firefox de invertir o adaptar colores */
-        :root {
-            color-scheme: light;
-        }
-
-        /* Cobertura total de pantalla para el GIF sin dejar franjas arriba/abajo */
+        /* Desactivar filtros de inversión de extensiones de Dark Mode */
         html {
-            background: url('stripes.gif') repeat center center fixed #000000;
-            min-height: 100%;
+            color-scheme: light !important;
+            filter: none !important;
+            -webkit-filter: none !important;
+            background-color: #000000 !important;
             margin: 0;
             padding: 0;
+            width: 100%;
+            height: 100%;
         }
 
         body {
-            margin: 0;
-            padding: 80px 0;
-            color: #000000;
-            font-family: 'Source Code Pro', monospace;
+            margin: 0 !important;
+            padding: 40px 0 !important;
+            width: 100vw !important;
+            min-height: 100vh !important;
+            
+            /* GIF de fondo forzado a cubrir el 100% real sin marcos negros */
+            background-image: url('stripes.gif') !important;
+            background-repeat: repeat !important;
+            background-position: top left !important;
+            background-attachment: fixed !important;
+            
+            /* Colores de texto bloqueados en negro puro */
+            color: #000000 !important;
+            font-family: 'Source Code Pro', 'Courier New', monospace !important;
+            box-sizing: border-box;
         }
 
-        /* Zilla Slab cuadrada e imponente */
+        /* Fuerza la fuente Zilla Slab en los títulos */
         h2 {
-            font-family: 'Zilla Slab', serif;
-            font-weight: 700;
-            font-size: 24px;
-            color: #000000;
-            margin-top: 30px;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            font-family: 'Zilla Slab', 'Rockwell', 'Courier New', serif !important;
+            font-weight: 700 !important;
+            font-size: 22px !important;
+            color: #000000 !important;
+            margin-top: 30px !important;
+            margin-bottom: 5px !important;
+            letter-spacing: 0px !important;
+            text-transform: uppercase !important;
         }
 
         p {
-            font-family: 'Source Code Pro', monospace;
-            font-size: 15px;
-            line-height: 1.5;
-            color: #000000;
-            text-align: justify;
-            margin-top: 0;
+            font-family: 'Source Code Pro', 'Courier New', monospace !important;
+            font-size: 14px !important;
+            color: #000000 !important;
+            text-align: justify !important;
+            margin-top: 0 !important;
+            line-height: 1.4 !important;
         }
 
+        /* Enlaces negros nativos */
         a, a:visited {
-            color: #0f0f0f;
-            text-decoration: underline;
+            color: #000000 !important;
+            text-decoration: underline !important;
+            font-weight: bold !important;
         }
 
         a:hover, a:active {
-            color: #ff0051;
-        }
-
-        /* Estructura limpia de la tabla sin cajas */
-        table {
-            border-collapse: collapse;
+            color: #ff0051 !important;
         }
 
         hr {
-            border: none;
-            border-top: 2px solid #0f0f0f;
-            margin: 40px 0 20px 0;
+            border: none !important;
+            border-top: 2px solid #000000 !important;
+            margin: 30px 0 !important;
+        }
+
+        table {
+            border-collapse: collapse !important;
         }
     </style>
 </head>
 
-<body>
+<body background="stripes.gif">
 
     <!-- Logo Centrado -->
     <div style="text-align: center;">
-        <a href="/"><img src="logo.png" alt="videorgasmatron" style="border:0;"></a>
+        <a href="/"><img src="logo.png" alt="videorgasmatron" border="0"></a>
     </div>
 
-    <br><br>
+    <br>
 
-    <!-- Contenido en columna central transparente -->
+    <!-- Contenedor Central -->
     <table width="700" border="0" cellspacing="0" cellpadding="0" align="center">
         <tr>
             <td>
@@ -98,8 +113,7 @@
 
                 <hr>
 
-                <!-- Enlaces inferiores -->
-                <p style="text-align: center; font-weight: bold;">
+                <p style="text-align: center;">
                     <a href="https://instagram.com" target="_blank">INSTAGRAM | PORTFOLIO</a>
                     &nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;
                     <a href="https://github.com" target="_blank">GITHUB | SOURCE CODE</a>
