@@ -5,6 +5,403 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Videorgasmatron | Pipeline Architect & VFX R&D</title>
 
+    <!-- GOOGLE FONTS PRECONNECT & IMPORT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Zilla+Slab:wght@700;900&display=swap" rel="stylesheet">
+
+    <style type="text/css">
+        html { color-scheme: light; background-color: #ffffff; }
+        html, body, div, p, span, h2, a, b, hr, img {
+            background-color: transparent !important;
+            box-shadow: none !important;
+            text-shadow: none !important;
+        }
+
+        img { border: none; }
+
+        body {
+            font-family: 'Source Code Pro', monospace !important;
+            font-size: 13px;
+            padding: 80px 20px;
+            margin: 0px;
+            background-repeat: repeat !important;
+            background-attachment: fixed !important;
+            background-image: url('stripes.gif') !important;
+            background-color: #ffffff !important;
+            color: #000000 !important;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* BRUTALIST SYSTEM OVERLAY LOADER */
+        #loader-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #ffffff;
+            background-image: url('stripes.gif');
+            background-repeat: repeat;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Source Code Pro', monospace;
+            font-weight: 700;
+            color: #000000;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        #loader-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader-counter {
+            font-size: 32px;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+
+        /* LINE-BY-LINE SEQUENTIAL REVEAL ANIMATION */
+        .reveal-line {
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .reveal-line.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* HEAVY BRUTALIST HEADINGS */
+        h1, h2, h3, .titulo-principal {
+            font-family: 'Zilla Slab', serif !important;
+            font-weight: 900 !important;
+            font-size: 24px !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.8px !important;
+            margin-top: 45px !important;
+            margin-bottom: 12px !important;
+            color: #000000 !important;
+            display: block;
+            line-height: 1.1;
+        }
+
+        body, p, td, a, span {
+            font-family: 'Source Code Pro', monospace !important;
+            color: #000000 !important;
+        }
+
+        p {
+            line-height: 1.6;
+            text-align: justify;
+            margin-top: 0px;
+            margin-bottom: 35px;
+            font-weight: 400;
+        }
+
+        /* CHARACTER RASTERIZATION & GPU RENDER PRESERVATION */
+        .raster-char {
+            display: inline-block;
+            white-space: pre;
+            transform-origin: center center;
+            will-change: transform;
+            transform-style: preserve-3d;
+            font-variant-ligatures: none;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        /* OPTICAL STROKE REINFORCEMENT FOR HEAVY SERIFS */
+        h2 .raster-char {
+            font-family: 'Zilla Slab', serif !important;
+            font-weight: 900 !important;
+            -webkit-text-stroke: 0.4px #000000;
+        }
+
+        /* MAGNETIC ELASTIC LINK WRAPPERS */
+        .magnetic-link-wrap {
+            display: inline-block;
+            margin: 0 15px;
+            will-change: transform;
+            transition: color 0.15s ease;
+        }
+
+        .magnetic-link-wrap a {
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            display: inline-block;
+        }
+
+        /* CHROMATIC STROBE GLITCH ON HOVER */
+        .magnetic-link-wrap:hover a {
+            color: #ff0051 !important;
+            animation: colorGlitch 0.12s infinite alternate;
+        }
+
+        @keyframes colorGlitch {
+            0% { color: #ff0051; text-shadow: 1.5px 0 #00ffff !important; }
+            100% { color: #000000; text-shadow: -1.5px 0 #ff0051 !important; }
+        }
+
+        .logo-box {
+            text-align: center;
+            margin-bottom: 70px;
+            display: block;
+        }
+        .logo-box img { max-width: 100%; display: inline-block; }
+
+        hr {
+            border: none !important;
+            border-bottom: 2px solid #000000 !important;
+            margin: 50px 0;
+            display: block;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SYSTEM INITIALIZATION OVERLAY -->
+    <div id="loader-overlay">
+        <div>SYS_LOAD_IN_PROGRESS</div>
+        <div class="loader-counter" id="loader-counter">00%</div>
+    </div>
+
+    <div class="logo-box reveal-line">
+        <a href="/" title="Home"><img src="logo.png" alt="videorgasmatron"></a>
+    </div>
+
+    <!-- MAIN CONTENT BLOCK: TITLES & PARAGRAPHS INSIDE THE CHAOS PIPELINE -->
+    <div class="apply-chaos">
+        <h2 class="reveal-line">Standalone Nodal VFX Suite</h2>
+        <p class="reveal-line">Native C++ pipeline architecture designed for professional-grade rotoscoping and tracking operations. Real-time core performance heavily optimized for production environments.</p>
+
+        <h2 class="reveal-line">Python-Free AI Generation</h2>
+        <p class="reveal-line">Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.</p>
+
+        <h2 class="reveal-line">VFX Preservation Archive</h2>
+        <p class="reveal-line">Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.</p>
+    </div>
+
+    <hr class="reveal-line">
+
+    <!-- ANCHORS SECTION: MAGNETIC ELASTIC ENGINE -->
+    <div class="reveal-line" style="text-align: center; background: transparent !important;">
+        <span class="magnetic-link-wrap">
+            <a href="https://instagram.com" target="_blank">INSTAGRAM | PORTFOLIO</a>
+        </span>
+        <span style="font-family: 'Source Code Pro', monospace; font-weight: bold;">&bull;</span>
+        <span class="magnetic-link-wrap">
+            <a href="https://github.com" target="_blank">GITHUB | SOURCE CODE</a>
+        </span>
+    </div>
+
+    <!-- DUAL PHYSICS ENGINE: 3D DESTRUCTIVE CHAOS + ELASTIC MAGNETISM + SEQUENTIAL LOADER -->
+    <script type="text/javascript">
+        let mouse = { x: -1000, y: -1000 };
+        let targetMouse = { x: -1000, y: -1000 };
+
+        // RECURSIVE DOM TEXT RASTERIZER FOR INDIVIDUAL CHARACTER DOM NODES
+        function rasterizeText(element) {
+            if (element.hasChildNodes()) {
+                element.childNodes.forEach(child => {
+                    if (child.nodeType === Node.TEXT_NODE && child.textContent.trim().length > 0) {
+                        const originalText = child.textContent;
+                        const fragment = document.createDocumentFragment();
+
+                        [...originalText].forEach(char => {
+                            const span = document.createElement('span');
+                            span.innerText = char;
+                            span.className = 'raster-char';
+                            span.dataset.tx = 0; span.dataset.ty = 0;
+                            span.dataset.sk = 0; span.dataset.rt = 0; span.dataset.sc = 1;
+                            fragment.appendChild(span);
+                        });
+
+                        child.replaceWith(fragment);
+                    } else if (child.nodeType === Node.ELEMENT_NODE && child.tagName !== 'SCRIPT' && child.tagName !== 'IMG') {
+                        rasterizeText(child);
+                    }
+                });
+            }
+        }
+
+        // INITIALIZE CHARACTER RASTERIZATION ACROSS ALL TARGETED BLOCKS
+        document.querySelectorAll('.apply-chaos').forEach(block => {
+            rasterizeText(block);
+        });
+
+        // INITIALIZE MAGNETIC DATASETS FOR HYPER-SMOOTH ANCHORS
+        const links = document.querySelectorAll('.magnetic-link-wrap');
+        links.forEach(link => {
+            link.dataset.tx = 0; link.dataset.ty = 0; link.dataset.sc = 1;
+        });
+
+        // MOUSE POSITION LISTENER WITH REAL-TIME COORDINATE CAPTURE
+        document.addEventListener('mousemove', (e) => {
+            targetMouse.x = e.clientX;
+            targetMouse.y = e.clientY;
+        });
+
+        document.addEventListener('mouseleave', () => {
+            targetMouse.x = -1000;
+            targetMouse.y = -1000;
+        });
+
+        // PSEUDO-RANDOM NOISE GENERATOR FOR PER-CHARACTER VECTOR DISPLACEMENT
+        function getNoise(seed) {
+            const x = Math.sin(seed) * 10000;
+            return x - Math.floor(x);
+        }
+
+        const chars = document.querySelectorAll('.raster-char');
+
+        // REAL-TIME RENDERING LOOP RUNNING AT 60 FPS
+        function renderLoop() {
+            // Fluid motion damping (Linear Interpolation / Lerp)
+            mouse.x += (targetMouse.x - mouse.x) * 0.12;
+            mouse.y += (targetMouse.y - mouse.y) * 0.12;
+
+            // --- ENGINE A: CHAOS PROCESSING FOR ALL TEXT ELEMENTS ---
+            chars.forEach((char, index) => {
+                const rect = char.getBoundingClientRect();
+                const charX = rect.left + rect.width / 2;
+                const charY = rect.top + rect.height / 2;
+
+                const diffX = mouse.x - charX;
+                const diffY = mouse.y - charY;
+                const distance = Math.sqrt(diffX * diffX + diffY * diffY);
+
+                let targetTx = 0, targetTy = 0, targetSk = 0, targetRt = 0, targetSc = 1;
+
+                // EFFECT RADIUS THRESHOLD (ADJUSTABLE DISTANCE CUTOFF)
+                if (distance < 140) {
+                    const ratio = (140 - distance) / 140;
+
+                    const groupNoiseY = getNoise(index * 1.5) > 0.5 ? 1 : -1;
+                    const groupNoiseX = getNoise(index * 2.8) > 0.5 ? 1 : -1;
+                    const rotationDirection = getNoise(index * 4.2) > 0.5 ? 1 : -1;
+
+                    const chaosY = groupNoiseY * (ratio * 28) * getNoise(index * 5.5);
+                    const chaosX = groupNoiseX * (ratio * 18) * getNoise(index * 3.3);
+
+                    targetTx = chaosX;
+                    targetTy = chaosY;
+                    targetSk = ratio * (groupNoiseX * 24);
+
+                    // 180-DEGREE ELASTIC CHARACTER FLIP THRESHOLD
+                    if (getNoise(index * 9.1) > 0.85) {
+                        targetRt = rotationDirection * (180 * ratio);
+                        targetSc = 1 - (ratio * 0.12);
+                    } else {
+                        targetRt = rotationDirection * (ratio * 28) * getNoise(index * 7.7);
+                        targetSc = 1 + (ratio * 0.22) * groupNoiseY;
+                    }
+                }
+
+                // DAMPED TRANSFORMATION INTERPOLATION
+                let currentTx = parseFloat(char.dataset.tx) + (targetTx - parseFloat(char.dataset.tx)) * 0.12;
+                let currentTy = parseFloat(char.dataset.ty) + (targetTy - parseFloat(char.dataset.ty)) * 0.12;
+                let currentSk = parseFloat(char.dataset.sk) + (targetSk - parseFloat(char.dataset.sk)) * 0.12;
+                let currentRt = parseFloat(char.dataset.rt) + (targetRt - parseFloat(char.dataset.rt)) * 0.12;
+                let currentSc = parseFloat(char.dataset.sc) + (targetSc - parseFloat(char.dataset.sc)) * 0.12;
+
+                char.dataset.tx = currentTx; char.dataset.ty = currentTy;
+                char.dataset.sk = currentSk; char.dataset.rt = currentRt; char.dataset.sc = currentSc;
+
+                char.style.transform = `translateX(${currentTx}px) translateY(${currentTy}px) skewX(${currentSk}deg) rotate(${currentRt}deg) scale(${currentSc})`;
+            });
+
+            // --- ENGINE B: MAGNETIC ELASTIC PROCESSING FOR FOOTER LINKS ---
+            links.forEach(link => {
+                const rect = link.getBoundingClientRect();
+                const linkX = rect.left + rect.width / 2;
+                const linkY = rect.top + rect.height / 2;
+
+                const diffX = mouse.x - linkX;
+                const diffY = mouse.y - linkY;
+                const distance = Math.sqrt(diffX * diffX + diffY * diffY);
+
+                let targetTx = 0, targetTy = 0, targetSc = 1;
+
+                // MAGNETIC EFFECT RADIUS THRESHOLD
+                if (distance < 180) {
+                    const ratio = (180 - distance) / 180;
+                    targetTx = diffX * (ratio * 0.40);
+                    targetTy = diffY * (ratio * 0.40);
+                    targetSc = 1 + (ratio * 0.10);
+                }
+
+                let currentTx = parseFloat(link.dataset.tx) + (targetTx - parseFloat(link.dataset.tx)) * 0.08;
+                let currentTy = parseFloat(link.dataset.ty) + (targetTy - parseFloat(link.dataset.ty)) * 0.08;
+                let currentSc = parseFloat(link.dataset.sc) + (targetSc - parseFloat(link.dataset.sc)) * 0.08;
+
+                link.dataset.tx = currentTx; link.dataset.ty = currentTy; link.dataset.sc = currentSc;
+
+                link.style.transform = `translateX(${currentTx}px) translateY(${currentTy}px) scale(${currentSc})`;
+            });
+
+            requestAnimationFrame(renderLoop);
+        }
+
+        // START REAL-TIME PHYSICS LOOP
+        requestAnimationFrame(renderLoop);
+
+        // --- SEQUENTIAL LOADER & LINE-BY-LINE REVEAL CONTROLLER ---
+        window.addEventListener('load', () => {
+            let progress = 0;
+            const counterElement = document.getElementById('loader-counter');
+            const overlay = document.getElementById('loader-overlay');
+            const revealElements = document.querySelectorAll('.reveal-line');
+
+            // SIMULATED SYSTEM BOOT COUNTER
+            const interval = setInterval(() => {
+                progress += Math.floor(Math.random() * 15) + 5;
+                if (progress >= 100) {
+                    progress = 100;
+                    counterElement.innerText = '100%';
+                    clearInterval(interval);
+
+                    // DISMISS LOADER OVERLAY
+                    setTimeout(() => {
+                        overlay.classList.add('hidden');
+
+                        // TRIGGER SEQUENTIAL LINE-BY-LINE TEXT REVEAL
+                        revealElements.forEach((el, idx) => {
+                            setTimeout(() => {
+                                el.classList.add('visible');
+                            }, idx * 120); // 120ms STAGGERED DELAY PER LINE
+                        });
+                    }, 200);
+                } else {
+                    counterElement.innerText = (progress < 10 ? '0' : '') + progress + '%';
+                }
+            }, 40);
+        });
+    </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videorgasmatron | Pipeline Architect & VFX R&D</title>
+
     <!-- IMPORTACIÓN DE FUENTES WEB DIRECTAS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
