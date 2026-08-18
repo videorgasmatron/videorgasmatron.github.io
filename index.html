@@ -1,23 +1,27 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Videorgasmatron | Pipeline Architect & VFX R&D</title>
     
+    <!-- Forzado de esquema claro a nivel de navegador -->
     <meta name="color-scheme" content="only light">
-    <meta name="supported-color-schemes" content="light">
+    <meta name="darkreader-lock">
 
+    <!-- Carga de fuentes Zilla Slab y Source Code Pro -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
 
     <style>
-        /* Desactivar cualquier filtro de Dark Reader aplicándolo a nivel de nodo raíz */
-        html {
+        /* Aislamiento total del canvas */
+        :root {
             color-scheme: light !important;
+        }
+
+        html {
             background-color: #000000 !important;
-            filter: none !important;
-            -webkit-filter: none !important;
             margin: 0;
             padding: 0;
             width: 100%;
@@ -26,63 +30,65 @@
 
         body {
             margin: 0 !important;
-            padding: 40px 0 !important;
+            padding: 60px 0 !important;
             width: 100vw !important;
             min-height: 100vh !important;
             
+            /* Fondo de rayas en mosaico completo */
             background-image: url('stripes.gif') !important;
             background-repeat: repeat !important;
             background-position: top left !important;
             background-attachment: fixed !important;
-            
+            background-color: #000000 !important;
+
             font-family: 'Source Code Pro', monospace !important;
             box-sizing: border-box;
-            
-            /* Anular la inversión forzada de Dark Reader en Firefox */
-            filter: locate !important;
         }
 
-        /* Fuerza un color casi-negro absoluto (#000001 en lugar de #000000) 
-           Esto evita que Dark Reader identifique el texto como "negro puro sobre fondo claro" 
-           y active la regla de inversión automática */
-        *, h2, p, a, font, td {
-            color: #000001 !important;
-            -webkit-text-fill-color: #000001 !important;
-            mix-blend-mode: normal !important;
+        /* Bloqueo estricto contra Dark Reader mediante aislamiento de color */
+        h2, p, a, td, span, hr {
+            background-color: transparent !important;
+            isolation: isolate;
         }
 
         h2 {
             font-family: 'Zilla Slab', serif !important;
             font-weight: 700 !important;
             font-size: 22px !important;
-            margin-top: 30px !important;
-            margin-bottom: 5px !important;
+            color: #000000 !important;
+            -webkit-text-stroke: 0.2px #000000;
+            margin-top: 35px !important;
+            margin-bottom: 8px !important;
             text-transform: uppercase !important;
+            letter-spacing: 0.5px;
         }
 
         p {
             font-family: 'Source Code Pro', monospace !important;
             font-size: 14px !important;
+            color: #000000 !important;
+            -webkit-text-stroke: 0.15px #000000;
             text-align: justify !important;
             margin-top: 0 !important;
-            line-height: 1.4 !important;
+            line-height: 1.5 !important;
         }
 
         a, a:visited {
-            color: #000001 !important;
+            color: #000000 !important;
+            -webkit-text-stroke: 0.2px #000000;
             text-decoration: underline !important;
             font-weight: bold !important;
         }
 
         a:hover, a:active {
             color: #ff0051 !important;
-            -webkit-text-fill-color: #ff0051 !important;
+            -webkit-text-stroke: 0px transparent !important;
         }
 
         hr {
             border: none !important;
-            border-top: 2px solid #000001 !important;
-            margin: 30px 0 !important;
+            border-top: 2px solid #000000 !important;
+            margin: 40px 0 20px 0 !important;
         }
 
         table {
@@ -100,7 +106,7 @@
 
     <br>
 
-    <!-- Contenedor Central -->
+    <!-- Contenido en columna central transparente -->
     <table width="700" border="0" cellspacing="0" cellpadding="0" align="center">
         <tr>
             <td>
