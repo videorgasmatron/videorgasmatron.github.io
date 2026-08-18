@@ -5,22 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Videorgasmatron | Pipeline Architect & VFX R&D</title>
     
-    <!-- Fuentes oficiales de tu bitácora clásica -->
-    <link rel='stylesheet' href='https://googleapis.com|Source+Code+Pro:400&subset=latin' type='text/css' media='all' />
+    <!-- Cargamos Source Code Pro desde Google Fonts -->
+    <link rel='stylesheet' href='https://googleapis.com' type='text/css' media='all' />
     
     <style type="text/css">
-        /* FORZADO BRUTALISTA DE LIGHT-MODE ELEMENTO POR ELEMENTO */
-        html, body, h2, p, a, b, br, hr, img {
+        /* 1. BLINDAJE ABSOLUTO CONTRA LA PORQUERÍA DEL MODO OSCURO DE FIREFOX */
+        html {
             color-scheme: light !important;
-            background-color: transparent !important; /* Destruye cualquier inyección de cajas grises */
-            background-image: none;
+            background-color: #ffffff !important;
+        }
+
+        /* Forzado radical: Cero fondos para CUALQUIER etiqueta del documento */
+        *, html, body, h2, p, a, b, br, hr, img, span, strong {
+            background: transparent none !important; /* Destruye cualquier bloque gris inyectado */
+            background-color: transparent !important;
             box-shadow: none !important;
-            border: none;
+            text-shadow: none !important;
         }
 
         img { border: none; }
         
-        /* TEXTURA DE FONDO SÓLIDA DESPLEGADA EN EL CUERPO PRINCIPAL */
+        /* 2. TEXTURA DE FONDO SÓLIDA EN EL BODY CON BASE BLANCA */
         body { 
             font-size: 13px; 
             background-position: top left; 
@@ -29,32 +34,33 @@
             text-transform: normal; 
             background-repeat: repeat !important; 
             background-attachment: fixed !important; 
-            background-image: url('stripes.gif') !important; /* Tu textura original de rayas */
-            background-color: #ffffff !important; /* Base blanca sólida debajo */
-            font-family: "Source Code Pro", arial, sans-serif !important;
+            background-image: url('stripes.gif') !important; /* Tu imagen stripes.gif */
+            background-color: #ffffff !important; /* Base blanca sólida debajo del GIF */
+            font-family: "Source Code Pro", monospace !important;
             color: #0f0f0f !important;
-            /* Control de centrado brutalista de una sola columna sin usar divs */
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* FUERZA LA TIPOGRAFÍA DE TERMINAL MONOSPACIADA EN TEXTO REGULAR */
+        /* 3. TAXONOMÍA TIPOGRÁFICA REQUERIDA */
+        /* Todo el cuerpo de texto en Source Code Pro en negro puro */
         body, p, b, strong, li, a { 
-            font-family: "Source Code Pro", arial, sans-serif !important;
-            color: #0f0f0f !important; /* Negro puro directo */
+            font-family: "Source Code Pro", monospace !important;
+            color: #0f0f0f !important; 
         }
 
-        /* TIPOGRAFÍA CON PATINES (SERIF) EXACTA PARA TÍTULOS */
+        /* TÍTULOS EN SQUARE SERIF / RETRO SLAB (CON PATINES CUADRADOS) */
         h2 { 
-            font-family: "Georgia", "Times New Roman", serif !important; /* Patines idénticos a tu captura */
+            font-family: "Courier New", Courier, "Lucida Console", "Georgia", serif !important; /* Emula Square Serif de forma nativa */
             font-size: 26px;
             line-height: 30px;
-            text-transform: uppercase; /* Forzado a mayúsculas como tu guía de Arch Linux */
+            text-transform: uppercase; /* Mayúsculas forzadas como tu captura */
             letter-spacing: -0.5px;
             margin-top: 50px;
             margin-bottom: 12px;
             color: #0f0f0f !important;
+            font-weight: bold;
         }
 
         p {
@@ -62,6 +68,19 @@
             text-align: justify;
             margin-top: 0px;
             margin-bottom: 25px;
+        }
+
+        /* 4. ENLACES Y LOGO CON CENTRADO SEGURO */
+        .logo-link {
+            display: block !important; /* Convierte el enlace en bloque para poder centrarlo */
+            text-align: center !important;
+            margin: 0 auto 60px auto;
+            width: 100%;
+        }
+
+        .logo-img {
+            max-width: 100%;
+            display: inline-block !important; /* Se alinea con el centrado del bloque padre */
         }
 
         a { 
@@ -73,20 +92,13 @@
         }
         
         a:hover { 
-            color: #ff0051 !important; /* Tu rosa insignia para el feedback visual */
+            color: #ff0051 !important; /* Tu rosa insignia para el hover */
             text-decoration: underline;
         }
 
-        /* DISEÑO DE TU LOGOTIPO ANTES DE LA INTERFAZ */
-        .logo-header {
-            max-width: 100%;
-            display: block;
-            margin: 0 auto 60px auto; /* Centrado absoluto en el eje central */
-        }
-
-        /* LÍNEA DIVISORIA DISCRETA DE TU TEXTO ORIGINAL */
+        /* Línea divisoria brutalista idéntica a tu captura de Arch */
         hr {
-            border: none;
+            border: none !important;
             border-bottom: 2px solid #0f0f0f !important;
             margin: 50px 0;
             display: block;
@@ -96,10 +108,10 @@
 </head>
 <body>
 
-    <!-- Tu logotipo pixelado (logo.png) centrado en el tope de la columna -->
-    <a href="/"><img src="logo.png" alt="videorgasmatron" class="logo-header"></a>
+    <!-- Logo con enlace forzado a comportarse como bloque centrado -->
+    <a href="/" title="Home" class="logo-link"><img src="logo.png" alt="videorgasmatron" class="logo-img"></a>
 
-    <!-- Flujo continuo lineal de información (Brutalista puro) -->
+    <!-- Contenido Brutalista Lineal Puro -->
     <h2>Standalone Nodal VFX Suite</h2>
     <p>Native C++ pipeline architecture designed for professional-grade rotoscoping and tracking operations. Real-time core performance heavily optimized for production environments.</p>
 
@@ -109,10 +121,8 @@
     <h2>VFX Preservation Archive</h2>
     <p>Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.</p>
 
-    <!-- Línea sólida negra idéntica a la que separa el título en tu captura -->
     <hr>
 
-    <!-- Enlaces limpios alineados en el centro del flujo final -->
     <p style="text-align: center;">
         <a href="https://instagram.com" target="_blank">INSTAGRAM | PORTFOLIO</a> 
         &nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;
