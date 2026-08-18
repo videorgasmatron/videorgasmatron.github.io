@@ -12,15 +12,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
 
     <style>
-        /* Regla universal: obliga a TODO el texto (títulos, párrafos, enlaces, celdas) a ser negro */
-        *, *::before, *::after {
-            color: #000000 !important;
-            -webkit-text-fill-color: #000000 !important;
-        }
-
+        /* Desactivar cualquier filtro de Dark Reader aplicándolo a nivel de nodo raíz */
         html {
             color-scheme: light !important;
             background-color: #000000 !important;
+            filter: none !important;
+            -webkit-filter: none !important;
             margin: 0;
             padding: 0;
             width: 100%;
@@ -40,6 +37,18 @@
             
             font-family: 'Source Code Pro', monospace !important;
             box-sizing: border-box;
+            
+            /* Anular la inversión forzada de Dark Reader en Firefox */
+            filter: locate !important;
+        }
+
+        /* Fuerza un color casi-negro absoluto (#000001 en lugar de #000000) 
+           Esto evita que Dark Reader identifique el texto como "negro puro sobre fondo claro" 
+           y active la regla de inversión automática */
+        *, h2, p, a, font, td {
+            color: #000001 !important;
+            -webkit-text-fill-color: #000001 !important;
+            mix-blend-mode: normal !important;
         }
 
         h2 {
@@ -59,8 +68,8 @@
             line-height: 1.4 !important;
         }
 
-        /* Enlaces negros nativos con hover en magenta */
         a, a:visited {
+            color: #000001 !important;
             text-decoration: underline !important;
             font-weight: bold !important;
         }
@@ -72,7 +81,7 @@
 
         hr {
             border: none !important;
-            border-top: 2px solid #000000 !important;
+            border-top: 2px solid #000001 !important;
             margin: 30px 0 !important;
         }
 
