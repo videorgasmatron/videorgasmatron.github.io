@@ -1,152 +1,164 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Videorgasmatron | R&D, VFX & Pipeline Architect</title>
-    <style>
+    <title>Videorgasmatron | Pipeline Architect & VFX R&D</title>
+    
+    <!-- Google Fonts cloned from your original design -->
+    <link rel='stylesheet' href='https://googleapis.com|Source+Code+Pro:400&subset=latin' type='text/css' media='all' />
+    
+    <style type="text/css">
         :root {
-            --bg-color: #0b0f19;
-            --text-color: #ffffff;
-            --accent-pink: #ff55b0; /* Tu rosa 205 */
-            --accent-cyan: #00ffff; /* Tu cyan 51 */
-            --muted: #64748b;
-            --card-bg: #141b2d;
+            --font-color: #0f0f0f;      /* Original text color */
+            --backdrop-color: #ffffff;  /* Original backdrop color */
+            --highlight: #ff0051;       /* Pink/Magenta divider accent */
+            --cyan-accent: #00ffff;     /* Prompt Cyan electric accent */
         }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
+
+        img { border: none; }
+        
+        body { 
+            font-size: 13px; 
+            background-position: top left; 
+            padding: 0px; 
+            margin: 0px; 
+            text-transform: normal; 
+            background-repeat: repeat;  /* Repeated pattern behavior */
+            background-attachment: fixed; 
+            background-image: url('stripes.gif'); /* Relative asset call */
+            color: var(--font-color);
+            background-color: var(--backdrop-color); 
+            font-family: "Source Code Pro", arial, sans-serif;
         }
-        .container {
-            max-width: 600px;
-            width: 100%;
+
+        h1, h2, h3, h4, h5, h6 { font-family: "Roboto", arial, sans-serif; }
+
+        a { 
+            text-decoration: none; 
+            padding: 0 8px 0 0; 
+            transition: all 0.2s linear; 
+            color: var(--font-color);
         }
-        header {
-            text-align: center;
-            margin-bottom: 40px;
+        
+        a:hover { 
+            transition: all 0.2s linear; 
+            color: var(--highlight);
         }
-        h1 {
-            font-size: 2.8rem;
-            letter-spacing: -1px;
-            margin: 0;
+
+        #main { 
+            width: 920px; 
+            overflow: hidden; 
+            margin-left: auto; 
+            margin-right: auto; 
         }
-        .pink { color: var(--accent-pink); }
-        .cyan { color: var(--accent-cyan); }
-        .tagline {
-            color: var(--muted);
-            font-size: 1.1rem;
-            margin-top: 5px;
+
+        #titleentry { 
+            width: 920px; 
+            border-bottom: 2px solid var(--font-color); 
+            padding-top: 100px; 
+            padding-bottom: 40px; 
+            text-align: left; 
         }
-        .bio {
-            font-size: 0.95rem;
-            color: #cbd5e1;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            text-align: center;
+
+        /* Added logo dimensions constraints based on original layout rules */
+        #titleentry img {
+            max-width: 920px;
+            display: block;
         }
-        .section-title {
-            font-size: 0.8rem;
+
+        #content { 
+            width: 680px; 
+            float: right; 
+            overflow: hidden; 
+            margin-top: 20px; 
+            margin-bottom: 50px; 
+        }
+
+        #sidebar { 
+            width: 200px; 
+            float: left; 
+            display: block; 
+            margin-top: 20px; 
+            margin-bottom: 50px; 
+        }
+
+        .sidebarborder { 
+            border-bottom: 2px solid var(--font-color); 
+            margin: 15px 0;
+        }
+
+        .project-entry {
+            margin-bottom: 45px; 
+            width: 100%; 
+            float: left; 
+            text-align: justify;
+        }
+
+        .project-entry h2 {
+            font-size: 24px;
+            line-height: 26px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent-pink);
-            margin-bottom: 15px;
-            border-bottom: 1px solid #1e293b;
-            padding-bottom: 5px;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
         }
-        .grid {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 40px;
-        }
-        .card {
-            background-color: var(--card-bg);
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #1e293b;
-        }
-        .card h3 {
-            margin: 0 0 5px 0;
-            font-size: 1.1rem;
-        }
-        .card p {
-            margin: 0;
-            font-size: 0.9rem;
-            color: #94a3b8;
-            line-height: 1.4;
-        }
-        .status {
-            display: inline-block;
-            font-size: 0.75rem;
+
+        .project-tag {
+            font-size: 11px;
             font-weight: bold;
-            padding: 2px 6px;
-            border-radius: 4px;
-            margin-top: 8px;
+            color: var(--highlight);
+            text-transform: uppercase;
+            margin-top: 5px;
+            display: block;
         }
-        .status-prop { background: #3b0712; color: var(--accent-pink); }
-        .status-open { background: #062f2f; color: var(--accent-cyan); }
-        .links {
-            display: flex;
-            gap: 15px;
-        }
-        .btn {
-            flex: 1;
-            text-align: center;
-            padding: 12px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            transition: all 0.2s;
-        }
-        .btn-pink { border: 2px solid var(--accent-pink); color: var(--accent-pink); }
-        .btn-pink:hover { background: var(--accent-pink); color: var(--bg-color); }
-        .btn-cyan { border: 2px solid var(--accent-cyan); color: var(--accent-cyan); }
-        .btn-cyan:hover { background: var(--accent-cyan); color: var(--bg-color); }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <h1><span class="pink">videorgasmatron</span><span class="cyan">.</span></h1>
-        <p class="tagline">Pipeline Architect & VFX R&D</p>
-    </header>
-
-    <div class="bio">
-        Desarrollo de arquitectura de video de próxima generación, herramientas nativas independientes y sistemas nodales de alto rendimiento. 
+<div id="main">
+    <!-- Header with your legacy logo linked directly via relative path -->
+    <div id="titleentry">
+        <a href="/" title="Home"><img src="logo.png" alt="videorgasmatron logo"></a>
     </div>
 
-    <div class="section-title">Proyectos en curso & R&D</div>
-    <div class="grid">
-        <div class="card">
-            <h3>⚡ Standalone Nodal VFX Suite</h3>
-            <p>Pipeline nativo en C++ para rotoscopia y tracking de nivel profesional. Rendimiento en tiempo real enfocado en producción.</p>
-            <span class="status status-prop">Proprietary - END OF TRANSMISSION LLC</span>
+    <!-- Left Sidebar -->
+    <div id="sidebar">
+        <div style="color: var(--highlight); font-weight: bold; margin-bottom: 15px;">
+            Pipeline Architect & VFX R&D
         </div>
         
-        <div class="card">
-            <h3>🧠 Python-Free AI Generation</h3>
-            <p>Backend de inferencia de IA optimizado sin la sobrecarga ni dependencias de Python, controlado mediante una interfaz nodal pura.</p>
-            <span class="status status-prop">Proprietary - END OF TRANSMISSION LLC</span>
-        </div>
-
-        <div class="card">
-            <h3>🗄️ VFX Preservation Archive</h3>
-            <p>Rescate, preservación e ingeniería inversa de compositores nodales históricos (predecesores de Natron, Synapse, Ramen). Adaptación de binarios para sistemas modernos.</p>
-            <span class="status status-open">Open Source Archive</span>
-        </div>
+        <p>Next-generation video architecture, high-performance native standalone tools, and core nodal system development.</p>
+        
+        <div class="sidebarborder"></div>
+        
+        <!-- Launcher Anchor Nodes -->
+        <p><b><a href="https://instagram.com" target="_blank">INSTAGRAM | PORTFOLIO</a></b></p>
+        <p><b><a href="https://github.com" target="_blank">GITHUB | SOURCE CODE</a></b></p>
+        
+        <div class="sidebarborder"></div>
     </div>
 
-    <div class="section-title">Anclas Profesionales</div>
-    <div class="links">
-        <a href="https://instagram.com" target="_blank" class="btn btn-pink">INSTAGRAM (PORTFOLIO VISUAL)</a>
-        <a href="https://github.com" target="_blank" class="btn btn-cyan">GITHUB (CODE RESORT)</a>
+    <!-- Central Content / Pipeline Taxonomy Launchpad -->
+    <div id="content">
+        
+        <div class="project-entry">
+            <h2>⚡ Standalone Nodal VFX Suite</h2>
+            <p>Native C++ pipeline architecture designed for professional-grade rotoscoping and tracking operations. Real-time core performance heavily optimized for production environments.</p>
+            <span class="project-tag">// PROPRIETARY SYSTEM - END OF TRANSMISSION LLC</span>
+        </div>
+
+        <div class="project-entry">
+            <h2>🧠 Python-Free AI Generation</h2>
+            <p>Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.</p>
+            <span class="project-tag">// PROPRIETARY SYSTEM - END OF TRANSMISSION LLC</span>
+        </div>
+
+        <div class="project-entry">
+            <h2>🗄️ VFX Preservation Archive</h2>
+            <p>Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.</p>
+            <span class="project-tag" style="color: var(--cyan-accent);">// OPEN SOURCE ARCHIVE</span>
+        </div>
+
     </div>
 </div>
 
