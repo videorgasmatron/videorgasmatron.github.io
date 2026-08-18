@@ -1,93 +1,113 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Videorgasmatron | Pipeline Architect & VFX R&D</title>
-    <!-- Importación necesaria de tipografías web para que Zilla Slab funcione -->
+
+    <!-- Importación exacta de Zilla Slab y Source Code Pro -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
 
-    <!-- Micro-CSS de control total: fuerza el gif en TODO el fondo y bloquea el render de Firefox -->
     <style>
-        html, body {
-            height: 100% !important;
-            min-height: 100vh !important;
+        /* Desactivar cualquier intento de Firefox de invertir o adaptar colores */
+        :root {
+            color-scheme: light;
+        }
+
+        /* Cobertura total de pantalla para el GIF sin dejar franjas arriba/abajo */
+        html {
+            background: url('stripes.gif') repeat center center fixed #000000;
+            min-height: 100%;
             margin: 0;
             padding: 0;
-            background-image: url('stripes.gif') !important;
-            background-repeat: repeat !important;
-            background-attachment: fixed !important;
-            background-color: #000000;
-            color: #000000 !important;
         }
+
+        body {
+            margin: 0;
+            padding: 80px 0;
+            color: #000000;
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        /* Zilla Slab cuadrada e imponente */
         h2 {
-            font-family: 'Zilla Slab', serif !important;
-            font-size: 22px !important;
-            color: #000000 !important;
-            margin-bottom: 5px;
+            font-family: 'Zilla Slab', serif;
+            font-weight: 700;
+            font-size: 24px;
+            color: #000000;
+            margin-top: 30px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        p, td, font {
-            font-family: 'Source Code Pro', monospace !important;
-            color: #000000 !important;
+
+        p {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #000000;
+            text-align: justify;
+            margin-top: 0;
         }
+
         a, a:visited {
-            color: #0f0f0f !important;
+            color: #0f0f0f;
             text-decoration: underline;
         }
+
         a:hover, a:active {
-            color: #ff0051 !important;
+            color: #ff0051;
+        }
+
+        /* Estructura limpia de la tabla sin cajas */
+        table {
+            border-collapse: collapse;
+        }
+
+        hr {
+            border: none;
+            border-top: 2px solid #0f0f0f;
+            margin: 40px 0 20px 0;
         }
     </style>
 </head>
 
-<body background="stripes.gif" bgcolor="#000000" text="#000000" link="#0f0f0f" vlink="#0f0f0f" alink="#ff0051" topmargin="80">
+<body>
+
+    <!-- Logo Centrado -->
+    <div style="text-align: center;">
+        <a href="/"><img src="logo.png" alt="videorgasmatron" style="border:0;"></a>
+    </div>
 
     <br><br>
 
-    <!-- Centrado del logotipo -->
-    <center>
-        <a href="/"><img src="logo.png" alt="videorgasmatron" border="0"></a>
-    </center>
-
-    <br><br><br>
-
-    <!-- Columna central en tabla transparente -->
+    <!-- Contenido en columna central transparente -->
     <table width="700" border="0" cellspacing="0" cellpadding="0" align="center">
         <tr>
             <td>
 
                 <h2>STANDALONE NODAL VFX SUITE</h2>
-                <p align="justify">Native C++ pipeline architecture designed for professional-grade rotoscopia and tracking operations. Real-time core performance heavily optimized for production environments.</p>
-                
-                <br>
+                <p>Native C++ pipeline architecture designed for professional-grade rotoscopia and tracking operations. Real-time core performance heavily optimized for production environments.</p>
 
                 <h2>PYTHON-FREE AI GENERATION</h2>
-                <p align="justify">Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.</p>
-                
-                <br>
+                <p>Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.</p>
 
                 <h2>VFX PRESERVATION ARCHIVE</h2>
-                <p align="justify">Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.</p>
+                <p>Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.</p>
 
-                <br><br>
-                <hr size="2" color="#0f0f0f" noshade>
-                <br>
+                <hr>
 
-                <!-- Enlaces del lanzador final -->
-                <p align="center">
-                    <b>
-                        <a href="https://instagram.com" target="_blank">INSTAGRAM | PORTFOLIO</a>
-                        &nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;
-                        <a href="https://github.com" target="_blank">GITHUB | SOURCE CODE</a>
-                    </b>
+                <!-- Enlaces inferiores -->
+                <p style="text-align: center; font-weight: bold;">
+                    <a href="https://instagram.com" target="_blank">INSTAGRAM | PORTFOLIO</a>
+                    &nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;
+                    <a href="https://github.com" target="_blank">GITHUB | SOURCE CODE</a>
                 </p>
 
             </td>
         </tr>
     </table>
-
-    <br><br><br>
 
 </body>
 </html>
