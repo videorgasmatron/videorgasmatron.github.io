@@ -5,44 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Videorgasmatron | Pipeline Architect & VFX R&D</title>
     
-    <!-- Google Fonts integration directly from your core theme layout -->
+    <!-- Cargamos las familias tipográficas oficiales de tu tema clásico -->
     <link rel='stylesheet' href='https://googleapis.com|Source+Code+Pro:400&subset=latin' type='text/css' media='all' />
     
     <style type="text/css">
-        /* 1. BRUTAL CORE LIGHT-MODE ENFORCEMENT ON EVERY BLOCK */
-        * {
-            color-scheme: light !important; /* Shuts down browser-injected dark sheets globally */
+        /* 1. SECCIÓN ANTI-FORZADO DE MODO OSCURO PARA FIREFOX */
+        html {
+            color-scheme: light !important; /* Desactiva la inyección de hojas oscuras del sistema */
+            background-color: #ffffff !important;
+        }
+
+        /* Fuerza transparencia absoluta en cada elemento para revelar stripes.gif */
+        html, body, div, p, span, header, section, h1, h2, a {
+            background-color: transparent !important;
+            background-image: none;
         }
 
         img { border: none; }
         
-        /* 2. CORE BACKGROUND SPECIFICATIONS FROM YOUR PDF CONFIGURATION */
-        html, body { 
-            background-color: #ffffff !important; /* Solid underlying base to pop the stripes */
-            background-image: url('stripes.gif') !important; /* Your solid black & white texture image */
+        /* 2. CONFIGURACIÓN DEL FONDO SÓLIDO EN MOSAICO (STRIPES) */
+        body { 
+            font-size: 13px; 
+            background-position: top left; 
+            padding: 0px; 
+            margin: 0px; 
+            text-transform: normal; 
             background-repeat: repeat !important; 
             background-attachment: fixed !important; 
-            background-position: top left;
-            margin: 0px; 
-            padding: 0px; 
-            text-transform: normal;
+            background-image: url('stripes.gif') !important; /* Tu archivo sólido negro y blanco */
+            background-color: #ffffff !important; /* Forzado de base blanca debajo */
+            font-family: "Source Code Pro", arial, sans-serif !important;
+            color: #0f0f0f !important;
         }
 
-        /* 3. STRICT OVERRIDES FOR ALL CONTAINERS TO REMOVE BROWSER GREY BLOCKS */
-        #main, #titleentry, #sidebar, #content, .project-entry, div, p, span, header {
-            background-color: transparent !important; /* Forces total opacity breakdown to reveal stripes */
-            background-image: none !important;
+        /* 3. TAXONOMÍA TIPOGRÁFICA EXACTA */
+        /* Cuerpo de texto y datos generales en tu tipografía monospaciada favorita */
+        body, p, div, span, b, strong, li, a { 
+            font-family: "Source Code Pro", arial, sans-serif !important;
+            color: #0f0f0f !important; /* Texto negro puro */
         }
 
-        /* 4. TOTAL FONT DOMINANCE: OVERWRITES FORCED WHITE CHARACTERS */
-        body, #main, #sidebar, #content, p, div, span, b, strong, li { 
-            font-family: "Source Code Pro", arial, sans-serif !important; /* Your signature terminal typography */
-            color: #0f0f0f !important; /* Hardcoded typography depth to kill white text injection */
-        }
-
-        /* 5. ROBOTO SPECIFIC ASSIGNMENT FOR CORE TITLES ONLY */
-        h1, h2, h3, h4, h5, h6 { 
-            font-family: "Roboto", arial, sans-serif !important;
+        /* TÍTULOS DE PROYECTOS CON PATINES (SERIF / CON REMATES) */
+        h2 { 
+            font-family: "Georgia", "Times New Roman", serif !important; /* Tipografía clásica con patines */
+            font-size: 28px;
+            line-height: 32px;
+            text-transform: none; /* Quitamos las mayúsculas forzadas automáticas */
+            letter-spacing: -0.5px;
+            margin: 0 0 12px 0;
             color: #0f0f0f !important;
         }
 
@@ -50,129 +60,86 @@
             text-decoration: none; 
             padding: 0 8px 0 0; 
             transition: all 0.2s linear; 
-            font-family: "Source Code Pro", arial, sans-serif !important;
             color: #0f0f0f !important;
         }
         
         a:hover { 
             transition: all 0.2s linear; 
-            color: #ff0051 !important; /* Signature brand pink/magenta accent */
+            color: #ff0051 !important; /* El rosa insignia para el hover de enlaces */
         }
 
-        /* 6. STRUCTURAL GEOMETRY MATCHING YOUR ORIGINAL DESIGN */
+        /* 4. ACOMODO EN UNA SOLA COLUMNA CENTRAL (SIN COLUMNA IZQUIERDA) */
         #main { 
-            width: 920px; 
+            width: 700px; /* Ancho idéntico al bloque de contenido original de tu PDF */
             overflow: hidden; 
             margin-left: auto; 
             margin-right: auto; 
+            padding-bottom: 80px;
         }
 
         #titleentry { 
-            width: 920px; 
+            width: 700px; 
             border-bottom: 2px solid #0f0f0f !important; 
-            padding-top: 100px; 
-            padding-bottom: 40px; 
+            padding-top: 120px; 
+            padding-bottom: 30px; 
             text-align: left; 
+            margin-bottom: 40px;
         }
 
         #titleentry img {
-            max-width: 920px;
+            max-width: 100%;
             display: block;
         }
 
-        #content { 
-            width: 680px; 
-            float: right; 
-            overflow: hidden; 
-            margin-top: 20px; 
-            margin-bottom: 50px; 
-        }
-
-        #sidebar { 
-            width: 200px; 
-            float: left; 
-            display: block; 
-            margin-top: 20px; 
-            margin-bottom: 50px; 
-        }
-
-        .sidebarborder { 
-            border-bottom: 2px solid #0f0f0f !important; 
-            margin: 15px 0;
-        }
-
-        .project-entry {
-            margin-bottom: 45px; 
+        /* Formato lineal continuo para la información */
+        .info-entry {
+            margin-bottom: 55px; 
             width: 100%; 
-            float: left; 
-            text-align: justify;
+            text-align: justify; 
+            line-height: 1.6;
         }
 
-        .project-entry h2 {
-            font-size: 24px;
-            line-height: 26px;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-            margin-bottom: 10px;
-            color: #0f0f0f !important;
-        }
-
-        .project-tag {
-            font-size: 11px;
-            font-weight: bold;
-            color: #ff0051 !important; 
-            text-transform: uppercase;
-            margin-top: 5px;
-            display: block;
+        .divider {
+            border-bottom: 1px dashed #0f0f0f;
+            margin: 40px 0;
+            width: 100%;
         }
     </style>
 </head>
 <body>
 
 <div id="main">
-    <!-- Header with your legacy logo linked directly via relative path -->
+    <!-- El encabezado con tu logo antiguo (logo.png) centrado y limpio -->
     <div id="titleentry">
-        <a href="/" title="Home"><img src="logo.png" alt="videorgasmatron logo"></a>
+        <a href="/" title="Home"><img src="logo.png" alt="videorgasmatron"></a>
     </div>
 
-    <!-- Left Sidebar -->
-    <div id="sidebar">
-        <div style="color: #ff0051 !important; font-weight: bold; margin-bottom: 15px;">
-            Pipeline Architect & VFX R&D
-        </div>
-        
-        <p>Next-generation video architecture, high-performance native standalone tools, and core nodal system development.</p>
-        
-        <div class="sidebarborder"></div>
-        
-        <!-- Launcher Anchor Links -->
-        <p><b><a href="https://instagram.com" target="_blank">INSTAGRAM | PORTFOLIO</a></b></p>
-        <p><b><a href="https://github.com" target="_blank">GITHUB | SOURCE CODE</a></b></p>
-        
-        <div class="sidebarborder"></div>
+    <!-- Lanzador de Información en una Sola Columna Continua -->
+    <div class="info-entry">
+        <h2>Standalone Nodal VFX Suite</h2>
+        <p>Native C++ pipeline architecture designed for professional-grade rotoscoping and tracking operations. Real-time core performance heavily optimized for production environments.</p>
     </div>
 
-    <!-- Central Content / Pipeline Taxonomy Launchpad -->
-    <div id="content">
-        
-        <div class="project-entry">
-            <h2>⚡ Standalone Nodal VFX Suite</h2>
-            <p>Native C++ pipeline architecture designed for professional-grade rotoscoping and tracking operations. Real-time core performance heavily optimized for production environments.</p>
-            <span class="project-tag">// PROPRIETARY SYSTEM - END OF TRANSMISSION LLC</span>
-        </div>
+    <div class="info-entry">
+        <h2>Python-Free AI Generation</h2>
+        <p>Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.</p>
+    </div>
 
-        <div class="project-entry">
-            <h2>🧠 Python-Free AI Generation</h2>
-            <p>Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.</p>
-            <span class="project-tag">// PROPRIETARY SYSTEM - END OF TRANSMISSION LLC</span>
-        </div>
+    <div class="info-entry">
+        <h2>VFX Preservation Archive</h2>
+        <p>Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.</p>
+    </div>
 
-        <div class="project-entry">
-            <h2>🗄️ VFX Preservation Archive</h2>
-            <p>Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.</p>
-            <span class="project-tag" style="color: #008b8b !important;">// OPEN SOURCE ARCHIVE</span>
-        </div>
+    <!-- Línea divisoria discreta de tu estilo original antes de los enlaces -->
+    <div class="divider"></div>
 
+    <!-- Enlaces directos a tus plataformas al final del flujo -->
+    <div class="info-entry" style="text-align: center;">
+        <p>
+            <b><a href="https://instagram.com" target="_blank">INSTAGRAM | PORTFOLIO</a></b> 
+            &nbsp;&nbsp;&bull;&nbsp;&nbsp;
+            <b><a href="https://github.com" target="_blank">GITHUB | SOURCE CODE</a></b>
+        </p>
     </div>
 </div>
 
