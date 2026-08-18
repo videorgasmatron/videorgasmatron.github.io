@@ -1,134 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Videorgasmatron | Pipeline Architect & VFX R&D</title>
-    
-    <!-- Protocolo seguro para forzar la carga de Source Code Pro y Zilla Slab 600 -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;1,400&family=Zilla+Slab:wght@600&display=swap" rel="stylesheet">
-    
-    <style type="text/css">
-        /* EL HACK DEFINTIVO: INVERTIMOS LA LÓGICA DE BASE PARA QUE AL FORZAR EL MODO OSCURO QUEDE BLANCO */
-        html, body {
-            background-color: #000000 !important; /* Base negra para que el navegador la invierta a blanca */
-            color: #ffffff !important;           /* Letras blancas para que el navegador las invierta a negras */
-        }
-
-        /* Quitamos bloques intermedios */
-        #main, p, h2, a, b, strong, span {
-            background-color: transparent !important;
-            background-image: none !important;
-            box-shadow: none !important;
-        }
-
-        img { border: none; }
-        
-        body { 
-            font-size: 13px; 
-            background-position: top left; 
-            padding: 80px 20px; 
-            margin: 0px; 
-            text-transform: normal; 
-            background-repeat: repeat !important; 
-            background-attachment: fixed !important; 
-            /* SE INVIERTE EL FONDO: Ponemos las stripes invertidas para que tu Firefox las regrese al tono real */
-            background-image: url('stripes.gif') !important; 
-            font-family: "Source Code Pro", monospace !important;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* FUERZA LA FUENTE DE TERMINAL EN EL TEXTO BASE */
-        body, p, b, strong, li, a { 
-            font-family: "Source Code Pro", monospace !important;
-            color: #ffffff !important; /* Se verá negro tras la inversión de Firefox */
-        }
-
-        /* FUERZA LA TIPOGRAFÍA ZILLA SLAB SEMI-BOLD 600 QUE PEDISTE */
-        h2 { 
-            font-family: "Zilla Slab", serif !important; 
-            font-weight: 600 !important; /* Semi-Bold 600 real */
-            font-size: 28px;
-            line-height: 34px;
-            text-transform: uppercase; 
-            letter-spacing: -0.5px;
-            margin-top: 50px;
-            margin-bottom: 12px;
-            color: #ffffff !important; /* Se verá negro tras la inversión */
-            display: block;
-        }
-
-        p {
-            line-height: 1.6;
-            text-align: justify;
-            margin-top: 0px;
-            margin-bottom: 30px;
-        }
-
-        /* LOGO CENTRADO */
-        .logo-container {
-            display: block !important;
-            text-align: center !important;
-            margin: 0 auto 60px auto;
-            width: 100%;
-        }
-
-        .logo-container img {
-            max-width: 100%;
-            display: inline-block !important;
-            /* Si tu logo original tiene letras oscuras y el navegador lo invierte mal, este filtro lo protege */
-            filter: none !important; 
-        }
-
-        a { 
-            text-decoration: none; 
-            font-weight: bold;
-        }
-        
-        a:hover { 
-            color: #ff0051 !important; /* El rosa insignia para el hover */
-            text-decoration: underline;
-        }
-
-        /* Línea divisoria lineal continua */
-        hr {
-            border: none !important;
-            border-bottom: 2px solid #ffffff !important; /* Cambiado a blanco para que se invierta a negro */
-            margin: 50px 0;
-            display: block;
-            width: 100%;
-        }
-    </style>
 </head>
-<body>
 
-    <!-- Contenedor del logotipo limpio y centrado -->
-    <div class="logo-container">
-        <a href="/" title="Home"><img src="logo.png" alt="videorgasmatron"></a>
-    </div>
+<!-- Atributos nativos de los 90: fondo en mosaico, letras negras, enlaces negros -->
+<body background="stripes.gif" bgcolor="#ffffff" text="#0f0f0f" link="#0f0f0f" vlink="#0f0f0f" alink="#ff0051" topmargin="80" leftmargin="0" rightmargin="0">
 
-    <!-- Contenido lineal brutalista -->
-    <h2>Standalone Nodal VFX Suite</h2>
-    <p>Native C++ pipeline architecture designed for professional-grade rotoscoping and tracking operations. Real-time core performance heavily optimized for production environments.</p>
+    <!-- Tabla central rígida para forzar una sola columna limpia de 700px sin usar divs -->
+    <table width="700" border="0" cellspacing="0" cellpadding="0" align="center">
+        <tr>
+            <td>
 
-    <h2>Python-Free AI Generation</h2>
-    <p>Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.</p>
+                <!-- Tu logo antiguo (logo.png) centrado de corrido -->
+                <center>
+                    <a href="/"><img src="logo.png" alt="videorgasmatron" border="0"></a>
+                </center>
+                
+                <br><br><br>
 
-    <h2>VFX Preservation Archive</h2>
-    <p>Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.</p>
+                <!-- Flujo continuo lineal brutalista usando tipografías nativas de sistema -->
+                
+                <!-- Títulos en mayúsculas con patines cuadrados mecánicos (Slab/Square Serif nativo) -->
+                <h2><font face="Courier New, Courier, Lucida Console, Georgia, serif">STANDALONE NODAL VFX SUITE</font></h2>
+                <!-- Contenido regular en tipografía monospaciada de terminal -->
+                <p align="justify"><font face="Source Code Pro, Courier New, monospace">Native C++ pipeline architecture designed for professional-grade rotoscoping and tracking operations. Real-time core performance heavily optimized for production environments.</font></p>
+                <br>
 
-    <hr>
+                <h2><font face="Courier New, Courier, Lucida Console, Georgia, serif">PYTHON-FREE AI GENERATION</font></h2>
+                <p align="justify"><font face="Source Code Pro, Courier New, monospace">Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.</font></p>
+                <br>
 
-    <!-- Enlaces finales del launcher -->
-    <p style="text-align: center;">
-        <a href="https://instagram.com" target="_blank">INSTAGRAM | PORTFOLIO</a> 
-        &nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;
-        <a href="https://github.com" target="_blank">GITHUB | SOURCE CODE</a>
-    </p>
+                <h2><font face="Courier New, Courier, Lucida Console, Georgia, serif">VFX PRESERVATION ARCHIVE</font></h2>
+                <p align="justify"><font face="Source Code Pro, Courier New, monospace">Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.</font></p>
+                
+                <br><br>
+                <!-- Línea sólida negra nativa de HTML para separar el bloque -->
+                <hr size="2" color="#0f0f0f" noshade>
+                <br>
+
+                <!-- Enlaces del lanzador final alineados en el centro -->
+                <p align="center">
+                    <b>
+                    <font face="Source Code Pro, Courier New, monospace">
+                        <a href="https://instagram.com" target="_blank">INSTAGRAM | PORTFOLIO</a>
+                        &nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;
+                        <a href="https://github.com" target="_blank">GITHUB | SOURCE CODE</a>
+                    </font>
+                    </b>
+                </p>
+
+            </td>
+        </tr>
+    </table>
 
 </body>
 </html>
