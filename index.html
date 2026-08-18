@@ -5,27 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Videorgasmatron | Pipeline Architect & VFX R&D</title>
     
-    <!-- Cargamos Source Code Pro desde Google Fonts -->
-    <link rel='stylesheet' href='https://googleapis.com' type='text/css' media='all' />
+    <!-- Cargamos Source Code Pro y Arvo (Square Serif real de alta densidad) -->
+    <link rel='stylesheet' href='https://googleapis.com|Arvo:700&subset=latin' type='text/css' media='all' />
     
     <style type="text/css">
-        /* 1. BLINDAJE ABSOLUTO CONTRA LA PORQUERÍA DEL MODO OSCURO DE FIREFOX */
+        /* 1. SECCIÓN CONTRA LA INYECCIÓN DE PARCHES GRISES EN FIREFOX */
         html {
             color-scheme: light !important;
             background-color: #ffffff !important;
         }
 
-        /* Forzado radical: Cero fondos para CUALQUIER etiqueta del documento */
-        *, html, body, h2, p, a, b, br, hr, img, span, strong {
-            background: transparent none !important; /* Destruye cualquier bloque gris inyectado */
-            background-color: transparent !important;
-            box-shadow: none !important;
-            text-shadow: none !important;
-        }
-
-        img { border: none; }
-        
-        /* 2. TEXTURA DE FONDO SÓLIDA EN EL BODY CON BASE BLANCA */
+        /* 2. REGLAS DE TRIPLE CAPA PARA POPAR LAS STRIPES SIN BLOQUES INTERMEDIOS */
         body { 
             font-size: 13px; 
             background-position: top left; 
@@ -34,8 +24,8 @@
             text-transform: normal; 
             background-repeat: repeat !important; 
             background-attachment: fixed !important; 
-            background-image: url('stripes.gif') !important; /* Tu imagen stripes.gif */
-            background-color: #ffffff !important; /* Base blanca sólida debajo del GIF */
+            background-image: url('stripes.gif') !important; /* Tu textura sólida de rayas */
+            background-color: #ffffff !important; 
             font-family: "Source Code Pro", monospace !important;
             color: #0f0f0f !important;
             max-width: 700px;
@@ -43,91 +33,114 @@
             margin-right: auto;
         }
 
-        /* 3. TAXONOMÍA TIPOGRÁFICA REQUERIDA */
-        /* Todo el cuerpo de texto en Source Code Pro en negro puro */
-        body, p, b, strong, li, a { 
-            font-family: "Source Code Pro", monospace !important;
-            color: #0f0f0f !important; 
-        }
-
-        /* TÍTULOS EN SQUARE SERIF / RETRO SLAB (CON PATINES CUADRADOS) */
-        h2 { 
-            font-family: "Courier New", Courier, "Lucida Console", "Georgia", serif !important; /* Emula Square Serif de forma nativa */
-            font-size: 26px;
-            line-height: 30px;
-            text-transform: uppercase; /* Mayúsculas forzadas como tu captura */
-            letter-spacing: -0.5px;
-            margin-top: 50px;
-            margin-bottom: 12px;
+        /* 3. BLINDAJE DE CONTRASTE: MANDA AL DIABLO LAS CAJAS OSCURAS INLINE */
+        h2, p, a, b, strong, span {
+            /* Forzamos que debajo de cada línea de texto haya blanco sólido */
+            background-color: #ffffff !important;
             color: #0f0f0f !important;
-            font-weight: bold;
+            display: inline; /* Hace que el fondo blanco solo abrace a las letras, como en tu captura */
+            padding: 2px 0;
+            box-shadow: none !important;
         }
 
-        p {
-            line-height: 1.6;
-            text-align: justify;
-            margin-top: 0px;
+        /* Contenedor lineal para separar las líneas sin generar bloques grises */
+        .line-wrapper {
+            display: block;
             margin-bottom: 25px;
+            background: transparent !important;
         }
 
-        /* 4. ENLACES Y LOGO CON CENTRADO SEGURO */
-        .logo-link {
-            display: block !important; /* Convierte el enlace en bloque para poder centrarlo */
+        /* 4. TAXONOMÍA TIPOGRÁFICA DEFINITIVA */
+        body, p, b, strong, a { 
+            font-family: "Source Code Pro", monospace !important;
+        }
+
+        /* TÍTULOS EN SQUARE SERIF / RETRO SLAB REAL */
+        h2 { 
+            font-family: "Arvo", "Courier New", serif !important; /* Tu tipografía Square Serif con patines industriales */
+            font-size: 26px;
+            line-height: 34px;
+            text-transform: uppercase; /* Mayúsculas como en tu Arch */
+            letter-spacing: -0.5px;
+            font-weight: 700 !important;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+
+        /* 5. LOGO Y ENLACES BRUTALISTAS */
+        .logo-container {
+            display: block !important;
             text-align: center !important;
             margin: 0 auto 60px auto;
             width: 100%;
+            background: transparent !important;
         }
 
-        .logo-img {
+        .logo-container img {
             max-width: 100%;
-            display: inline-block !important; /* Se alinea con el centrado del bloque padre */
+            display: inline-block !important;
+            background: transparent !important;
         }
 
         a { 
             text-decoration: none; 
-            padding: 0 4px; 
-            transition: all 0.1s linear; 
-            color: #0f0f0f !important;
             font-weight: bold;
         }
         
         a:hover { 
-            color: #ff0051 !important; /* Tu rosa insignia para el hover */
+            color: #ff0051 !important; /* Tu rosa/magenta insignia */
             text-decoration: underline;
         }
 
-        /* Línea divisoria brutalista idéntica a tu captura de Arch */
         hr {
             border: none !important;
             border-bottom: 2px solid #0f0f0f !important;
             margin: 50px 0;
             display: block;
             width: 100%;
+            background: transparent !important;
         }
     </style>
 </head>
 <body>
 
-    <!-- Logo con enlace forzado a comportarse como bloque centrado -->
-    <a href="/" title="Home" class="logo-link"><img src="logo.png" alt="videorgasmatron" class="logo-img"></a>
+    <!-- Tu logo antiguo centrado de corrido -->
+    <div class="logo-container">
+        <a href="/" title="Home"><img src="logo.png" alt="videorgasmatron"></a>
+    </div>
 
-    <!-- Contenido Brutalista Lineal Puro -->
-    <h2>Standalone Nodal VFX Suite</h2>
-    <p>Native C++ pipeline architecture designed for professional-grade rotoscoping and tracking operations. Real-time core performance heavily optimized for production environments.</p>
+    <!-- Flujo continuo en una sola columna libre de metadatos de post -->
+    <div class="line-wrapper">
+        <h2>Standalone Nodal VFX Suite</h2>
+    </div>
+    <div class="line-wrapper">
+        <p>Native C++ pipeline architecture designed for professional-grade rotoscoping and tracking operations. Real-time core performance heavily optimized for production environments.</p>
+    </div>
 
-    <h2>Python-Free AI Generation</h2>
-    <p>Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.</p>
+    <div class="line-wrapper">
+        <h2>Python-Free AI Generation</h2>
+    </div>
+    <div class="line-wrapper">
+        <p>Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.</p>
+    </div>
 
-    <h2>VFX Preservation Archive</h2>
-    <p>Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.</p>
+    <div class="line-wrapper">
+        <h2>VFX Preservation Archive</h2>
+    </div>
+    <div class="line-wrapper">
+        <p>Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.</p>
+    </div>
 
     <hr>
 
-    <p style="text-align: center;">
-        <a href="https://instagram.com" target="_blank">INSTAGRAM | PORTFOLIO</a> 
-        &nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;
-        <a href="https://github.com" target="_blank">GITHUB | SOURCE CODE</a>
-    </p>
+    <!-- Iconos/Enlaces finales centrados al fondo -->
+    <div class="line-wrapper" style="text-align: center;">
+        <p>
+            <a href="https://instagram.com" target="_blank">INSTAGRAM | PORTFOLIO</a> 
+            &nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;
+            <a href="https://github.com" target="_blank">GITHUB | SOURCE CODE</a>
+        </p>
+    </div>
 
 </body>
 </html>
