@@ -1,123 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Videorgasmatron | Pipeline Architect & VFX R&D</title>
-    
-    <!-- Forzado de esquema claro a nivel de navegador -->
-    <meta name="color-scheme" content="only light">
-    <meta name="darkreader-lock">
 
-    <!-- Carga de fuentes Zilla Slab y Source Code Pro -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&family=Zilla+Slab:wght@700;900&display=swap" rel="stylesheet">
 
     <style>
-        /* Aislamiento total del canvas */
-        :root {
-            color-scheme: light !important;
-        }
-
-        html {
-            background-color: #000000 !important;
+        html, body {
             margin: 0;
             padding: 0;
             width: 100%;
-            height: 100%;
+            min-height: 100vh;
+            background-color: #000000;
+            background-image: url('stripes.gif');
+            background-repeat: repeat;
+            background-attachment: fixed;
+            font-family: 'Source Code Pro', monospace;
+            color: #000000;
         }
 
         body {
-            margin: 0 !important;
-            padding: 60px 0 !important;
-            width: 100vw !important;
-            min-height: 100vh !important;
-            
-            /* Fondo de rayas en mosaico completo */
-            background-image: url('stripes.gif') !important;
-            background-repeat: repeat !important;
-            background-position: top left !important;
-            background-attachment: fixed !important;
-            background-color: #000000 !important;
-
-            font-family: 'Source Code Pro', monospace !important;
+            padding: 60px 0;
             box-sizing: border-box;
         }
 
-        /* Bloqueo estricto contra Dark Reader mediante aislamiento de color */
-        h2, p, a, td, span, hr {
-            background-color: transparent !important;
-            isolation: isolate;
+        /* --- FILTRO SVG Y TEXTURA PROCEDURAL --- */
+        .procedural-title {
+            font-family: 'Zilla Slab', serif;
+            font-weight: 900;
+            font-size: 26px;
+            color: #000000;
+            margin-top: 35px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: filter 0.2s ease;
+            
+            /* Aplica la deformación vectorial */
+            filter: url(#scanline-displace);
         }
 
-        h2 {
-            font-family: 'Zilla Slab', serif !important;
-            font-weight: 700 !important;
-            font-size: 22px !important;
-            color: #000000 !important;
-            -webkit-text-stroke: 0.2px #000000;
-            margin-top: 35px !important;
-            margin-bottom: 8px !important;
-            text-transform: uppercase !important;
-            letter-spacing: 0.5px;
+        /* Al pasar el mouse, incrementa la interferencia procedural */
+        .procedural-title:hover {
+            filter: url(#scanline-displace-heavy);
         }
 
         p {
-            font-family: 'Source Code Pro', monospace !important;
-            font-size: 14px !important;
-            color: #000000 !important;
-            -webkit-text-stroke: 0.15px #000000;
-            text-align: justify !important;
-            margin-top: 0 !important;
-            line-height: 1.5 !important;
+            font-size: 14px;
+            line-height: 1.5;
+            text-align: justify;
+            margin-top: 0;
+            font-weight: 400;
         }
 
         a, a:visited {
-            color: #000000 !important;
-            -webkit-text-stroke: 0.2px #000000;
-            text-decoration: underline !important;
-            font-weight: bold !important;
+            color: #000000;
+            text-decoration: underline;
+            font-weight: bold;
         }
 
-        a:hover, a:active {
-            color: #ff0051 !important;
-            -webkit-text-stroke: 0px transparent !important;
+        a:hover {
+            color: #ff0051;
         }
 
         hr {
-            border: none !important;
-            border-top: 2px solid #000000 !important;
-            margin: 40px 0 20px 0 !important;
-        }
-
-        table {
-            border-collapse: collapse !important;
+            border: none;
+            border-top: 2px solid #000000;
+            margin: 40px 0 20px 0;
         }
     </style>
 </head>
+<body>
 
-<body background="stripes.gif">
+    <!-- INYECCIÓN DEL MOTOR PROCEDURAL SVG (INVISIBLE EN EL DOM) -->
+    <svg style="display: none;">
+        <defs>
+            <!-- Filtro Sutil Continuo -->
+            <filter id="scanline-displace">
+                <!-- Genera un mapa de ruido matemático orientado horizontalmente -->
+                <feTurbulence type="fractalNoise" baseFrequency="0.01 0.8" numOctaves="1" result="noise" />
+                <!-- Desplaza los pixeles del texto en base al ruido -->
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
 
-    <!-- Logo Centrado -->
+            <!-- Filtro Agresivo para Hover / Interacción -->
+            <filter id="scanline-displace-heavy">
+                <feTurbulence type="fractalNoise" baseFrequency="0.05 0.95" numOctaves="2" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="12" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- LOGO CENTRADO -->
     <div style="text-align: center;">
         <a href="/"><img src="logo.png" alt="videorgasmatron" border="0"></a>
     </div>
 
-    <br>
+    <br><br>
 
-    <!-- Contenido en columna central transparente -->
+    <!-- COLUMNA CENTRAL -->
     <table width="700" border="0" cellspacing="0" cellpadding="0" align="center">
         <tr>
             <td>
 
-                <h2>STANDALONE NODAL VFX SUITE</h2>
+                <h2 class="procedural-title">STANDALONE NODAL VFX SUITE</h2>
                 <p>Native C++ pipeline architecture designed for professional-grade rotoscopia and tracking operations. Real-time core performance heavily optimized for production environments.</p>
 
-                <h2>PYTHON-FREE AI GENERATION</h2>
+                <h2 class="procedural-title">PYTHON-FREE AI GENERATION</h2>
                 <p>Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.</p>
 
-                <h2>VFX PRESERVATION ARCHIVE</h2>
+                <h2 class="procedural-title">VFX PRESERVATION ARCHIVE</h2>
                 <p>Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.</p>
 
                 <hr>
