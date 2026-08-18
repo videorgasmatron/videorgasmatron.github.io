@@ -5,150 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Videorgasmatron | Pipeline Architect & VFX R&D</title>
     
-    <!-- Google Fonts cloned from your original design -->
+    <!-- Google Fonts del código de tu PDF original -->
     <link rel='stylesheet' href='https://googleapis.com|Source+Code+Pro:400&subset=latin' type='text/css' media='all' />
     
     <style type="text/css">
-        /* 1. BRUTAL OVERRIDES FOR BROWSERS FORCING DARK MODE */
-        html {
-            color-scheme: light !important; /* Explicit light-only layout assignment */
-            background-color: #ffffff !important;
-        }
-
-        /* 2. FORCE TRANSPARENCY ON ALL STRUCTURAL BLOCKS TO REVEAL STRIPES */
-        html, body, div, p, span, header, section, article {
-            background-color: transparent !important; /* Destroys any browser-injected gray blocks */
-            background-image: none;
-        }
-
-        img { border: none; }
-        
-        /* 3. ASSIGN THE BG TEXTURE EXCLUSIVELY TO BODY WITH WHITE BASE COAT */
+        /* Configuración de colores exacta de tu PDF */
         body { 
             font-size: 13px; 
             background-position: top left; 
             padding: 0px; 
             margin: 0px; 
             text-transform: normal; 
-            background-repeat: repeat !important; 
-            background-attachment: fixed !important; 
-            background-image: url('stripes.gif') !important; /* Renders your black & white texture */
-            background-color: #ffffff !important; /* Solid underlying coat to isolate alpha fields */
+            background-repeat: repeat; 
+            background-attachment: fixed; 
+            background-image: url('stripes.gif'); /* Imagen sólida negra y blanca */
+            color: #0f0f0f; 
+            background-color: #ffffff; 
             font-family: "Source Code Pro", arial, sans-serif;
         }
 
-        /* 4. UNCONDITIONAL BLACK COLOR FORCING FOR ALL TEXT OBJECTS */
-        h1, h2, h3, h4, h5, h6, p, div, span, b, strong { 
-            font-family: "Roboto", arial, sans-serif;
-            color: #0f0f0f !important; /* Extinguishes browser-injected white texts */
-        }
+        h1 { font-family: "Roboto", arial, sans-serif; }
+        h2 { font-family: "Roboto", arial, sans-serif; }
+        body { font-family: "Source Code Pro", arial, sans-serif; }
+
+        img { border: none; }
 
         a { 
             text-decoration: none; 
             padding: 0 8px 0 0; 
             transition: all 0.2s linear; 
-            color: #0f0f0f !important;
+            color: #0f0f0f;
         }
         
         a:hover { 
             transition: all 0.2s linear; 
-            color: #ff0051 !important; /* Cloned pink/magenta highlight from your core style */
+            color: #ff0051; /* Rosa/Magenta de tu logo */
         }
 
-        /* 5. ORIGINAL STRUCTURAL DIMENSIONS FROM YOUR PDF */
-        #main { 
-            width: 920px; 
-            overflow: hidden; 
-            margin-left: auto; 
-            margin-right: auto; 
-        }
-
+        /* Dimensiones exactas de los bloques de tu PDF */
+        #main { width: 920px; overflow: hidden; margin-left: auto; margin-right: auto;}
+        
         #titleentry { 
             width: 920px; 
-            border-bottom: 2px solid #0f0f0f !important; 
+            border-bottom: 2px solid #0f0f0f; 
             padding-top: 100px; 
             padding-bottom: 40px; 
             text-align: left; 
         }
+        
+        #titleentry img { max-width: 920px; display: block; }
+        
+        #content { width: 680px; float: right; overflow: hidden; margin-top: 20px; margin-bottom: 50px;}
+        
+        #sidebar { width: 200px; float: left; display: block; margin-top: 20px; margin-bottom: 50px;}
+        
+        .sidebarborder { border-bottom: 2px solid #0f0f0f; margin: 15px 0; }
 
-        #titleentry img {
-            max-width: 920px;
-            display: block;
-        }
-
-        #content { 
-            width: 680px; 
-            float: right; 
-            overflow: hidden; 
-            margin-top: 20px; 
-            margin-bottom: 50px; 
-        }
-
-        #sidebar { 
-            width: 200px; 
-            float: left; 
-            display: block; 
-            margin-top: 20px; 
-            margin-bottom: 50px; 
-        }
-
-        .sidebarborder { 
-            border-bottom: 2px solid #0f0f0f !important; 
-            margin: 15px 0;
-        }
-
-        .project-entry {
-            margin-bottom: 45px; 
-            width: 100%; 
-            float: left; 
-            text-align: justify;
-        }
-
-        .project-entry h2 {
-            font-size: 24px;
-            line-height: 26px;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-            margin-bottom: 10px;
-            color: #0f0f0f !important;
-        }
-
-        .project-tag {
-            font-size: 11px;
-            font-weight: bold;
-            color: #ff0051 !important; /* Pure logo pink */
-            text-transform: uppercase;
-            margin-top: 5px;
-            display: block;
-        }
+        /* Estructura para tus proyectos estáticos */
+        .project-entry { margin-bottom: 50px; width: 680px; float: left; text-align: justify; padding: 0px; overflow: hidden; }
+        
+        .project-entry h2 { font-size: 26px; line-height: 26px; text-transform: uppercase; letter-spacing: -2px; margin: 0 0 10px 0; }
+        
+        .project-tag { font-size: 11px; font-weight: bold; color: #ff0051; text-transform: uppercase; margin-top: 5px; display: block; }
     </style>
 </head>
 <body>
 
 <div id="main">
-    <!-- Header calling your legacy logo via relative path -->
+    <!-- Tu logo clásico centrado en la ruta relativa -->
     <div id="titleentry">
-        <a href="/" title="Home"><img src="logo.png" alt="videorgasmatron logo"></a>
+        <a href="/" title="Home"><img src="logo.png" alt="videorgasmatron"></a>
     </div>
 
-    <!-- Left Sidebar -->
+    <!-- Barra lateral de tu PDF original -->
     <div id="sidebar">
-        <div style="color: #ff0051 !important; font-weight: bold; margin-bottom: 15px;">
-            Pipeline Architect & VFX R&D
-        </div>
-        
+        <font color="#ff0051"><p><b>Pipeline Architect & VFX R&D</b></p></font>
         <p>Next-generation video architecture, high-performance native standalone tools, and core nodal system development.</p>
         
         <div class="sidebarborder"></div>
         
-        <!-- Launcher Anchor Nodes -->
         <p><b><a href="https://instagram.com" target="_blank">INSTAGRAM | PORTFOLIO</a></b></p>
         <p><b><a href="https://github.com" target="_blank">GITHUB | SOURCE CODE</a></b></p>
         
         <div class="sidebarborder"></div>
     </div>
 
-    <!-- Central Content / Pipeline Taxonomy Launchpad -->
+    <!-- Contenido de tus proyectos -->
     <div id="content">
         
         <div class="project-entry">
@@ -166,7 +108,7 @@
         <div class="project-entry">
             <h2>🗄️ VFX Preservation Archive</h2>
             <p>Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.</p>
-            <span class="project-tag" style="color: #00b7b7 !important;">// OPEN SOURCE ARCHIVE</span>
+            <span class="project-tag" style="color: #00b7b7;">// OPEN SOURCE ARCHIVE</span>
         </div>
 
     </div>
