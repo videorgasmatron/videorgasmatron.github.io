@@ -5,17 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Videorgasmatron | Pipeline Architect & VFX R&D</title>
     
-    <!-- Cargamos Source Code Pro y Arvo (Square Serif real de alta densidad) -->
-    <link rel='stylesheet' href='https://googleapis.com|Arvo:700&subset=latin' type='text/css' media='all' />
+    <!-- Cargamos Source Code Pro y Zilla Slab con el peso 600 que pediste -->
+    <link rel='stylesheet' href='https://googleapis.com|Zilla+Slab:600&subset=latin' type='text/css' media='all' />
     
     <style type="text/css">
-        /* 1. SECCIÓN CONTRA LA INYECCIÓN DE PARCHES GRISES EN FIREFOX */
+        /* 1. COMPONENTES DE CONGELADO GRÁFICO ANTI-MODO OSCURO PARA FIREFOX */
         html {
             color-scheme: light !important;
             background-color: #ffffff !important;
+            /* Congela la matriz de color para que el navegador no pueda invertir las letras a blanco ni los fondos a negro */
+            filter: invert(0) !important; 
         }
 
-        /* 2. REGLAS DE TRIPLE CAPA PARA POPAR LAS STRIPES SIN BLOQUES INTERMEDIOS */
+        /* Quitamos CUALQUIER color de fondo de las letras para que las stripes pasen limpias */
+        html, body, div, p, span, h2, a, b, strong {
+            background-color: transparent !important;
+            background-image: none;
+            box-shadow: none !important;
+            text-shadow: none !important;
+        }
+
+        img { border: none; }
+        
+        /* 2. TEXTURA DE FONDO SÓLIDA DESPLEGADA EN EL BODY (STRIPES) */
         body { 
             font-size: 13px; 
             background-position: top left; 
@@ -24,62 +36,54 @@
             text-transform: normal; 
             background-repeat: repeat !important; 
             background-attachment: fixed !important; 
-            background-image: url('stripes.gif') !important; /* Tu textura sólida de rayas */
-            background-color: #ffffff !important; 
+            background-image: url('stripes.gif') !important; /* Tu textura sólida de rayas negras y blancas */
+            background-color: #ffffff !important; /* Base blanca obligatoria debajo del GIF */
             font-family: "Source Code Pro", monospace !important;
             color: #0f0f0f !important;
+            /* Centrado de la columna única brutalista */
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        /* 3. BLINDAJE DE CONTRASTE: MANDA AL DIABLO LAS CAJAS OSCURAS INLINE */
-        h2, p, a, b, strong, span {
-            /* Forzamos que debajo de cada línea de texto haya blanco sólido */
-            background-color: #ffffff !important;
-            color: #0f0f0f !important;
-            display: inline; /* Hace que el fondo blanco solo abrace a las letras, como en tu captura */
-            padding: 2px 0;
-            box-shadow: none !important;
-        }
-
-        /* Contenedor lineal para separar las líneas sin generar bloques grises */
-        .line-wrapper {
-            display: block;
-            margin-bottom: 25px;
-            background: transparent !important;
-        }
-
-        /* 4. TAXONOMÍA TIPOGRÁFICA DEFINITIVA */
+        /* 3. TAXONOMÍA TIPOGRÁFICA DEFINITIVA */
         body, p, b, strong, a { 
             font-family: "Source Code Pro", monospace !important;
+            color: #0f0f0f !important; /* Forzado estricto de texto negro puro */
         }
 
-        /* TÍTULOS EN SQUARE SERIF / RETRO SLAB REAL */
+        /* TÍTULOS EN ZILLA SLAB SEMI-BOLD 600 (SQUARE SERIF REAL) */
         h2 { 
-            font-family: "Arvo", "Courier New", serif !important; /* Tu tipografía Square Serif con patines industriales */
-            font-size: 26px;
+            font-family: "Zilla Slab", serif !important; /* Tu fuente Square Serif requerida */
+            font-weight: 600 !important; /* Peso Semi-Bold exacto */
+            font-size: 28px;
             line-height: 34px;
-            text-transform: uppercase; /* Mayúsculas como en tu Arch */
+            text-transform: uppercase; /* Mayúsculas idénticas a tu captura */
             letter-spacing: -0.5px;
-            font-weight: 700 !important;
+            margin-top: 50px;
             margin-bottom: 12px;
-            display: inline-block;
+            color: #0f0f0f !important;
+            display: block;
         }
 
-        /* 5. LOGO Y ENLACES BRUTALISTAS */
+        p {
+            line-height: 1.6;
+            text-align: justify;
+            margin-top: 0px;
+            margin-bottom: 30px;
+        }
+
+        /* 4. ENLACES Y LOGO CON CENTRADO SEGURO SIN GENERAR CAJAS NEGRAS */
         .logo-container {
             display: block !important;
             text-align: center !important;
             margin: 0 auto 60px auto;
             width: 100%;
-            background: transparent !important;
         }
 
         .logo-container img {
             max-width: 100%;
             display: inline-block !important;
-            background: transparent !important;
         }
 
         a { 
@@ -88,59 +92,46 @@
         }
         
         a:hover { 
-            color: #ff0051 !important; /* Tu rosa/magenta insignia */
+            color: #ff0051 !important; /* Tu rosa/magenta insignia para el feedback visual */
             text-decoration: underline;
         }
 
+        /* Línea divisoria brutalista de tu captura */
         hr {
             border: none !important;
             border-bottom: 2px solid #0f0f0f !important;
             margin: 50px 0;
             display: block;
             width: 100%;
-            background: transparent !important;
+            background-color: transparent !important;
         }
     </style>
 </head>
 <body>
 
-    <!-- Tu logo antiguo centrado de corrido -->
+    <!-- Enlace del logo antiguo configurado para centrado absoluto -->
     <div class="logo-container">
         <a href="/" title="Home"><img src="logo.png" alt="videorgasmatron"></a>
     </div>
 
-    <!-- Flujo continuo en una sola columna libre de metadatos de post -->
-    <div class="line-wrapper">
-        <h2>Standalone Nodal VFX Suite</h2>
-    </div>
-    <div class="line-wrapper">
-        <p>Native C++ pipeline architecture designed for professional-grade rotoscoping and tracking operations. Real-time core performance heavily optimized for production environments.</p>
-    </div>
+    <!-- Flujo continuo lineal brutalista libre de inyecciones grises o negras -->
+    <h2>Standalone Nodal VFX Suite</h2>
+    <p>Native C++ pipeline architecture designed for professional-grade rotoscoping and tracking operations. Real-time core performance heavily optimized for production environments.</p>
 
-    <div class="line-wrapper">
-        <h2>Python-Free AI Generation</h2>
-    </div>
-    <div class="line-wrapper">
-        <p>Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.</p>
-    </div>
+    <h2>Python-Free AI Generation</h2>
+    <p>Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.</p>
 
-    <div class="line-wrapper">
-        <h2>VFX Preservation Archive</h2>
-    </div>
-    <div class="line-wrapper">
-        <p>Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.</p>
-    </div>
+    <h2>VFX Preservation Archive</h2>
+    <p>Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.</p>
 
     <hr>
 
-    <!-- Iconos/Enlaces finales centrados al fondo -->
-    <div class="line-wrapper" style="text-align: center;">
-        <p>
-            <a href="https://instagram.com" target="_blank">INSTAGRAM | PORTFOLIO</a> 
-            &nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;
-            <a href="https://github.com" target="_blank">GITHUB | SOURCE CODE</a>
-        </p>
-    </div>
+    <!-- Enlaces finales del lanzador alineados en el centro -->
+    <p style="text-align: center;">
+        <a href="https://instagram.com" target="_blank">INSTAGRAM | PORTFOLIO</a> 
+        &nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;
+        <a href="https://github.com" target="_blank">GITHUB | SOURCE CODE</a>
+    </p>
 
 </body>
 </html>
