@@ -5,54 +5,150 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Videorgasmatron | Pipeline Architect & VFX R&D</title>
     
-    <!-- Cargamos Source Code Pro y la tipografía Zilla Slab exacta que pediste -->
+    <!-- Importación limpia y compatible de Google Fonts -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=Zilla+Slab:wght@600&display=swap" rel="stylesheet">
+    
+    <style type="text/css">
+        /* Configuración base para forzar renderizado claro en cualquier navegador */
+        html {
+            color-scheme: light;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* El body pinta el mosaico completo de tus stripes sin cortar las orillas */
+        body { 
+            margin: 0;
+            padding: 80px 20px;
+            background-image: url('stripes.gif');
+            background-repeat: repeat;
+            background-attachment: fixed;
+            background-position: top left;
+            background-color: #ffffff;
+            color: #0f0f0f;
+            font-family: "Source Code Pro", monospace;
+            font-size: 13px;
+        }
+
+        /* Contenedor central invisible (sin color de fondo) para la columna de 700px */
+        .wrapper {
+            max-width: 700px;
+            margin: 0 auto;
+            background: transparent;
+        }
+
+        /* Centrado absoluto de tu logotipo antiguo */
+        .logo-box {
+            text-align: center;
+            margin-bottom: 60px;
+            background: transparent;
+        }
+
+        .logo-box img {
+            max-width: 100%;
+            border: none;
+            display: inline-block;
+        }
+
+        /* Estructura para tus bloques limpios de información */
+        .entry {
+            margin-bottom: 45px;
+            text-align: justify;
+            background: transparent;
+        }
+
+        /* Títulos en Zilla Slab Semi-Bold 600 en mayúsculas y negro puro */
+        .entry h2 { 
+            font-family: 'Zilla Slab', serif;
+            font-weight: 600;
+            font-size: 26px;
+            line-height: 32px;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            color: #0f0f0f;
+            margin: 0 0 10px 0;
+            background: transparent;
+        }
+
+        /* Texto base descriptivo en Source Code Pro */
+        .entry p {
+            font-family: 'Source Code Pro', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #0f0f0f;
+            margin: 0;
+            background: transparent;
+        }
+
+        /* Línea divisoria brutalista negra continua */
+        hr {
+            border: none;
+            border-bottom: 2px solid #0f0f0f;
+            margin: 50px 0;
+            background: transparent;
+        }
+
+        /* Formato de los enlaces inferiores centrados */
+        .footer-links {
+            text-align: center;
+            font-family: 'Source Code Pro', monospace;
+            background: transparent;
+        }
+
+        .footer-links a {
+            color: #0f0f0f;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0 10px;
+            transition: color 0.15s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ff0051; /* Tu rosa insignia al pasar el mouse */
+            text-decoration: underline;
+        }
+    </style>
 </head>
+<body>
 
-<!-- El body controla el fondo completo de stripes y la alineación en una sola columna minimalista -->
-<body background="stripes.gif" bgcolor="#ffffff" text="#0f0f0f" link="#0f0f0f" vlink="#0f0f0f" alink="#ff0051" style="max-width: 700px; margin-left: auto; margin-right: auto; padding: 80px 20px; background-color: #ffffff !important; background-image: url('stripes.gif') !important; background-repeat: repeat !important; background-attachment: fixed !important;">
+    <!-- Contenedor único que alinea todo el diseño al centro -->
+    <div class="wrapper">
 
-    <!-- Logo perfectamente centrado en la parte superior sin cajas -->
-    <p style="text-align: center; background: transparent !important; margin-bottom: 60px;">
-        <a href="/"><img src="logo.png" alt="videorgasmatron" style="max-width: 100%; border: none; background: transparent !important;"></a>
-    </p>
+        <!-- Sección del logotipo -->
+        <div class="logo-box">
+            <a href="/" title="Home"><img src="logo.png" alt="videorgasmatron"></a>
+        </div>
 
-    <!-- Flujo Brutalista Lineal Puro sin Tablas: Todo en Texto Negro Directo -->
-    
-    <h2 style="font-family: 'Zilla Slab', serif !important; font-weight: 600 !important; font-size: 26px; line-height: 32px; text-transform: uppercase; letter-spacing: -0.5px; color: #0f0f0f !important; background: transparent !important; margin-top: 40px; margin-bottom: 10px;">
-        Standalone Nodal VFX Suite
-    </h2>
-    <p style="font-family: 'Source Code Pro', monospace !important; font-size: 13px; line-height: 1.6; text-align: justify; color: #0f0f0f !important; background: transparent !important; margin-top: 0px; margin-bottom: 35px;">
-        Native C++ pipeline architecture designed for professional-grade rotoscoping and tracking operations. Real-time core performance heavily optimized for production environments.
-    </p>
+        <!-- Bloques lineales de información limpia libre de metadatos de post -->
+        <div class="entry">
+            <h2>Standalone Nodal VFX Suite</h2>
+            <p>Native C++ pipeline architecture designed for professional-grade rotoscoping and tracking operations. Real-time core performance heavily optimized for production environments.</p>
+        </div>
 
-    <h2 style="font-family: 'Zilla Slab', serif !important; font-weight: 600 !important; font-size: 26px; line-height: 32px; text-transform: uppercase; letter-spacing: -0.5px; color: #0f0f0f !important; background: transparent !important; margin-top: 40px; margin-bottom: 10px;">
-        Python-Free AI Generation
-    </h2>
-    <p style="font-family: 'Source Code Pro', monospace !important; font-size: 13px; line-height: 1.6; text-align: justify; color: #0f0f0f !important; background: transparent !important; margin-top: 0px; margin-bottom: 35px;">
-        Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.
-    </p>
+        <div class="entry">
+            <h2>Python-Free AI Generation</h2>
+            <p>Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.</p>
+        </div>
 
-    <h2 style="font-family: 'Zilla Slab', serif !important; font-weight: 600 !important; font-size: 26px; line-height: 32px; text-transform: uppercase; letter-spacing: -0.5px; color: #0f0f0f !important; background: transparent !important; margin-top: 40px; margin-bottom: 10px;">
-        VFX Preservation Archive
-    </h2>
-    <p style="font-family: 'Source Code Pro', monospace !important; font-size: 13px; line-height: 1.6; text-align: justify; color: #0f0f0f !important; background: transparent !important; margin-top: 0px; margin-bottom: 35px;">
-        Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.
-    </p>
-    
-    <!-- Línea divisoria brutalista continua -->
-    <hr size="2" color="#0f0f0f" noshade style="border: none; border-bottom: 2px solid #0f0f0f !important; margin: 50px 0; background: transparent !important;">
+        <div class="entry">
+            <h2>VFX Preservation Archive</h2>
+            <p>Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.</p>
+        </div>
 
-    <!-- Iconos / Enlaces finales limpios centrados al fondo -->
-    <p style="text-align: center; font-family: 'Source Code Pro', monospace !important; font-size: 13px; background: transparent !important;">
-        <b>
-            <a href="https://instagram.com" target="_blank" style="color: #0f0f0f !important; text-decoration: none; padding: 0 4px;">INSTAGRAM | PORTFOLIO</a>
-            &nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;
-            <a href="https://github.com" target="_blank" style="color: #0f0f0f !important; text-decoration: none; padding: 0 4px;">GITHUB | SOURCE CODE</a>
-        </b>
-    </p>
+        <!-- Separador de sección -->
+        <hr>
+
+        <!-- Lanzadores finales -->
+        <div class="footer-links">
+            <a href="https://instagram.com" target="_blank">INSTAGRAM | PORTFOLIO</a>
+            <span>&bull;</span>
+            <a href="https://github.com" target="_blank">GITHUB | SOURCE CODE</a>
+        </div>
+
+    </div>
 
 </body>
 </html>
