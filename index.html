@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videorgasmatron | R&D, VFX & Pipeline Architect</title>
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --text-color: #ffffff;
+            --accent-pink: #ff55b0; /* Tu rosa 205 */
+            --accent-cyan: #00ffff; /* Tu cyan 51 */
+            --muted: #64748b;
+            --card-bg: #141b2d;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        h1 {
+            font-size: 2.8rem;
+            letter-spacing: -1px;
+            margin: 0;
+        }
+        .pink { color: var(--accent-pink); }
+        .cyan { color: var(--accent-cyan); }
+        .tagline {
+            color: var(--muted);
+            font-size: 1.1rem;
+            margin-top: 5px;
+        }
+        .bio {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .section-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-pink);
+            margin-bottom: 15px;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 5px;
+        }
+        .grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+        .card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #1e293b;
+        }
+        .card h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.1rem;
+        }
+        .card p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #94a3b8;
+            line-height: 1.4;
+        }
+        .status {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-top: 8px;
+        }
+        .status-prop { background: #3b0712; color: var(--accent-pink); }
+        .status-open { background: #062f2f; color: var(--accent-cyan); }
+        .links {
+            display: flex;
+            gap: 15px;
+        }
+        .btn {
+            flex: 1;
+            text-align: center;
+            padding: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .btn-pink { border: 2px solid var(--accent-pink); color: var(--accent-pink); }
+        .btn-pink:hover { background: var(--accent-pink); color: var(--bg-color); }
+        .btn-cyan { border: 2px solid var(--accent-cyan); color: var(--accent-cyan); }
+        .btn-cyan:hover { background: var(--accent-cyan); color: var(--bg-color); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1><span class="pink">videorgasmatron</span><span class="cyan">.</span></h1>
+        <p class="tagline">Pipeline Architect & VFX R&D</p>
+    </header>
+
+    <div class="bio">
+        Desarrollo de arquitectura de video de próxima generación, herramientas nativas independientes y sistemas nodales de alto rendimiento. 
+    </div>
+
+    <div class="section-title">Proyectos en curso & R&D</div>
+    <div class="grid">
+        <div class="card">
+            <h3>⚡ Standalone Nodal VFX Suite</h3>
+            <p>Pipeline nativo en C++ para rotoscopia y tracking de nivel profesional. Rendimiento en tiempo real enfocado en producción.</p>
+            <span class="status status-prop">Proprietary - END OF TRANSMISSION LLC</span>
+        </div>
+        
+        <div class="card">
+            <h3>🧠 Python-Free AI Generation</h3>
+            <p>Backend de inferencia de IA optimizado sin la sobrecarga ni dependencias de Python, controlado mediante una interfaz nodal pura.</p>
+            <span class="status status-prop">Proprietary - END OF TRANSMISSION LLC</span>
+        </div>
+
+        <div class="card">
+            <h3>🗄️ VFX Preservation Archive</h3>
+            <p>Rescate, preservación e ingeniería inversa de compositores nodales históricos (predecesores de Natron, Synapse, Ramen). Adaptación de binarios para sistemas modernos.</p>
+            <span class="status status-open">Open Source Archive</span>
+        </div>
+    </div>
+
+    <div class="section-title">Anclas Profesionales</div>
+    <div class="links">
+        <a href="https://instagram.com" target="_blank" class="btn btn-pink">INSTAGRAM (PORTFOLIO VISUAL)</a>
+        <a href="https://github.com" target="_blank" class="btn btn-cyan">GITHUB (CODE RESORT)</a>
+    </div>
+</div>
+
+</body>
+</html>
