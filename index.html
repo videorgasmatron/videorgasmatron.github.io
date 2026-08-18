@@ -154,24 +154,76 @@
             animation: colorGlitch 0.12s infinite alternate;
         }
 
-        @keyframes colorGlitch {
-            0% { color: #ff0051; text-shadow: 1.5px 0 #00ffff !important; }
-            100% { color: #000000; text-shadow: -1.5px 0 #ff0051 !important; }
-        }
-
+        /* PERFECT CENTERING AND GLITCH ANIMATION IN LOGO-BOX */
         .logo-box {
-            text-align: center;
-            margin-bottom: 70px;
-            display: block;
+            text-align: center !important; /* Horizontally centers the entire block */
+            margin-bottom: 70px !important; /* Bottom spacing */
+            display: block !important; /* Occupies full width */
+            width: 100% !important; /* Ensures the container fills the parent width */
         }
-        .logo-box img { max-width: 100%; display: inline-block; }
 
-        hr {
-            border: none !important;
-            border-bottom: 2px solid #000000 !important;
-            margin: 50px 0;
-            display: block;
-            width: 100%;
+        .logo-box a {
+            position: relative !important; /* Base for stacking context and glitch layers */
+            display: inline-block !important; /* Keeps the size exact of the PNG for centering */
+            margin: 0 auto !important; /* Automatic margins for centering within block */
+        }
+
+        .logo-box img {
+            max-width: 100%; /* Responsive scaling */
+            display: block; /* Avoids unwanted bottom spacing in a tag */
+            position: relative; /* Base for stacking */
+            z-index: 2; /* Sits above the first glitch layer */
+            margin: 0 auto; /* Vertical centering */
+        }
+
+        /* OVERLAID CROMATIC GHOST LAYERS */
+        .logo-box a::before,
+        .logo-box a::after {
+            content: ''; /* Required for pseudo-elements */
+            position: absolute; /* Positions absolutely relative to the a tag */
+            top: 0;
+            left: 0;
+            width: 100%; /* Fills the a tag completely */
+            height: 100%; /* Fills the a tag completely */
+            background: url('logo.png') no-repeat center / contain; /* Duplicates the same image asset */
+            pointer-events: none; /* Prevents interaction with these layers */
+            opacity: 0.8; /* Slight transparency for overlay effect */
+        }
+
+        .logo-box a::before {
+            animation: logoGlitchLeft 1.8s infinite linear alternate-reverse; /* Glitch movement logic */
+            clip-path: inset(25% 0 45% 0); /* Masks specific horizontal slice of the image */
+            filter: drop-shadow(-2px 0 #ff0051); /* Primary accent color drop shadow */
+            z-index: 1; /* Sits below the main image */
+        }
+
+        .logo-box a::after {
+            animation: logoGlitchRight 3.2s infinite linear alternate-reverse; /* Glitch movement logic */
+            clip-path: inset(65% 0 10% 0); /* Masks different horizontal slice of the image */
+            filter: drop-shadow(2px 0 #00ffff); /* Chromatic Cyan drop shadow */
+            z-index: 3; /* Sits above the main image */
+        }
+
+        /* GLITCH KEYFRAMES: LEFT LAYER */
+        @keyframes logoGlitchLeft {
+            0% { transform: translate(0); }
+            4% { transform: translate(-5px, 0px); }
+            8% { transform: translate(0); }
+            82% { transform: translate(0); }
+            86% { transform: translate(2px, -1px); }
+            90% { transform: translate(0); }
+            100% { transform: translate(0); }
+        }
+
+        /* GLITCH KEYFRAMES: RIGHT LAYER */
+        @keyframes logoGlitchRight {
+            0% { transform: translate(0); }
+            6% { transform: translate(3px, -1px); }
+            10% { transform: translate(0); }
+            78% { transform: translate(0); }
+            84% { transform: translate(5px, 0px); }
+            88% { transform: translate(-5px, 0px); }
+            100% { transform: translate(0); }
         }
     </style>
 </head>
