@@ -5,19 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Videorgasmatron | Pipeline Architect & VFX R&D</title>
     
-    <!-- Importación limpia de tus fuentes estables -->
+    <!-- Fuentes seguras de tu ecosistema -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=Roboto+Slab:wght@600&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Source+Code+Pro:wght@400;600&family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
     
     <style type="text/css">
-        :root {
-            color-scheme: light;
-            background-color: #ffffff;
-        }
-
-        /* Limpieza de cajas e inmunidad ante extensiones oscuras */
-        html, body, div, p, span, h2, a, b, hr, img {
+        /* Inmunidad nativa ante inversiones de modo oscuro */
+        html { color-scheme: light; background-color: #ffffff; }
+        html, body, h2, p, a, b, hr, img, span {
             background-color: transparent !important;
             box-shadow: none !important;
             text-shadow: none !important;
@@ -25,129 +21,72 @@
 
         body { 
             font-size: 13px; 
-            background-position: top left; 
-            padding: 80px 20px; 
+            padding: 100px 20px; 
             margin: 0px; 
             background-repeat: repeat !important; 
             background-attachment: fixed !important; 
             background-image: url('stripes.gif') !important; /* Tu textura sólida de rayas */
             background-color: #ffffff !important; 
             font-family: "Source Code Pro", monospace !important;
-            color: #0f0f0f !important;
+            color: #000000 !important;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
-            overflow-x: hidden;
         }
 
-        /* 1. ANIMACIÓN DE LA PANTALLA DE CARGA (TERMINAL LOOK) */
-        #loader {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: #ffffff !important;
-            background-image: url('stripes.gif') !important;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-family: "Source Code Pro", monospace;
-            font-size: 16px;
-            color: #0f0f0f;
-        }
-
-        .loading-text {
-            animation: blink 0.8s infinite steps(2);
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        /* Ocultamos el contenido real al inicio */
-        #main-content {
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-        }
-
-        /* 2. TIPOGRAFÍAS Y EFECTO DE GLITCH EN LOS TÍTULOS (HOVER) */
+        /* TU CONFIGURACIÓN EXACTA DE SQUARE SERIF PULIDA */
         h2 { 
-            font-family: "Roboto Slab", serif !important; 
-            font-weight: 600 !important; 
-            font-size: 26px;
-            line-height: 32px;
-            text-transform: uppercase; 
-            letter-spacing: -0.5px;
-            margin-top: 50px;
-            margin-bottom: 12px;
-            color: #0f0f0f !important;
-            display: inline-block;
-            position: relative;
-            cursor: pointer;
+            font-family: 'Zilla Slab', serif !important;
+            font-weight: 700 !important;
+            font-size: 22px !important;
+            color: #000000 !important;
+            -webkit-text-stroke: 0.2px #000000;
+            margin-top: 35px !important;
+            margin-bottom: 8px !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.5px;
+            display: block;
         }
 
-        /* Al pasar el mouse, el título vibra de forma analógica */
-        h2:hover {
-            animation: textGlitch 0.2s infinite linear;
+        /* EFECTO DE DESFASE ESTRUCTURAL (EL GLITCH REAL) */
+        .glitch-layout-left {
+            margin-left: -30px !important; /* Saca el bloque del eje central hacia la izquierda */
         }
 
-        @keyframes textGlitch {
-            0% { transform: translate(0); text-shadow: none; }
-            20% { transform: translate(-2px, 1px); text-shadow: -1px 0 #ff0051; }
-            40% { transform: translate(1px, -1px); text-shadow: 1px 0 #00ffff; }
-            60% { transform: translate(-1px, -1px); }
-            80% { transform: translate(2px, 1px); text-shadow: -1px 0 #00ffff; }
-            100% { transform: translate(0); }
+        .glitch-layout-right {
+            margin-left: 40px !important;  /* Desfasa el bloque hacia la derecha */
+        }
+
+        .broken-text {
+            word-spacing: 12px !important; /* Rompe el espaciado natural de las palabras */
+            letter-spacing: 2px !important;
         }
 
         p {
             font-family: "Source Code Pro", monospace !important;
-            color: #0f0f0f !important;
+            color: #000000 !important;
             line-height: 1.6;
             text-align: justify;
             margin-top: 0px;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            max-width: 620px;
         }
 
-        /* 3. LOGO CENTRADO CON MICRO-GLITCH DE ENTRADA */
+        /* Logo centrado brutalista */
         .logo-box {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 80px;
             display: block;
-            animation: logoIntro 1.5s ease-out;
         }
+        .logo-box img { max-width: 100%; border: none; }
 
-        .logo-box img {
-            max-width: 100%;
-            display: inline-block;
-        }
-
-        @keyframes logoIntro {
-            0% { opacity: 0; transform: scale(0.98); filter: invert(1); }
-            5% { opacity: 1; filter: none; }
-            10% { opacity: 0; }
-            12% { opacity: 1; transform: translate(3px, -1px); }
-            14% { transform: translate(0); }
-            100% { opacity: 1; }
-        }
-
-        /* Enlaces e Interacciones finales */
-        a { 
-            text-decoration: none; 
-            font-weight: bold;
-            color: #0f0f0f !important;
-        }
+        a { text-decoration: none; font-weight: bold; color: #000000 !important; }
+        a:hover { color: #ff0051 !important; text-decoration: underline; }
         
-        a:hover { 
-            color: #ff0051 !important; /* Tu rosa insignia */
-            text-decoration: underline;
-        }
-
         hr {
             border: none !important;
-            border-bottom: 2px solid #0f0f0f !important;
-            margin: 50px 0;
+            border-bottom: 2px solid #000000 !important;
+            margin: 60px 0;
             display: block;
             width: 100%;
         }
@@ -155,52 +94,37 @@
 </head>
 <body>
 
-    <!-- PANTALLA DE CARGA BRUTALISTA TIPO TERMINAL -->
-    <div id="loader">
-        <span class="loading-text">LOADING SYSTEMS...</span>
+    <!-- Logo en el eje central superior -->
+    <div class="logo-box">
+        <a href="/" title="Home"><img src="logo.png" alt="videorgasmatron"></a>
     </div>
 
-    <!-- CONTENEDOR PRINCIPAL DE TU LANDING -->
-    <div id="main-content">
-
-        <!-- Logotipo centrado con animación analógica de carga -->
-        <div class="logo-box">
-            <a href="/" title="Home"><img src="logo.png" alt="videorgasmatron"></a>
-        </div>
-
-        <!-- Flujo lineal continuo e interactivo -->
-        <h2>Standalone Nodal VFX Suite</h2>
+    <!-- PROYECTO 1: Desfase hacia la izquierda y espaciado roto -->
+    <div class="glitch-layout-left">
+        <h2 class="broken-text">⚡ Standalone Nodal VFX Suite</h2>
         <p>Native C++ pipeline architecture designed for professional-grade rotoscoping and tracking operations. Real-time core performance heavily optimized for production environments.</p>
-
-        <h2>Python-Free AI Generation</h2>
-        <p>Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.</p>
-
-        <h2>VFX Preservation Archive</h2>
-        <p>Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.</p>
-
-        <hr>
-
-        <p style="text-align: center;">
-            <a href="https://instagram.com" target="_blank">INSTAGRAM | PORTFOLIO</a> 
-            &nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;
-            <a href="https://github.com" target="_blank">GITHUB | SOURCE CODE</a>
-        </p>
-
     </div>
 
-    <!-- SCRIPT LIVIANO PARA CONTROLAR EL COMPORTAMIENTO DE LA CARGA -->
-    <script type="text/javascript">
-        window.addEventListener('load', function() {
-            // Retraso controlado de 1.2 segundos para simular la carga de terminal de la intro
-            setTimeout(function() {
-                var loader = document.getElementById('loader');
-                var content = document.getElementById('main-content');
-                
-                loader.style.display = 'none';
-                content.style.opacity = '1';
-            }, 1200);
-        });
-    </script>
+    <!-- PROYECTO 2: Desfase hacia la derecha drástico -->
+    <div class="glitch-layout-right">
+        <h2>🧠 Python-Free AI Generation</h2>
+        <p>Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.</p>
+    </div>
+
+    <!-- PROYECTO 3: Combinación de desfase y ruptura de caja -->
+    <div class="glitch-layout-left" style="margin-left: -15px !important;">
+        <h2 class="broken-text">🗄️ VFX Preservation Archive</h2>
+        <p>Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.</p>
+    </div>
+
+    <hr>
+
+    <!-- Enlaces finales del lanzador -->
+    <p style="text-align: center;">
+        <a href="https://instagram.com" target="_blank">INSTAGRAM | PORTFOLIO</a> 
+        &nbsp;&nbsp;&nbsp;&bull;&nbsp;&nbsp;&nbsp;
+        <a href="https://github.com" target="_blank">GITHUB | SOURCE CODE</a>
+    </p>
 
 </body>
 </html>
