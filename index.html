@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <title>Videorgasmatron | Pipeline Architect & VFX R&D</title>
     
-    <!-- Forzado de esquema de color claro para matar extensiones de Dark Mode -->
     <meta name="color-scheme" content="only light">
     <meta name="supported-color-schemes" content="light">
 
-    <!-- Carga directa de fuentes con fallback brutalista exacto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&family=Zilla+Slab:wght@700&display=swap" rel="stylesheet">
 
     <style>
-        /* Desactivar filtros de inversión de extensiones de Dark Mode */
+        /* Regla universal: obliga a TODO el texto (títulos, párrafos, enlaces, celdas) a ser negro */
+        *, *::before, *::after {
+            color: #000000 !important;
+            -webkit-text-fill-color: #000000 !important;
+        }
+
         html {
             color-scheme: light !important;
-            filter: none !important;
-            -webkit-filter: none !important;
             background-color: #000000 !important;
             margin: 0;
             padding: 0;
@@ -32,48 +33,41 @@
             width: 100vw !important;
             min-height: 100vh !important;
             
-            /* GIF de fondo forzado a cubrir el 100% real sin marcos negros */
             background-image: url('stripes.gif') !important;
             background-repeat: repeat !important;
             background-position: top left !important;
             background-attachment: fixed !important;
             
-            /* Colores de texto bloqueados en negro puro */
-            color: #000000 !important;
-            font-family: 'Source Code Pro', 'Courier New', monospace !important;
+            font-family: 'Source Code Pro', monospace !important;
             box-sizing: border-box;
         }
 
-        /* Fuerza la fuente Zilla Slab en los títulos */
         h2 {
-            font-family: 'Zilla Slab', 'Rockwell', 'Courier New', serif !important;
+            font-family: 'Zilla Slab', serif !important;
             font-weight: 700 !important;
             font-size: 22px !important;
-            color: #000000 !important;
             margin-top: 30px !important;
             margin-bottom: 5px !important;
-            letter-spacing: 0px !important;
             text-transform: uppercase !important;
         }
 
         p {
-            font-family: 'Source Code Pro', 'Courier New', monospace !important;
+            font-family: 'Source Code Pro', monospace !important;
             font-size: 14px !important;
-            color: #000000 !important;
             text-align: justify !important;
             margin-top: 0 !important;
             line-height: 1.4 !important;
         }
 
-        /* Enlaces negros nativos */
+        /* Enlaces negros nativos con hover en magenta */
         a, a:visited {
-            color: #000000 !important;
             text-decoration: underline !important;
             font-weight: bold !important;
         }
 
         a:hover, a:active {
             color: #ff0051 !important;
+            -webkit-text-fill-color: #ff0051 !important;
         }
 
         hr {
