@@ -9,6 +9,182 @@
     <link rel='stylesheet' href='https://googleapis.com|Source+Code+Pro:400&subset=latin' type='text/css' media='all' />
     
     <style type="text/css">
+        /* ANTI-DARK MODE FORCING RULES */
+        html {
+            color-scheme: light !important; /* Forces the browser to render in Light Mode only */
+            background-color: #ffffff !important;
+        }
+
+        :root {
+            --font-color: #0f0f0f !important;      /* Pure black for your text layout */
+            --backdrop-color: #ffffff !important;  /* Pure white base under your stripes */
+            --highlight: #ff0051 !important;       /* Pink/Magenta divider accent from your logo */
+            --cyan-accent: #008b8b !important;     /* Cyan optimized for high visibility on light backgrounds */
+        }
+
+        img { border: none; }
+        
+        body { 
+            font-size: 13px; 
+            background-position: top left; 
+            padding: 0px; 
+            margin: 0px; 
+            text-transform: normal; 
+            background-repeat: repeat !important;  /* Tile-grid mode for stripes.gif */
+            background-attachment: fixed !important; 
+            background-image: url('stripes.gif') !important; /* Relative call to your asset texture */
+            color: #0f0f0f !important; /* Strict inline black override */
+            background-color: #ffffff !important; /* Hardcoded white layer underneath */
+            font-family: "Source Code Pro", arial, sans-serif;
+        }
+
+        /* Strict type enforcement over system styles */
+        h1, h2, h3, h4, h5, h6, p, div, span, b, strong { 
+            font-family: "Roboto", arial, sans-serif;
+            color: #0f0f0f !important; /* Disables any custom browser font theme overrides */
+        }
+
+        a { 
+            text-decoration: none; 
+            padding: 0 8px 0 0; 
+            transition: all 0.2s linear; 
+            color: #0f0f0f !important;
+        }
+        
+        a:hover { 
+            transition: all 0.2s linear; 
+            color: var(--highlight) !important;
+        }
+
+        #main { 
+            width: 920px; 
+            overflow: hidden; 
+            margin-left: auto; 
+            margin-right: auto; 
+        }
+
+        #titleentry { 
+            width: 920px; 
+            border-bottom: 2px solid #0f0f0f !important; 
+            padding-top: 100px; 
+            padding-bottom: 40px; 
+            text-align: left; 
+        }
+
+        #titleentry img {
+            max-width: 920px;
+            display: block;
+        }
+
+        #content { 
+            width: 680px; 
+            float: right; 
+            overflow: hidden; 
+            margin-top: 20px; 
+            margin-bottom: 50px; 
+        }
+
+        #sidebar { 
+            width: 200px; 
+            float: left; 
+            display: block; 
+            margin-top: 20px; 
+            margin-bottom: 50px; 
+        }
+
+        .sidebarborder { 
+            border-bottom: 2px solid #0f0f0f !important; 
+            margin: 15px 0;
+        }
+
+        .project-entry {
+            margin-bottom: 45px; 
+            width: 100%; 
+            float: left; 
+            text-align: justify;
+        }
+
+        .project-entry h2 {
+            font-size: 24px;
+            line-height: 26px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 10px;
+            color: #0f0f0f !important;
+        }
+
+        .project-tag {
+            font-size: 11px;
+            font-weight: bold;
+            color: var(--highlight) !important;
+            text-transform: uppercase;
+            margin-top: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div id="main">
+    <!-- Header with your legacy logo linked directly via relative path -->
+    <div id="titleentry">
+        <a href="/" title="Home"><img src="logo.png" alt="videorgasmatron logo"></a>
+    </div>
+
+    <!-- Left Sidebar -->
+    <div id="sidebar">
+        <div style="color: var(--highlight) !important; font-weight: bold; margin-bottom: 15px;">
+            Pipeline Architect & VFX R&D
+        </div>
+        
+        <p>Next-generation video architecture, high-performance native standalone tools, and core nodal system development.</p>
+        
+        <div class="sidebarborder"></div>
+        
+        <!-- Launcher Anchor Nodes -->
+        <p><b><a href="https://instagram.com" target="_blank">INSTAGRAM | PORTFOLIO</a></b></p>
+        <p><b><a href="https://github.com" target="_blank">GITHUB | SOURCE CODE</a></b></p>
+        
+        <div class="sidebarborder"></div>
+    </div>
+
+    <!-- Central Content / Pipeline Taxonomy Launchpad -->
+    <div id="content">
+        
+        <div class="project-entry">
+            <h2>⚡ Standalone Nodal VFX Suite</h2>
+            <p>Native C++ pipeline architecture designed for professional-grade rotoscoping and tracking operations. Real-time core performance heavily optimized for production environments.</p>
+            <span class="project-tag">// PROPRIETARY SYSTEM - END OF TRANSMISSION LLC</span>
+        </div>
+
+        <div class="project-entry">
+            <h2>🧠 Python-Free AI Generation</h2>
+            <p>Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.</p>
+            <span class="project-tag">// PROPRIETARY SYSTEM - END OF TRANSMISSION LLC</span>
+        </div>
+
+        <div class="project-entry">
+            <h2>🗄️ VFX Preservation Archive</h2>
+            <p>Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.</p>
+            <span class="project-tag" style="color: var(--cyan-accent) !important;">// OPEN SOURCE ARCHIVE</span>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videorgasmatron | Pipeline Architect & VFX R&D</title>
+    
+    <!-- Google Fonts cloned from your original design -->
+    <link rel='stylesheet' href='https://googleapis.com|Source+Code+Pro:400&subset=latin' type='text/css' media='all' />
+    
+    <style type="text/css">
         :root {
             --font-color: #0f0f0f;      /* Negro puro original para tus textos */
             --backdrop-color: #ffffff;  /* Blanco puro base para que tus stripes resalten */
