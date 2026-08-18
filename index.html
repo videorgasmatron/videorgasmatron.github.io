@@ -10,10 +10,10 @@
     
     <style type="text/css">
         :root {
-            --font-color: #0f0f0f;      /* Original text color */
-            --backdrop-color: #ffffff;  /* Original backdrop color */
-            --highlight: #ff0051;       /* Pink/Magenta divider accent */
-            --cyan-accent: #00ffff;     /* Prompt Cyan electric accent */
+            --font-color: #0f0f0f;      /* Negro puro original para tus textos */
+            --backdrop-color: #ffffff;  /* Blanco puro base para que tus stripes resalten */
+            --highlight: #ff0051;       /* El rosa/magenta de tus separadores y tags */
+            --cyan-accent: #00b7b7;     /* Cyan ajustado para contraste óptimo sobre fondo claro */
         }
 
         img { border: none; }
@@ -24,11 +24,11 @@
             padding: 0px; 
             margin: 0px; 
             text-transform: normal; 
-            background-repeat: repeat;  /* Repeated pattern behavior */
+            background-repeat: repeat;  /* Comportamiento mosaico para stripes.gif */
             background-attachment: fixed; 
-            background-image: url('stripes.gif'); /* Relative asset call */
+            background-image: url('stripes.gif'); /* Llamada relativa a tu textura */
             color: var(--font-color);
-            background-color: var(--backdrop-color); 
+            background-color: var(--backdrop-color); /* Capa blanca sólida debajo para dar contraste */
             font-family: "Source Code Pro", arial, sans-serif;
         }
 
@@ -61,7 +61,6 @@
             text-align: left; 
         }
 
-        /* Added logo dimensions constraints based on original layout rules */
         #titleentry img {
             max-width: 920px;
             display: block;
@@ -101,6 +100,7 @@
             text-transform: uppercase;
             letter-spacing: -1px;
             margin-bottom: 10px;
+            color: var(--font-color); /* Forzamos títulos en negro */
         }
 
         .project-tag {
