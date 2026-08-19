@@ -8,7 +8,7 @@
     <!-- GOOGLE FONTS PRECONNECT & IMPORT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Zilla+Slab:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Zilla+Slab:wght@500;900&display=swap" rel="stylesheet">
 
     <style type="text/css">
         html { color-scheme: light; background-color: #ffffff; }
@@ -86,7 +86,7 @@
         /* HEAVY BRUTALIST HEADINGS */
         h1, h2, h3, .titulo-principal {
             font-family: 'Zilla Slab', serif !important;
-            font-weight: 600 !important;
+            font-weight: 500 !important;
             font-size: 18px !important;
             text-transform: uppercase !important;
             letter-spacing: 1.8px !important;
@@ -136,7 +136,7 @@
         /* OPTICAL STROKE REINFORCEMENT FOR HEAVY SERIFS */
         h2 .raster-char {
             font-family: 'Zilla Slab', serif !important;
-            font-weight: 600 !important;
+            font-weight: 500 !important;
             -webkit-text-stroke: 0.4px #000000;
         }
 
@@ -269,53 +269,60 @@
         const img = new Image();
         img.src = LOGO_SRC;
 
-        img.onload = () => {
-            const aspectRatio = img.height / img.width;
-            const targetHeight = TARGET_WIDTH * aspectRatio;
+    img.onload = () => {
+        // 1. Cálculo dinámico del ancho según el contenedor/pantalla
+        const parentWidth = canvas.parentElement.clientWidth || window.innerWidth;
+        const baseTargetWidth = 320; // Tamaño base más compacto para escritorio/móvil
+        const TARGET_WIDTH = Math.min(baseTargetWidth, parentWidth - 40); // Margen de seguridad para móvil
 
-            const dpr = window.devicePixelRatio || 1;
-            canvas.width = TARGET_WIDTH * dpr;
-            canvas.height = targetHeight * dpr;
-            canvas.style.width = `${TARGET_WIDTH}px`;
-            canvas.style.height = `${targetHeight}px`;
+        const aspectRatio = img.height / img.width;
+        const targetHeight = TARGET_WIDTH * aspectRatio;
 
-            ctx.scale(dpr, dpr);
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = TARGET_WIDTH * dpr;
+        canvas.height = targetHeight * dpr;
+        canvas.style.width = `${TARGET_WIDTH}px`;
+        canvas.style.height = `${targetHeight}px`;
 
-            const tileWidth = TARGET_WIDTH / COLS;
-            const tileHeight = targetHeight / ROWS;
+        ctx.scale(dpr, dpr);
 
-            const imgTileWidth = img.width / COLS;
-            const imgTileHeight = img.height / ROWS;
+        const tileWidth = TARGET_WIDTH / COLS;
+        const tileHeight = targetHeight / ROWS;
 
-            for (let r = 0; r < ROWS; r++) {
-                for (let c = 0; c < COLS; c++) {
-                    tiles.push({
-                        sx: c * imgTileWidth,
-                        sy: r * imgTileHeight,
-                        sw: imgTileWidth,
-                        sh: imgTileHeight,
-                        x: c * tileWidth,
-                        y: r * tileHeight,
-                        w: tileWidth,
-                        h: tileHeight,
-                        currX: c * tileWidth,
-                        currY: r * tileHeight,
-                        rot: 0,
-                        scale: 1,
+        const imgTileWidth = img.width / COLS;
+        const imgTileHeight = img.height / ROWS;
 
-                        randOffsetX: (Math.random() - 0.5) * 80,
-                        randOffsetY: (Math.random() - 0.5) * 80,
-                        randRot: (Math.random() - 0.5) * 200,
-                        threshold: 0.2 + Math.random() * 0.4,
+        tiles = []; // Limpieza de buffer por seguridad
 
-                        idlePhase: Math.random() * Math.PI * 2,
-                        idleAmp: 0.3 + Math.random() * 0.7
-                    });
-                }
+        for (let r = 0; r < ROWS; r++) {
+            for (let c = 0; c < COLS; c++) {
+                tiles.push({
+                    sx: c * imgTileWidth,
+                    sy: r * imgTileHeight,
+                    sw: imgTileWidth,
+                    sh: imgTileHeight,
+                    x: c * tileWidth,
+                    y: r * tileHeight,
+                    w: tileWidth,
+                    h: tileHeight,
+                    currX: c * tileWidth,
+                    currY: r * tileHeight,
+                    rot: 0,
+                    scale: 1,
+
+                    randOffsetX: (Math.random() - 0.5) * 80,
+                    randOffsetY: (Math.random() - 0.5) * 80,
+                    randRot: (Math.random() - 0.5) * 200,
+                    threshold: 0.2 + Math.random() * 0.4,
+
+                    idlePhase: Math.random() * Math.PI * 2,
+                    idleAmp: 0.3 + Math.random() * 0.7
+                });
             }
+        }
 
-            isLogoLoaded = true;
-        };
+        isLogoLoaded = true;
+    };
 
         window.addEventListener('mousemove', (e) => {
             const rect = canvas.getBoundingClientRect();
