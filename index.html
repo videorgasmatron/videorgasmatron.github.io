@@ -165,75 +165,160 @@
             color: #ffffff !important;
         }
 
-        /* PERFECT CENTERING AND GLITCH ANIMATION IN LOGO-BOX */
-        .logo-box {
-            text-align: center !important;
-            margin-bottom: 70px !important;
-            display: block !important;
-            width: 100% !important;
-        }
+/* --- LOGO CONTAINER & HEAVY ANALOG SYNC SYSTEM --- */
+.logo-box {
+    text-align: center !important;
+    margin-bottom: 70px !important;
+    display: block !important;
+    width: 100% !important;
+}
 
-        .logo-box a {
-            position: relative !important;
-            display: inline-block !important;
-            margin: 0 auto !important;
-        }
+.logo-box a {
+    position: relative !important;
+    display: inline-block !important;
+    margin: 0 auto !important;
+}
 
-        .logo-box img {
-            max-width: 100%;
-            display: block;
-            position: relative;
-            z-index: 2;
-            margin: 0 auto;
-        }
+/* BASE LOGO: Static solid anchor point */
+.logo-box img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+    z-index: 2;
+    margin: 0 auto;
+    transform: none !important;
+    filter: none !important;
+}
 
-        /* OVERLAID CHROMATIC GHOST LAYERS */
-        .logo-box a::before,
-        .logo-box a::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('logo.png') no-repeat center / contain;
-            pointer-events: none;
-            opacity: 0.8;
-        }
+/* GLITCH OVERLAYS: High-weight horizontal slice layers */
+.logo-box a::before,
+.logo-box a::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('logo.png') no-repeat center / contain;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 3;
+}
 
-        .logo-box a::before {
-            animation: logoGlitchLeft 2.8s infinite linear alternate-reverse;
-            clip-path: inset(25% 0 45% 0);
-            filter: drop-shadow(-2px 0 #ff0051);
-            z-index: 1;
-        }
+/* MODE 1: DUAL HEAVY SLICE (Full-width 50/50 horizontal split) */
+.logo-box.mode-chromatic a::before {
+    opacity: 1;
+    animation: fxHeavySliceLeft 0.22s steps(3);
+    filter: drop-shadow(-10px 0 #ff0051);
+    clip-path: inset(0 0 48% 0); /* Upper heavy plane */
+}
+.logo-box.mode-chromatic a::after {
+    opacity: 1;
+    animation: fxHeavySliceRight 0.22s steps(3);
+    filter: drop-shadow(10px 0 #00ffff);
+    clip-path: inset(52% 0 0 0); /* Lower heavy plane */
+}
 
-        .logo-box a::after {
-            animation: logoGlitchRight 3.2s infinite linear alternate-reverse;
-            clip-path: inset(65% 0 10% 0);
-            filter: drop-shadow(2px 0 #00ffff);
-            z-index: 3;
-        }
+/* MODE 2: HORIZONTAL BLINDS EFFECT (Interleaved left/right shutter displacement) */
+.logo-box.mode-vertical a::before {
+    opacity: 1;
+    animation: fxBlindsShiftA 0.26s cubic-bezier(0, 0.9, 0.1, 1);
+    filter: invert(100%);
+    clip-path: polygon(0 0, 100% 0, 100% 20%, 0 20%, 0 40%, 100% 40%, 100% 60%, 0 60%, 0 80%, 100% 80%, 100% 100%, 0 100%);
+}
+.logo-box.mode-vertical a::after {
+    opacity: 1;
+    animation: fxBlindsShiftB 0.26s cubic-bezier(0, 0.9, 0.1, 1);
+    filter: contrast(300%) grayscale(100%);
+    clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%, 0 60%, 100% 60%, 100% 80%, 0 80%, 0 100%, 100% 100%);
+}
 
-        @keyframes logoGlitchLeft {
-            0% { transform: translate(0); }
-            4% { transform: translate(-3px, 1px); }
-            8% { transform: translate(0); }
-            82% { transform: translate(0); }
-            86% { transform: translate(2px, -1px); }
-            90% { transform: translate(0); }
-            100% { transform: translate(0); }
-        }
+/* MODE 3: CONTROLLED OUT-OF-SIGNAL (Clean horizontal sync drop) */
+.logo-box.mode-pixel a::before {
+    opacity: 1;
+    animation: fxSignalLossTop 0.28s steps(2);
+    filter: invert(100%);
+    clip-path: inset(18% 0 45% 0);
+}
+.logo-box.mode-pixel a::after {
+    opacity: 1;
+    animation: fxSignalLossBottom 0.28s steps(2);
+    filter: brightness(3) contrast(200%);
+    clip-path: inset(55% 0 12% 0);
+}
 
-        @keyframes logoGlitchRight {
-            0% { transform: translate(0); }
-            6% { transform: translate(3px, -1px); }
-            10% { transform: translate(0); }
-            78% { transform: translate(0); }
-            84% { transform: translate(-2px, 2px); }
-            88% { transform: translate(0); }
-            100% { transform: translate(0); }
-        }
+/* MODE 4: INTERLACED SHIFT (Experimental tight-amplitude offset) */
+.logo-box.mode-scanline a::before {
+    opacity: 1;
+    animation: fxInterlacedA 0.24s steps(4);
+    filter: drop-shadow(-14px 0 #ff0051);
+    clip-path: inset(8% 0 62% 0);
+}
+.logo-box.mode-scanline a::after {
+    opacity: 1;
+    animation: fxInterlacedB 0.24s steps(4);
+    filter: drop-shadow(14px 0 #00ffff);
+    clip-path: inset(38% 0 18% 0);
+}
+
+/* --- KEYFRAMES (Short-distance, high-impact horizontal steps) --- */
+
+/* Dual Heavy Slice */
+@keyframes fxHeavySliceLeft {
+    0% { transform: translateX(-16px); }
+    50% { transform: translateX(10px); }
+    100% { transform: translateX(0); opacity: 0; }
+}
+
+@keyframes fxHeavySliceRight {
+    0% { transform: translateX(16px); }
+    50% { transform: translateX(-10px); }
+    100% { transform: translateX(0); opacity: 0; }
+}
+
+/* Horizontal Blinds (Alternating tight shutter movement) */
+@keyframes fxBlindsShiftA {
+    0% { transform: translateX(-12px); }
+    40% { transform: translateX(8px); }
+    80% { transform: translateX(-4px); }
+    100% { transform: translateX(0); opacity: 0; }
+}
+
+@keyframes fxBlindsShiftB {
+    0% { transform: translateX(12px); }
+    40% { transform: translateX(-8px); }
+    80% { transform: translateX(4px); }
+    100% { transform: translateX(0); opacity: 0; }
+}
+
+/* Controlled Out-of-Signal Drop (Clean lateral step outs) */
+@keyframes fxSignalLossTop {
+    0% { transform: translateX(-22px); }
+    50% { transform: translateX(14px); opacity: 0.8; }
+    100% { transform: translateX(0); opacity: 0; }
+}
+
+@keyframes fxSignalLossBottom {
+    0% { transform: translateX(22px); }
+    50% { transform: translateX(-14px); opacity: 0.8; }
+    100% { transform: translateX(0); opacity: 0; }
+}
+
+/* Interlaced Tight Shift */
+@keyframes fxInterlacedA {
+    0% { transform: translateX(-18px); }
+    33% { transform: translateX(12px); }
+    66% { transform: translateX(-6px); }
+    100% { transform: translateX(0); opacity: 0; }
+}
+
+@keyframes fxInterlacedB {
+    0% { transform: translateX(18px); }
+    33% { transform: translateX(-12px); }
+    66% { transform: translateX(6px); }
+    100% { transform: translateX(0); opacity: 0; }
+}
 
         hr {
             border: none !important;
@@ -299,7 +384,7 @@
 
     <hr class="reveal-line">
 
-    <script type="text/javascript">
+ <script type="text/javascript">
         let mouse = { x: -1000, y: -1000 };
         let targetMouse = { x: -1000, y: -1000 };
 
@@ -402,7 +487,7 @@
                     }
                 }
 
-                // VELOCIDAD DE RESPUESTA CINÉTICA (Aceleración de impacto inicial y retorno suave)
+                // KINETIC RESPONSE SPEED (Initial impact acceleration and smooth recovery)
                 const easing = char.dataset.isExploding === "true" ? 0.14 : 0.07;
 
                 let currentTx = parseFloat(char.dataset.tx) + (targetTx - parseFloat(char.dataset.tx)) * easing;
@@ -455,7 +540,30 @@
 
         requestAnimationFrame(renderLoop);
 
-        // DISPARO Y RETARDO INTENCIONAL DEL ENLACE
+        // LOGO GLITCH MODE SEQUENCER
+        const logoBox = document.querySelector('.logo-box');
+        if (logoBox) {
+            const glitchModes = ['mode-chromatic', 'mode-vertical', 'mode-pixel', 'mode-scanline'];
+            let step = 0;
+
+            setInterval(() => {
+                step++;
+                logoBox.classList.remove(...glitchModes);
+
+                const triggerNoise = getNoise(step * 1.7);
+                if (triggerNoise > 0.4) {
+                    const modeIndex = Math.floor(getNoise(step * 3.3) * glitchModes.length);
+                    const selectedMode = glitchModes[modeIndex];
+                    logoBox.classList.add(selectedMode);
+
+                    setTimeout(() => {
+                        logoBox.classList.remove(selectedMode);
+                    }, 280);
+                }
+            }, 600);
+        }
+
+        // INTENTIONAL LINK TRIGGER AND DELAY
         document.querySelectorAll('.magnetic-node').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -467,7 +575,7 @@
 
                     elementsToExplode.forEach((char, i) => {
                         const angle = (getNoise(i * 3.7) * Math.PI * 2);
-                        const distance = 20 + getNoise(i * 7.1) * 30; // Desplazamiento visible
+                        const distance = 20 + getNoise(i * 7.1) * 30; // Visible displacement
 
                         char.dataset.impulseX = Math.cos(angle) * distance;
                         char.dataset.impulseY = Math.sin(angle) * distance;
@@ -481,7 +589,7 @@
                     link.dataset.isExploding = "true";
                     link.classList.add('exploding');
 
-                    // RETARDO INTENCIONAL (500 ms) PARA REGISTRAR EL DESARME VISUAL
+                    // INTENTIONAL DELAY (500 ms) TO REGISTER VISUAL DISASSEMBLY
                     setTimeout(() => {
                         window.open(targetUrl, '_blank');
                     }, 500);
@@ -491,7 +599,7 @@
             });
         });
 
-        // RECONSTRUCCIÓN AL REGRESAR EL FOCO
+        // RECONSTRUCTION UPON FOCUS RETURN
         window.addEventListener('focus', () => {
             const explodingChars = document.querySelectorAll('.raster-char[data-is-exploding="true"]');
             const explodingLinks = document.querySelectorAll('.magnetic-node[data-is-exploding="true"]');
