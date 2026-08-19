@@ -12,7 +12,7 @@
 
     <style type="text/css">
         html { color-scheme: light; background-color: #ffffff; }
-        html, body, div, p, span, h2, a, b, hr, img {
+        html, body, div, p, span, h2, a, b, hr, img, canvas {
             background-color: transparent !important;
             box-shadow: none !important;
             text-shadow: none !important;
@@ -86,10 +86,10 @@
         /* HEAVY BRUTALIST HEADINGS */
         h1, h2, h3, .titulo-principal {
             font-family: 'Zilla Slab', serif !important;
-            font-weight: 900 !important;
-            font-size: 24px !important;
+            font-weight: 600 !important;
+            font-size: 18px !important;
             text-transform: uppercase !important;
-            letter-spacing: 0.8px !important;
+            letter-spacing: 1.8px !important;
             margin-top: 45px !important;
             margin-bottom: 12px !important;
             color: #000000 !important;
@@ -136,7 +136,7 @@
         /* OPTICAL STROKE REINFORCEMENT FOR HEAVY SERIFS */
         h2 .raster-char {
             font-family: 'Zilla Slab', serif !important;
-            font-weight: 900 !important;
+            font-weight: 600 !important;
             -webkit-text-stroke: 0.4px #000000;
         }
 
@@ -165,160 +165,22 @@
             color: #ffffff !important;
         }
 
-/* --- LOGO CONTAINER & HEAVY ANALOG SYNC SYSTEM --- */
-.logo-box {
-    text-align: center !important;
-    margin-bottom: 70px !important;
-    display: block !important;
-    width: 100% !important;
-}
+        /* --- LOGO CONTAINER & CANVAS MOSAIC SYSTEM --- */
+        .logo-box {
+            text-align: center !important;
+            margin-bottom: 70px !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: 100% !important;
+        }
 
-.logo-box a {
-    position: relative !important;
-    display: inline-block !important;
-    margin: 0 auto !important;
-}
-
-/* BASE LOGO: Static solid anchor point */
-.logo-box img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    position: relative;
-    z-index: 2;
-    margin: 0 auto;
-    transform: none !important;
-    filter: none !important;
-}
-
-/* GLITCH OVERLAYS: High-weight horizontal slice layers */
-.logo-box a::before,
-.logo-box a::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('logo.png') no-repeat center / contain;
-    pointer-events: none;
-    opacity: 0;
-    z-index: 3;
-}
-
-/* MODE 1: DUAL HEAVY SLICE (Full-width 50/50 horizontal split) */
-.logo-box.mode-chromatic a::before {
-    opacity: 1;
-    animation: fxHeavySliceLeft 0.22s steps(3);
-    filter: drop-shadow(-10px 0 #ff0051);
-    clip-path: inset(0 0 48% 0); /* Upper heavy plane */
-}
-.logo-box.mode-chromatic a::after {
-    opacity: 1;
-    animation: fxHeavySliceRight 0.22s steps(3);
-    filter: drop-shadow(10px 0 #00ffff);
-    clip-path: inset(52% 0 0 0); /* Lower heavy plane */
-}
-
-/* MODE 2: HORIZONTAL BLINDS EFFECT (Interleaved left/right shutter displacement) */
-.logo-box.mode-vertical a::before {
-    opacity: 1;
-    animation: fxBlindsShiftA 0.26s cubic-bezier(0, 0.9, 0.1, 1);
-    filter: invert(100%);
-    clip-path: polygon(0 0, 100% 0, 100% 20%, 0 20%, 0 40%, 100% 40%, 100% 60%, 0 60%, 0 80%, 100% 80%, 100% 100%, 0 100%);
-}
-.logo-box.mode-vertical a::after {
-    opacity: 1;
-    animation: fxBlindsShiftB 0.26s cubic-bezier(0, 0.9, 0.1, 1);
-    filter: contrast(300%) grayscale(100%);
-    clip-path: polygon(0 20%, 100% 20%, 100% 40%, 0 40%, 0 60%, 100% 60%, 100% 80%, 0 80%, 0 100%, 100% 100%);
-}
-
-/* MODE 3: CONTROLLED OUT-OF-SIGNAL (Clean horizontal sync drop) */
-.logo-box.mode-pixel a::before {
-    opacity: 1;
-    animation: fxSignalLossTop 0.28s steps(2);
-    filter: invert(100%);
-    clip-path: inset(18% 0 45% 0);
-}
-.logo-box.mode-pixel a::after {
-    opacity: 1;
-    animation: fxSignalLossBottom 0.28s steps(2);
-    filter: brightness(3) contrast(200%);
-    clip-path: inset(55% 0 12% 0);
-}
-
-/* MODE 4: INTERLACED SHIFT (Experimental tight-amplitude offset) */
-.logo-box.mode-scanline a::before {
-    opacity: 1;
-    animation: fxInterlacedA 0.24s steps(4);
-    filter: drop-shadow(-14px 0 #ff0051);
-    clip-path: inset(8% 0 62% 0);
-}
-.logo-box.mode-scanline a::after {
-    opacity: 1;
-    animation: fxInterlacedB 0.24s steps(4);
-    filter: drop-shadow(14px 0 #00ffff);
-    clip-path: inset(38% 0 18% 0);
-}
-
-/* --- KEYFRAMES (Short-distance, high-impact horizontal steps) --- */
-
-/* Dual Heavy Slice */
-@keyframes fxHeavySliceLeft {
-    0% { transform: translateX(-16px); }
-    50% { transform: translateX(10px); }
-    100% { transform: translateX(0); opacity: 0; }
-}
-
-@keyframes fxHeavySliceRight {
-    0% { transform: translateX(16px); }
-    50% { transform: translateX(-10px); }
-    100% { transform: translateX(0); opacity: 0; }
-}
-
-/* Horizontal Blinds (Alternating tight shutter movement) */
-@keyframes fxBlindsShiftA {
-    0% { transform: translateX(-12px); }
-    40% { transform: translateX(8px); }
-    80% { transform: translateX(-4px); }
-    100% { transform: translateX(0); opacity: 0; }
-}
-
-@keyframes fxBlindsShiftB {
-    0% { transform: translateX(12px); }
-    40% { transform: translateX(-8px); }
-    80% { transform: translateX(4px); }
-    100% { transform: translateX(0); opacity: 0; }
-}
-
-/* Controlled Out-of-Signal Drop (Clean lateral step outs) */
-@keyframes fxSignalLossTop {
-    0% { transform: translateX(-22px); }
-    50% { transform: translateX(14px); opacity: 0.8; }
-    100% { transform: translateX(0); opacity: 0; }
-}
-
-@keyframes fxSignalLossBottom {
-    0% { transform: translateX(22px); }
-    50% { transform: translateX(-14px); opacity: 0.8; }
-    100% { transform: translateX(0); opacity: 0; }
-}
-
-/* Interlaced Tight Shift */
-@keyframes fxInterlacedA {
-    0% { transform: translateX(-18px); }
-    33% { transform: translateX(12px); }
-    66% { transform: translateX(-6px); }
-    100% { transform: translateX(0); opacity: 0; }
-}
-
-@keyframes fxInterlacedB {
-    0% { transform: translateX(18px); }
-    33% { transform: translateX(-12px); }
-    66% { transform: translateX(6px); }
-    100% { transform: translateX(0); opacity: 0; }
-}
+        #mosaicCanvas {
+            display: block;
+            margin: 0 auto;
+            cursor: pointer;
+            user-select: none;
+        }
 
         hr {
             border: none !important;
@@ -356,8 +218,11 @@
         <div class="loader-counter" id="loader-counter">00%</div>
     </div>
 
+    <!-- LOGO WITH STOCHASTIC CANVAS ENGINE -->
     <div class="logo-box reveal-line">
-        <a href="/" title="Home"><img src="logo.png" alt="videorgasmatron"></a>
+        <a href="/" title="Home">
+            <canvas id="mosaicCanvas"></canvas>
+        </a>
     </div>
 
     <!-- MAIN CONTENT BLOCK: NARRATIVE CHAOS PIPELINE WITH INLINE MAGNETIC LINKS -->
@@ -384,7 +249,148 @@
 
     <hr class="reveal-line">
 
- <script type="text/javascript">
+    <script type="text/javascript">
+        // --- 1. MOSAIC CANVAS ENGINE FOR LOGO (IDLE MICRO-GLITCH + CURSOR STOCHASTIC DISINTEGRATION) ---
+        const LOGO_SRC = 'logo.png';
+        const COLS = 44;
+        const ROWS = 14;
+        const TARGET_WIDTH = 420;
+
+        const BOX_WIDTH = 180;
+        const BOX_HEIGHT = 100;
+
+        const canvas = document.getElementById('mosaicCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let logoMouse = { x: -1000, y: -1000 };
+        let tiles = [];
+        let isLogoLoaded = false;
+
+        const img = new Image();
+        img.src = LOGO_SRC;
+
+        img.onload = () => {
+            const aspectRatio = img.height / img.width;
+            const targetHeight = TARGET_WIDTH * aspectRatio;
+
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = TARGET_WIDTH * dpr;
+            canvas.height = targetHeight * dpr;
+            canvas.style.width = `${TARGET_WIDTH}px`;
+            canvas.style.height = `${targetHeight}px`;
+
+            ctx.scale(dpr, dpr);
+
+            const tileWidth = TARGET_WIDTH / COLS;
+            const tileHeight = targetHeight / ROWS;
+
+            const imgTileWidth = img.width / COLS;
+            const imgTileHeight = img.height / ROWS;
+
+            for (let r = 0; r < ROWS; r++) {
+                for (let c = 0; c < COLS; c++) {
+                    tiles.push({
+                        sx: c * imgTileWidth,
+                        sy: r * imgTileHeight,
+                        sw: imgTileWidth,
+                        sh: imgTileHeight,
+                        x: c * tileWidth,
+                        y: r * tileHeight,
+                        w: tileWidth,
+                        h: tileHeight,
+                        currX: c * tileWidth,
+                        currY: r * tileHeight,
+                        rot: 0,
+                        scale: 1,
+
+                        randOffsetX: (Math.random() - 0.5) * 80,
+                        randOffsetY: (Math.random() - 0.5) * 80,
+                        randRot: (Math.random() - 0.5) * 200,
+                        threshold: 0.2 + Math.random() * 0.4,
+
+                        idlePhase: Math.random() * Math.PI * 2,
+                        idleAmp: 0.3 + Math.random() * 0.7
+                    });
+                }
+            }
+
+            isLogoLoaded = true;
+        };
+
+        window.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            logoMouse.x = e.clientX - rect.left;
+            logoMouse.y = e.clientY - rect.top;
+        });
+
+        window.addEventListener('mouseleave', () => {
+            logoMouse.x = -1000;
+            logoMouse.y = -1000;
+        });
+
+        function renderLogoMosaic(time) {
+            if (!isLogoLoaded) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            tiles.forEach(tile => {
+                const tileCenterX = tile.x + tile.w / 2;
+                const tileCenterY = tile.y + tile.h / 2;
+
+                const dx = Math.abs(logoMouse.x - tileCenterX);
+                const dy = Math.abs(logoMouse.y - tileCenterY);
+
+                let targetX = tile.x;
+                let targetY = tile.y;
+                let targetRot = 0;
+                let targetScale = 1;
+
+                if (dx < BOX_WIDTH / 2 && dy < BOX_HEIGHT / 2) {
+                    const influenceX = 1 - (dx / (BOX_WIDTH / 2));
+                    const influenceY = 1 - (dy / (BOX_HEIGHT / 2));
+                    const rawFactor = influenceX * influenceY;
+
+                    if (rawFactor > tile.threshold * 0.3) {
+                        targetX = tile.x + tile.randOffsetX * rawFactor;
+                        targetY = tile.y + tile.randOffsetY * rawFactor;
+                        targetRot = tile.randRot * rawFactor;
+                        targetScale = 1 - (rawFactor * 0.2);
+                    }
+                } else {
+                    const idlePulse = Math.sin((time * 0.002) + tile.idlePhase);
+
+                    if (idlePulse > 0.82) {
+                        const idleFactor = ((idlePulse - 0.82) / 0.18) * tile.idleAmp;
+
+                        targetX = tile.x + (tile.randOffsetX * 0.25 * idleFactor);
+                        targetY = tile.y + (tile.randOffsetY * 0.25 * idleFactor);
+                        targetRot = tile.randRot * 0.2 * idleFactor;
+                        targetScale = 1 - (idleFactor * 0.1);
+                    }
+                }
+
+                tile.currX += (targetX - tile.currX) * 0.14;
+                tile.currY += (targetY - tile.currY) * 0.14;
+                tile.rot += (targetRot - tile.rot) * 0.14;
+                tile.scale += (targetScale - tile.scale) * 0.14;
+
+                ctx.save();
+                ctx.translate(tile.currX + tile.w / 2, tile.currY + tile.h / 2);
+                ctx.rotate((tile.rot * Math.PI) / 180);
+                ctx.scale(tile.scale, tile.scale);
+
+                ctx.drawImage(
+                    img,
+                    tile.sx, tile.sy, tile.sw, tile.sh,
+                    -tile.w / 2, -tile.h / 2, tile.w + 0.6, tile.h + 0.6
+                );
+
+                ctx.restore();
+            });
+        }
+
+
+        // --- 2. TEXT RASTERIZATION & PHYSICAL CHAOS PIPELINE ---
         let mouse = { x: -1000, y: -1000 };
         let targetMouse = { x: -1000, y: -1000 };
 
@@ -442,12 +448,15 @@
             return x - Math.floor(x);
         }
 
-        // REAL-TIME PHYSICS LOOP
-        function renderLoop() {
+        // UNIFIED REAL-TIME PHYSICS LOOP
+        function renderLoop(time) {
+            // Render Engine 1: Logo Canvas Mosaic
+            renderLogoMosaic(time);
+
+            // Render Engine 2: Text Physics
             mouse.x += (targetMouse.x - mouse.x) * 0.12;
             mouse.y += (targetMouse.y - mouse.y) * 0.12;
 
-            // 1. CHARACTER PHYSICS
             const chars = document.querySelectorAll('.raster-char');
             chars.forEach((char, index) => {
                 let targetTx = 0, targetTy = 0, targetSk = 0, targetRt = 0, targetSc = 1;
@@ -487,7 +496,6 @@
                     }
                 }
 
-                // KINETIC RESPONSE SPEED (Initial impact acceleration and smooth recovery)
                 const easing = char.dataset.isExploding === "true" ? 0.14 : 0.07;
 
                 let currentTx = parseFloat(char.dataset.tx) + (targetTx - parseFloat(char.dataset.tx)) * easing;
@@ -502,7 +510,7 @@
                 char.style.transform = `translateX(${currentTx}px) translateY(${currentTy}px) skewX(${currentSk}deg) rotate(${currentRt}deg) scale(${currentSc})`;
             });
 
-            // 2. MAGNETIC LINKS
+            // Magnetic Links Handling
             const magneticLinks = document.querySelectorAll('.magnetic-node');
             magneticLinks.forEach((link) => {
                 let targetTx = 0, targetTy = 0;
@@ -540,29 +548,6 @@
 
         requestAnimationFrame(renderLoop);
 
-        // LOGO GLITCH MODE SEQUENCER
-        const logoBox = document.querySelector('.logo-box');
-        if (logoBox) {
-            const glitchModes = ['mode-chromatic', 'mode-vertical', 'mode-pixel', 'mode-scanline'];
-            let step = 0;
-
-            setInterval(() => {
-                step++;
-                logoBox.classList.remove(...glitchModes);
-
-                const triggerNoise = getNoise(step * 1.7);
-                if (triggerNoise > 0.4) {
-                    const modeIndex = Math.floor(getNoise(step * 3.3) * glitchModes.length);
-                    const selectedMode = glitchModes[modeIndex];
-                    logoBox.classList.add(selectedMode);
-
-                    setTimeout(() => {
-                        logoBox.classList.remove(selectedMode);
-                    }, 280);
-                }
-            }, 600);
-        }
-
         // INTENTIONAL LINK TRIGGER AND DELAY
         document.querySelectorAll('.magnetic-node').forEach(link => {
             link.addEventListener('click', (e) => {
@@ -575,7 +560,7 @@
 
                     elementsToExplode.forEach((char, i) => {
                         const angle = (getNoise(i * 3.7) * Math.PI * 2);
-                        const distance = 20 + getNoise(i * 7.1) * 30; // Visible displacement
+                        const distance = 20 + getNoise(i * 7.1) * 30;
 
                         char.dataset.impulseX = Math.cos(angle) * distance;
                         char.dataset.impulseY = Math.sin(angle) * distance;
@@ -589,7 +574,6 @@
                     link.dataset.isExploding = "true";
                     link.classList.add('exploding');
 
-                    // INTENTIONAL DELAY (500 ms) TO REGISTER VISUAL DISASSEMBLY
                     setTimeout(() => {
                         window.open(targetUrl, '_blank');
                     }, 500);
