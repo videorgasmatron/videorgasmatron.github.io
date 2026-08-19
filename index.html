@@ -104,10 +104,18 @@
 
         p {
             line-height: 1.6;
-            text-align: justify;
+            text-align: left;
             margin-top: 0px;
             margin-bottom: 35px;
             font-weight: 400;
+            word-spacing: normal;
+        }
+
+        /* WORD-LEVEL WRAPPER FOR PRECISE LINE BREAK CONTROL */
+        .raster-word {
+            display: inline-block;
+            white-space: nowrap;
+            margin-right: 0.3em;
         }
 
         /* CHARACTER RASTERIZATION & GPU RENDER PRESERVATION */
@@ -122,6 +130,7 @@
             backface-visibility: hidden;
             contain: layout style;
             transform: translate3d(0,0,0);
+            opacity: 1;
         }
 
         /* OPTICAL STROKE REINFORCEMENT FOR HEAVY SERIFS */
@@ -131,31 +140,29 @@
             -webkit-text-stroke: 0.4px #000000;
         }
 
-        /* MAGNETIC ELASTIC LINK WRAPPERS */
-        .magnetic-link-wrap {
+        /* MAGNETIC INLINE LINK BOXES */
+        .inline-link {
             display: inline-block;
-            margin: 0 15px;
-            will-change: transform;
-            transition: color 0.15s ease;
-        }
-
-        .magnetic-link-wrap a {
-            text-decoration: none;
+            font-family: 'Source Code Pro', monospace !important;
             font-weight: 700;
-            font-size: 13px;
+            font-size: 11px;
             letter-spacing: 0.5px;
-            display: inline-block;
+            text-decoration: none;
+            color: #000000 !important;
+            border: 1px solid #000000;
+            padding: 4px 10px;
+            margin-top: 10px;
+            background-color: #ffffff !important;
+            will-change: transform;
+            transform-origin: center center;
+            transition: background-color 0.15s ease, color 0.15s ease;
+            user-select: none;
+            cursor: pointer;
         }
 
-        /* CHROMATIC STROBE GLITCH ON HOVER */
-        .magnetic-link-wrap:hover a {
-            color: #ff0051 !important;
-            animation: colorGlitch 0.12s infinite alternate;
-        }
-
-        @keyframes colorGlitch {
-            0% { color: #ff0051; text-shadow: 1.5px 0 #00ffff !important; }
-            100% { color: #000000; text-shadow: -1.5px 0 #ff0051 !important; }
+        .inline-link:hover, .inline-link.exploding {
+            background-color: #000000 !important;
+            color: #ffffff !important;
         }
 
         /* PERFECT CENTERING AND GLITCH ANIMATION IN LOGO-BOX */
@@ -236,10 +243,22 @@
             width: 100%;
         }
 
-        /* MOBILE ALIGNMENT OVERRIDE FOR NATURAL PARAGRAPH FLOW */
         @media (max-width: 768px) {
+            body {
+                padding: 40px 18px !important;
+            }
+
             p {
-                text-align: left !important;
+                font-size: 12px !important;
+                line-height: 1.5 !important;
+                border-left: 2px solid #000000;
+                padding-left: 12px;
+                margin-bottom: 25px !important;
+            }
+
+            h2 {
+                font-size: 18px !important;
+                margin-top: 30px !important;
             }
         }
     </style>
@@ -256,80 +275,73 @@
         <a href="/" title="Home"><img src="logo.png" alt="videorgasmatron"></a>
     </div>
 
-    <!-- MAIN CONTENT BLOCK: TITLES & PARAGRAPHS INSIDE THE CHAOS PIPELINE -->
+    <!-- MAIN CONTENT BLOCK: NARRATIVE CHAOS PIPELINE WITH INLINE MAGNETIC LINKS -->
     <div class="apply-chaos">
         <h2 class="reveal-line">Standalone Nodal VFX Suite</h2>
-        <p class="reveal-line">Native C++ pipeline architecture designed for professional-grade rotoscoping and tracking operations. Real-time core performance heavily optimized for production environments.</p>
+        <p class="reveal-line">
+            Native C++ pipeline architecture designed for professional-grade rotoscoping and tracking operations. Real-time core performance heavily optimized for production environments.
+            <br>
+            <a href="https://instagram.com" target="_blank" class="inline-link magnetic-node" data-tx="0" data-ty="0">[LOGS: @INSTAGRAM]</a>
+        </p>
 
         <h2 class="reveal-line">Python-Free AI Generation</h2>
-        <p class="reveal-line">Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.</p>
+        <p class="reveal-line">
+            Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.
+            <br>
+            <a href="https://github.com" target="_blank" class="inline-link magnetic-node" data-tx="0" data-ty="0">[SOURCE: GH/PROJECT_X00]</a>
+        </p>
 
         <h2 class="reveal-line">VFX Preservation Archive</h2>
-        <p class="reveal-line">Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.</p>
+        <p class="reveal-line">
+            Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.
+        </p>
     </div>
 
     <hr class="reveal-line">
 
-    <!-- ANCHORS SECTION: MAGNETIC ELASTIC ENGINE -->
-    <div class="reveal-line" style="text-align: center; background: transparent !important;">
-        <span class="magnetic-link-wrap">
-            <a href="https://instagram.com" target="_blank">INSTAGRAM | PORTFOLIO</a>
-        </span>
-        <span style="font-family: 'Source Code Pro', monospace; font-weight: bold;">&bull;</span>
-        <span class="magnetic-link-wrap">
-            <a href="https://github.com" target="_blank">GITHUB | SOURCE CODE</a>
-        </span>
-    </div>
-
-    <!-- DUAL PHYSICS ENGINE: 3D DESTRUCTIVE CHAOS + ELASTIC MAGNETISM + SEQUENTIAL LOADER -->
     <script type="text/javascript">
         let mouse = { x: -1000, y: -1000 };
         let targetMouse = { x: -1000, y: -1000 };
 
-        // MOBILE DETECTION & RASTERIZATION CONTROL
         const isMobile = window.innerWidth <= 768 || ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
-        // RECURSIVE DOM TEXT RASTERIZER FOR INDIVIDUAL CHARACTER DOM NODES
         function rasterizeText(element) {
             if (element.hasChildNodes()) {
-                element.childNodes.forEach(child => {
+                const children = Array.from(element.childNodes);
+
+                children.forEach(child => {
                     if (child.nodeType === Node.TEXT_NODE && child.textContent.trim().length > 0) {
-                        const originalText = child.textContent;
+                        const words = child.textContent.split(/\s+/);
                         const fragment = document.createDocumentFragment();
 
-                        [...originalText].forEach(char => {
-                            const span = document.createElement('span');
-                            span.innerText = char;
-                            span.className = 'raster-char';
-                            span.dataset.tx = 0; span.dataset.ty = 0;
-                            span.dataset.sk = 0; span.dataset.rt = 0; span.dataset.sc = 1;
-                            fragment.appendChild(span);
+                        words.forEach((word) => {
+                            if (word.length === 0) return;
+
+                            const wordSpan = document.createElement('span');
+                            wordSpan.className = 'raster-word';
+
+                            [...word].forEach(char => {
+                                const charSpan = document.createElement('span');
+                                charSpan.innerText = char;
+                                charSpan.className = 'raster-char';
+                                charSpan.dataset.tx = 0; charSpan.dataset.ty = 0;
+                                charSpan.dataset.sk = 0; charSpan.dataset.rt = 0; charSpan.dataset.sc = 1;
+                                wordSpan.appendChild(charSpan);
+                            });
+
+                            fragment.appendChild(wordSpan);
                         });
 
                         child.replaceWith(fragment);
-                    } else if (child.nodeType === Node.ELEMENT_NODE && child.tagName !== 'SCRIPT' && child.tagName !== 'IMG') {
+                    } else if (child.nodeType === Node.ELEMENT_NODE && child.tagName !== 'SCRIPT' && child.tagName !== 'A' && child.tagName !== 'BR') {
                         rasterizeText(child);
                     }
                 });
             }
         }
 
-        // INITIALIZE CHARACTER RASTERIZATION ONLY ON DESKTOP ENVIRONMENTS
-        if (!isMobile) {
-            document.querySelectorAll('.apply-chaos').forEach(block => {
-                rasterizeText(block);
-            });
-        } else {
-            console.log("Mobile device detected: Bypassing text rasterization for native word-wrapping.");
-        }
+        rasterizeText(document.querySelector('.apply-chaos'));
 
-        // INITIALIZE MAGNETIC DATASETS FOR HYPER-SMOOTH ANCHORS
-        const links = document.querySelectorAll('.magnetic-link-wrap');
-        links.forEach(link => {
-            link.dataset.tx = 0; link.dataset.ty = 0; link.dataset.sc = 1;
-        });
-
-        // MOUSE POSITION LISTENER WITH REAL-TIME COORDINATE CAPTURE
         document.addEventListener('mousemove', (e) => {
             targetMouse.x = e.clientX;
             targetMouse.y = e.clientY;
@@ -340,23 +352,27 @@
             targetMouse.y = -1000;
         });
 
-        // PSEUDO-RANDOM NOISE GENERATOR FOR PER-CHARACTER VECTOR DISPLACEMENT
         function getNoise(seed) {
             const x = Math.sin(seed) * 10000;
             return x - Math.floor(x);
         }
 
-        // REAL-TIME RENDERING LOOP RUNNING AT 60 FPS
+        // REAL-TIME PHYSICS LOOP
         function renderLoop() {
-            // ONLY RUN HEAVY PHYSICS COMPUTATIONS ON DESKTOP
-            if (!isMobile) {
-                mouse.x += (targetMouse.x - mouse.x) * 0.12;
-                mouse.y += (targetMouse.y - mouse.y) * 0.12;
+            mouse.x += (targetMouse.x - mouse.x) * 0.12;
+            mouse.y += (targetMouse.y - mouse.y) * 0.12;
 
-                const chars = document.querySelectorAll('.raster-char');
+            // 1. CHARACTER PHYSICS
+            const chars = document.querySelectorAll('.raster-char');
+            chars.forEach((char, index) => {
+                let targetTx = 0, targetTy = 0, targetSk = 0, targetRt = 0, targetSc = 1;
 
-                // --- ENGINE A: CHAOS PROCESSING FOR ALL TEXT ELEMENTS ---
-                chars.forEach((char, index) => {
+                if (char.dataset.isExploding === "true") {
+                    targetTx = parseFloat(char.dataset.impulseX);
+                    targetTy = parseFloat(char.dataset.impulseY);
+                    targetRt = parseFloat(char.dataset.impulseRt);
+                    targetSk = parseFloat(char.dataset.impulseSk);
+                } else if (!isMobile) {
                     const rect = char.getBoundingClientRect();
                     const charX = rect.left + rect.width / 2;
                     const charY = rect.top + rect.height / 2;
@@ -365,8 +381,6 @@
                     const diffY = mouse.y - charY;
                     const distance = Math.sqrt(diffX * diffX + diffY * diffY);
 
-                    let targetTx = 0, targetTy = 0, targetSk = 0, targetRt = 0, targetSc = 1;
-
                     if (distance < 140) {
                         const ratio = (140 - distance) / 140;
 
@@ -374,11 +388,8 @@
                         const groupNoiseX = getNoise(index * 2.8) > 0.5 ? 1 : -1;
                         const rotationDirection = getNoise(index * 4.2) > 0.5 ? 1 : -1;
 
-                        const chaosY = groupNoiseY * (ratio * 28) * getNoise(index * 5.5);
-                        const chaosX = groupNoiseX * (ratio * 18) * getNoise(index * 3.3);
-
-                        targetTx = chaosX;
-                        targetTy = chaosY;
+                        targetTx = groupNoiseX * (ratio * 18) * getNoise(index * 3.3);
+                        targetTy = groupNoiseY * (ratio * 28) * getNoise(index * 5.5);
                         targetSk = ratio * (groupNoiseX * 24);
 
                         if (getNoise(index * 9.1) > 0.85) {
@@ -389,21 +400,32 @@
                             targetSc = 1 + (ratio * 0.22) * groupNoiseY;
                         }
                     }
+                }
 
-                    let currentTx = parseFloat(char.dataset.tx) + (targetTx - parseFloat(char.dataset.tx)) * 0.12;
-                    let currentTy = parseFloat(char.dataset.ty) + (targetTy - parseFloat(char.dataset.ty)) * 0.12;
-                    let currentSk = parseFloat(char.dataset.sk) + (targetSk - parseFloat(char.dataset.sk)) * 0.12;
-                    let currentRt = parseFloat(char.dataset.rt) + (targetRt - parseFloat(char.dataset.rt)) * 0.12;
-                    let currentSc = parseFloat(char.dataset.sc) + (targetSc - parseFloat(char.dataset.sc)) * 0.12;
+                // VELOCIDAD DE RESPUESTA CINÉTICA (Aceleración de impacto inicial y retorno suave)
+                const easing = char.dataset.isExploding === "true" ? 0.14 : 0.07;
 
-                    char.dataset.tx = currentTx; char.dataset.ty = currentTy;
-                    char.dataset.sk = currentSk; char.dataset.rt = currentRt; char.dataset.sc = currentSc;
+                let currentTx = parseFloat(char.dataset.tx) + (targetTx - parseFloat(char.dataset.tx)) * easing;
+                let currentTy = parseFloat(char.dataset.ty) + (targetTy - parseFloat(char.dataset.ty)) * easing;
+                let currentSk = parseFloat(char.dataset.sk) + (targetSk - parseFloat(char.dataset.sk)) * easing;
+                let currentRt = parseFloat(char.dataset.rt) + (targetRt - parseFloat(char.dataset.rt)) * easing;
+                let currentSc = parseFloat(char.dataset.sc) + (targetSc - parseFloat(char.dataset.sc)) * easing;
 
-                    char.style.transform = `translateX(${currentTx}px) translateY(${currentTy}px) skewX(${currentSk}deg) rotate(${currentRt}deg) scale(${currentSc})`;
-                });
+                char.dataset.tx = currentTx; char.dataset.ty = currentTy;
+                char.dataset.sk = currentSk; char.dataset.rt = currentRt; char.dataset.sc = currentSc;
 
-                // --- ENGINE B: MAGNETIC ELASTIC PROCESSING FOR FOOTER LINKS ---
-                links.forEach(link => {
+                char.style.transform = `translateX(${currentTx}px) translateY(${currentTy}px) skewX(${currentSk}deg) rotate(${currentRt}deg) scale(${currentSc})`;
+            });
+
+            // 2. MAGNETIC LINKS
+            const magneticLinks = document.querySelectorAll('.magnetic-node');
+            magneticLinks.forEach((link) => {
+                let targetTx = 0, targetTy = 0;
+
+                if (link.dataset.isExploding === "true") {
+                    targetTx = parseFloat(link.dataset.impulseX);
+                    targetTy = parseFloat(link.dataset.impulseY);
+                } else if (!isMobile) {
                     const rect = link.getBoundingClientRect();
                     const linkX = rect.left + rect.width / 2;
                     const linkY = rect.top + rect.height / 2;
@@ -412,32 +434,79 @@
                     const diffY = mouse.y - linkY;
                     const distance = Math.sqrt(diffX * diffX + diffY * diffY);
 
-                    let targetTx = 0, targetTy = 0, targetSc = 1;
-
-                    if (distance < 180) {
-                        const ratio = (180 - distance) / 180;
-                        targetTx = diffX * (ratio * 0.40);
-                        targetTy = diffY * (ratio * 0.40);
-                        targetSc = 1 + (ratio * 0.10);
+                    if (distance < 120) {
+                        const pullFactor = 0.25;
+                        targetTx = diffX * pullFactor;
+                        targetTy = diffY * pullFactor;
                     }
+                }
 
-                    let currentTx = parseFloat(link.dataset.tx) + (targetTx - parseFloat(link.dataset.tx)) * 0.08;
-                    let currentTy = parseFloat(link.dataset.ty) + (targetTy - parseFloat(link.dataset.ty)) * 0.08;
-                    let currentSc = parseFloat(link.dataset.sc) + (targetSc - parseFloat(link.dataset.sc)) * 0.08;
+                let currentTx = parseFloat(link.dataset.tx) + (targetTx - parseFloat(link.dataset.tx)) * 0.08;
+                let currentTy = parseFloat(link.dataset.ty) + (targetTy - parseFloat(link.dataset.ty)) * 0.08;
 
-                    link.dataset.tx = currentTx; link.dataset.ty = currentTy; link.dataset.sc = currentSc;
+                link.dataset.tx = currentTx;
+                link.dataset.ty = currentTy;
 
-                    link.style.transform = `translateX(${currentTx}px) translateY(${currentTy}px) scale(${currentSc})`;
-                });
+                link.style.transform = `translate3d(${currentTx}px, ${currentTy}px, 0)`;
+            });
 
-                requestAnimationFrame(renderLoop);
-            }
+            requestAnimationFrame(renderLoop);
         }
 
-        // START REAL-TIME PHYSICS LOOP (AUTOMATICALLY BYPASSED ON MOBILE)
         requestAnimationFrame(renderLoop);
 
-        // --- SEQUENTIAL LOADER & LINE-BY-LINE REVEAL CONTROLLER ---
+        // DISPARO Y RETARDO INTENCIONAL DEL ENLACE
+        document.querySelectorAll('.magnetic-node').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetUrl = link.getAttribute('href');
+                const parentParagraph = link.closest('p');
+
+                if (parentParagraph) {
+                    const elementsToExplode = parentParagraph.querySelectorAll('.raster-char');
+
+                    elementsToExplode.forEach((char, i) => {
+                        const angle = (getNoise(i * 3.7) * Math.PI * 2);
+                        const distance = 20 + getNoise(i * 7.1) * 30; // Desplazamiento visible
+
+                        char.dataset.impulseX = Math.cos(angle) * distance;
+                        char.dataset.impulseY = Math.sin(angle) * distance;
+                        char.dataset.impulseRt = (getNoise(i * 1.3) - 0.5) * 50;
+                        char.dataset.impulseSk = (getNoise(i * 2.9) - 0.5) * 35;
+                        char.dataset.isExploding = "true";
+                    });
+
+                    link.dataset.impulseX = (Math.random() - 0.5) * 15;
+                    link.dataset.impulseY = (Math.random() - 0.5) * 15;
+                    link.dataset.isExploding = "true";
+                    link.classList.add('exploding');
+
+                    // RETARDO INTENCIONAL (500 ms) PARA REGISTRAR EL DESARME VISUAL
+                    setTimeout(() => {
+                        window.open(targetUrl, '_blank');
+                    }, 500);
+                } else {
+                    window.open(targetUrl, '_blank');
+                }
+            });
+        });
+
+        // RECONSTRUCCIÓN AL REGRESAR EL FOCO
+        window.addEventListener('focus', () => {
+            const explodingChars = document.querySelectorAll('.raster-char[data-is-exploding="true"]');
+            const explodingLinks = document.querySelectorAll('.magnetic-node[data-is-exploding="true"]');
+
+            explodingChars.forEach(char => {
+                char.dataset.isExploding = "false";
+            });
+
+            explodingLinks.forEach(link => {
+                link.dataset.isExploding = "false";
+                link.classList.remove('exploding');
+            });
+        });
+
+        // LOADER & SEQUENTIAL REVEAL CONTROLLER
         window.addEventListener('load', () => {
             let progress = 0;
             const counterElement = document.getElementById('loader-counter');
