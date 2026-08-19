@@ -393,7 +393,37 @@
                         targetRt = rotationDirection * (ratio * 28) * getNoise(index * 7.7);
                         targetSc = 1 + (ratio * 0.22) * groupNoiseY;
                     }
+                // --- ENGINE B: MAGNETIC ELASTIC PROCESSING FOR FOOTER LINKS ---
+                    links.forEach(link => {
+                        const rect = link.getBoundingClientRect();
+                        const linkX = rect.left + rect.width / 2;
+                        const linkY = rect.top + rect.height / 2;
+
+                        const diffX = mouse.x - linkX;
+                        const diffY = mouse.y - linkY;
+                        const distance = Math.sqrt(diffX * diffX + diffY * diffY);
+
+                        let targetTx = 0, targetTy = 0, targetSc = 1;
+
+                        // MAGNETIC EFFECT RADIUS THRESHOLD
+                        if (distance < 180) {
+                            const ratio = (180 - distance) / 180;
+                            targetTx = diffX * (ratio * 0.40);
+                            targetTy = diffY * (ratio * 0.40);
+                            targetSc = 1 + (ratio * 0.10);
+                        }
+                        let currentTx = parseFloat(link.dataset.tx) + (targetTx - parseFloat(link.dataset.tx)) * 0.08;
+                        let currentTy = parseFloat(link.dataset.ty) + (targetTy - parseFloat(link.dataset.ty)) * 0.08;
+                        let currentSc = parseFloat(link.dataset.sc) + (targetSc - parseFloat(link.dataset.sc)) * 0.08;
+
+                        link.dataset.tx = currentTx; link.dataset.ty = currentTy; link.dataset.sc = currentSc;
+
+                        link.style.transform = `translateX(${currentTx}px) translateY(${currentTy}px) scale(${currentSc})`;
+                    });
+
+                requestAnimationFrame(renderLoop);
                 }
+        }
 
                 // DAMPED TRANSFORMATION INTERPOLATION
                 let currentTx = parseFloat(char.dataset.tx) + (targetTx - parseFloat(char.dataset.tx)) * 0.12;
@@ -407,38 +437,6 @@
 
                 char.style.transform = `translateX(${currentTx}px) translateY(${currentTy}px) skewX(${currentSk}deg) rotate(${currentRt}deg) scale(${currentSc})`;
             });
-
-            // --- ENGINE B: MAGNETIC ELASTIC PROCESSING FOR FOOTER LINKS ---
-            links.forEach(link => {
-                const rect = link.getBoundingClientRect();
-                const linkX = rect.left + rect.width / 2;
-                const linkY = rect.top + rect.height / 2;
-
-                const diffX = mouse.x - linkX;
-                const diffY = mouse.y - linkY;
-                const distance = Math.sqrt(diffX * diffX + diffY * diffY);
-
-                let targetTx = 0, targetTy = 0, targetSc = 1;
-
-                // MAGNETIC EFFECT RADIUS THRESHOLD
-                if (distance < 180) {
-                    const ratio = (180 - distance) / 180;
-                    targetTx = diffX * (ratio * 0.40);
-                    targetTy = diffY * (ratio * 0.40);
-                    targetSc = 1 + (ratio * 0.10);
-                }
-
-                let currentTx = parseFloat(link.dataset.tx) + (targetTx - parseFloat(link.dataset.tx)) * 0.08;
-                let currentTy = parseFloat(link.dataset.ty) + (targetTy - parseFloat(link.dataset.ty)) * 0.08;
-                let currentSc = parseFloat(link.dataset.sc) + (targetSc - parseFloat(link.dataset.sc)) * 0.08;
-
-                link.dataset.tx = currentTx; link.dataset.ty = currentTy; link.dataset.sc = currentSc;
-
-                link.style.transform = `translateX(${currentTx}px) translateY(${currentTy}px) scale(${currentSc})`;
-            });
-
-            requestAnimationFrame(renderLoop);
-        }
 
         // START REAL-TIME PHYSICS LOOP
         requestAnimationFrame(renderLoop);
