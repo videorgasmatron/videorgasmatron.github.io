@@ -120,7 +120,6 @@
             font-variant-ligatures: none;
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
-            /* GPU isolation for iOS */
             contain: layout style;
             transform: translate3d(0,0,0);
         }
@@ -236,10 +235,11 @@
             display: block;
             width: 100%;
         }
-        /* MOBILE PARAGRAPH ALIGNMENT OVERRIDE */
+
+        /* MOBILE ALIGNMENT OVERRIDE FOR NATURAL PARAGRAPH FLOW */
         @media (max-width: 768px) {
             p {
-                text-align: left !important; /* Forces left-alignment for clean reading on mobile screens */
+                text-align: left !important;
             }
         }
     </style>
@@ -286,6 +286,9 @@
         let mouse = { x: -1000, y: -1000 };
         let targetMouse = { x: -1000, y: -1000 };
 
+        // MOBILE DETECTION & RASTERIZATION CONTROL
+        const isMobile = window.innerWidth <= 768 || ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
         // RECURSIVE DOM TEXT RASTERIZER FOR INDIVIDUAL CHARACTER DOM NODES
         function rasterizeText(element) {
             if (element.hasChildNodes()) {
@@ -310,11 +313,6 @@
                 });
             }
         }
-
-        // ==========================================================================
-        // MOBILE DETECTION & RASTERIZATION CONTROL
-        // ==========================================================================
-        const isMobile = window.innerWidth <= 768 || ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
         // INITIALIZE CHARACTER RASTERIZATION ONLY ON DESKTOP ENVIRONMENTS
         if (!isMobile) {
@@ -348,97 +346,95 @@
             return x - Math.floor(x);
         }
 
-        const chars = document.querySelectorAll('.raster-char');
-
         // REAL-TIME RENDERING LOOP RUNNING AT 60 FPS
-        const lerpSpeed = isMobile ? 0.20 : 0.12; // Faster interpolation on mobile touch interactions
-
         function renderLoop() {
-            // Fluid motion damping (Linear Interpolation / Lerp)
-            mouse.x += (targetMouse.x - mouse.x) * lerpSpeed;
-            mouse.y += (targetMouse.y - mouse.y) * lerpSpeed;
+            // ONLY RUN HEAVY PHYSICS COMPUTATIONS ON DESKTOP
+            if (!isMobile) {
+                mouse.x += (targetMouse.x - mouse.x) * 0.12;
+                mouse.y += (targetMouse.y - mouse.y) * 0.12;
 
-            // --- ENGINE A: CHAOS PROCESSING FOR ALL TEXT ELEMENTS ---
-            chars.forEach((char, index) => {
-                const rect = char.getBoundingClientRect();
-                const charX = rect.left + rect.width / 2;
-                const charY = rect.top + rect.height / 2;
+                const chars = document.querySelectorAll('.raster-char');
 
-                const diffX = mouse.x - charX;
-                const diffY = mouse.y - charY;
-                const distance = Math.sqrt(diffX * diffX + diffY * diffY);
+                // --- ENGINE A: CHAOS PROCESSING FOR ALL TEXT ELEMENTS ---
+                chars.forEach((char, index) => {
+                    const rect = char.getBoundingClientRect();
+                    const charX = rect.left + rect.width / 2;
+                    const charY = rect.top + rect.height / 2;
 
-                let targetTx = 0, targetTy = 0, targetSk = 0, targetRt = 0, targetSc = 1;
+                    const diffX = mouse.x - charX;
+                    const diffY = mouse.y - charY;
+                    const distance = Math.sqrt(diffX * diffX + diffY * diffY);
 
-                // EFFECT RADIUS THRESHOLD (ADJUSTABLE DISTANCE CUTOFF)
-                if (distance < 140) {
-                    const ratio = (140 - distance) / 140;
+                    let targetTx = 0, targetTy = 0, targetSk = 0, targetRt = 0, targetSc = 1;
 
-                    const groupNoiseY = getNoise(index * 1.5) > 0.5 ? 1 : -1;
-                    const groupNoiseX = getNoise(index * 2.8) > 0.5 ? 1 : -1;
-                    const rotationDirection = getNoise(index * 4.2) > 0.5 ? 1 : -1;
+                    if (distance < 140) {
+                        const ratio = (140 - distance) / 140;
 
-                    const chaosY = groupNoiseY * (ratio * 28) * getNoise(index * 5.5);
-                    const chaosX = groupNoiseX * (ratio * 18) * getNoise(index * 3.3);
+                        const groupNoiseY = getNoise(index * 1.5) > 0.5 ? 1 : -1;
+                        const groupNoiseX = getNoise(index * 2.8) > 0.5 ? 1 : -1;
+                        const rotationDirection = getNoise(index * 4.2) > 0.5 ? 1 : -1;
 
-                    targetTx = chaosX;
-                    targetTy = chaosY;
-                    targetSk = ratio * (groupNoiseX * 24);
+                        const chaosY = groupNoiseY * (ratio * 28) * getNoise(index * 5.5);
+                        const chaosX = groupNoiseX * (ratio * 18) * getNoise(index * 3.3);
 
-                    // 180-DEGREE ELASTIC CHARACTER FLIP THRESHOLD
-                    if (getNoise(index * 9.1) > 0.85) {
-                        targetRt = rotationDirection * (180 * ratio);
-                        targetSc = 1 - (ratio * 0.12);
-                    } else {
-                        targetRt = rotationDirection * (ratio * 28) * getNoise(index * 7.7);
-                        targetSc = 1 + (ratio * 0.22) * groupNoiseY;
-                    }
-                // --- ENGINE B: MAGNETIC ELASTIC PROCESSING FOR FOOTER LINKS ---
-                    links.forEach(link => {
-                        const rect = link.getBoundingClientRect();
-                        const linkX = rect.left + rect.width / 2;
-                        const linkY = rect.top + rect.height / 2;
+                        targetTx = chaosX;
+                        targetTy = chaosY;
+                        targetSk = ratio * (groupNoiseX * 24);
 
-                        const diffX = mouse.x - linkX;
-                        const diffY = mouse.y - linkY;
-                        const distance = Math.sqrt(diffX * diffX + diffY * diffY);
-
-                        let targetTx = 0, targetTy = 0, targetSc = 1;
-
-                        // MAGNETIC EFFECT RADIUS THRESHOLD
-                        if (distance < 180) {
-                            const ratio = (180 - distance) / 180;
-                            targetTx = diffX * (ratio * 0.40);
-                            targetTy = diffY * (ratio * 0.40);
-                            targetSc = 1 + (ratio * 0.10);
+                        if (getNoise(index * 9.1) > 0.85) {
+                            targetRt = rotationDirection * (180 * ratio);
+                            targetSc = 1 - (ratio * 0.12);
+                        } else {
+                            targetRt = rotationDirection * (ratio * 28) * getNoise(index * 7.7);
+                            targetSc = 1 + (ratio * 0.22) * groupNoiseY;
                         }
-                        let currentTx = parseFloat(link.dataset.tx) + (targetTx - parseFloat(link.dataset.tx)) * 0.08;
-                        let currentTy = parseFloat(link.dataset.ty) + (targetTy - parseFloat(link.dataset.ty)) * 0.08;
-                        let currentSc = parseFloat(link.dataset.sc) + (targetSc - parseFloat(link.dataset.sc)) * 0.08;
+                    }
 
-                        link.dataset.tx = currentTx; link.dataset.ty = currentTy; link.dataset.sc = currentSc;
+                    let currentTx = parseFloat(char.dataset.tx) + (targetTx - parseFloat(char.dataset.tx)) * 0.12;
+                    let currentTy = parseFloat(char.dataset.ty) + (targetTy - parseFloat(char.dataset.ty)) * 0.12;
+                    let currentSk = parseFloat(char.dataset.sk) + (targetSk - parseFloat(char.dataset.sk)) * 0.12;
+                    let currentRt = parseFloat(char.dataset.rt) + (targetRt - parseFloat(char.dataset.rt)) * 0.12;
+                    let currentSc = parseFloat(char.dataset.sc) + (targetSc - parseFloat(char.dataset.sc)) * 0.12;
 
-                        link.style.transform = `translateX(${currentTx}px) translateY(${currentTy}px) scale(${currentSc})`;
-                    });
+                    char.dataset.tx = currentTx; char.dataset.ty = currentTy;
+                    char.dataset.sk = currentSk; char.dataset.rt = currentRt; char.dataset.sc = currentSc;
+
+                    char.style.transform = `translateX(${currentTx}px) translateY(${currentTy}px) skewX(${currentSk}deg) rotate(${currentRt}deg) scale(${currentSc})`;
+                });
+
+                // --- ENGINE B: MAGNETIC ELASTIC PROCESSING FOR FOOTER LINKS ---
+                links.forEach(link => {
+                    const rect = link.getBoundingClientRect();
+                    const linkX = rect.left + rect.width / 2;
+                    const linkY = rect.top + rect.height / 2;
+
+                    const diffX = mouse.x - linkX;
+                    const diffY = mouse.y - linkY;
+                    const distance = Math.sqrt(diffX * diffX + diffY * diffY);
+
+                    let targetTx = 0, targetTy = 0, targetSc = 1;
+
+                    if (distance < 180) {
+                        const ratio = (180 - distance) / 180;
+                        targetTx = diffX * (ratio * 0.40);
+                        targetTy = diffY * (ratio * 0.40);
+                        targetSc = 1 + (ratio * 0.10);
+                    }
+
+                    let currentTx = parseFloat(link.dataset.tx) + (targetTx - parseFloat(link.dataset.tx)) * 0.08;
+                    let currentTy = parseFloat(link.dataset.ty) + (targetTy - parseFloat(link.dataset.ty)) * 0.08;
+                    let currentSc = parseFloat(link.dataset.sc) + (targetSc - parseFloat(link.dataset.sc)) * 0.08;
+
+                    link.dataset.tx = currentTx; link.dataset.ty = currentTy; link.dataset.sc = currentSc;
+
+                    link.style.transform = `translateX(${currentTx}px) translateY(${currentTy}px) scale(${currentSc})`;
+                });
 
                 requestAnimationFrame(renderLoop);
-                }
+            }
         }
 
-                // DAMPED TRANSFORMATION INTERPOLATION
-                let currentTx = parseFloat(char.dataset.tx) + (targetTx - parseFloat(char.dataset.tx)) * 0.12;
-                let currentTy = parseFloat(char.dataset.ty) + (targetTy - parseFloat(char.dataset.ty)) * 0.12;
-                let currentSk = parseFloat(char.dataset.sk) + (targetSk - parseFloat(char.dataset.sk)) * 0.12;
-                let currentRt = parseFloat(char.dataset.rt) + (targetRt - parseFloat(char.dataset.rt)) * 0.12;
-                let currentSc = parseFloat(char.dataset.sc) + (targetSc - parseFloat(char.dataset.sc)) * 0.12;
-
-                char.dataset.tx = currentTx; char.dataset.ty = currentTy;
-                char.dataset.sk = currentSk; char.dataset.rt = currentRt; char.dataset.sc = currentSc;
-
-                char.style.transform = `translateX(${currentTx}px) translateY(${currentTy}px) skewX(${currentSk}deg) rotate(${currentRt}deg) scale(${currentSc})`;
-            });
-
-        // START REAL-TIME PHYSICS LOOP
+        // START REAL-TIME PHYSICS LOOP (AUTOMATICALLY BYPASSED ON MOBILE)
         requestAnimationFrame(renderLoop);
 
         // --- SEQUENTIAL LOADER & LINE-BY-LINE REVEAL CONTROLLER ---
@@ -448,7 +444,6 @@
             const overlay = document.getElementById('loader-overlay');
             const revealElements = document.querySelectorAll('.reveal-line');
 
-            // SIMULATED SYSTEM BOOT COUNTER
             const interval = setInterval(() => {
                 progress += Math.floor(Math.random() * 15) + 5;
                 if (progress >= 100) {
@@ -456,15 +451,13 @@
                     counterElement.innerText = '100%';
                     clearInterval(interval);
 
-                    // DISMISS LOADER OVERLAY
                     setTimeout(() => {
                         overlay.classList.add('hidden');
 
-                        // TRIGGER SEQUENTIAL LINE-BY-LINE TEXT REVEAL
                         revealElements.forEach((el, idx) => {
                             setTimeout(() => {
                                 el.classList.add('visible');
-                            }, idx * 120); // 120ms STAGGERED DELAY PER LINE
+                            }, idx * 120);
                         });
                     }, 200);
                 } else {
