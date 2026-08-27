@@ -339,9 +339,9 @@
         <div class="loader-counter" id="loader-counter">00%</div>
     </div>
 
-    <!-- LOGO WITH STOCHASTIC CANVAS ENGINE (VOID TRIGGER FOR INTERACTION) -->
+    <!-- LOGO WITH STOCHASTIC CANVAS ENGINE -->
     <div class="logo-box reveal-line">
-        <a href="javascript:void(0)" id="logoTrigger" onclick="return false;" title="Videorgasmatron">
+        <a href="javascript:void(0);" id="logoTrigger" onclick="return false;" title="Videorgasmatron">
             <canvas id="mosaicCanvas"></canvas>
         </a>
     </div>
@@ -381,7 +381,7 @@
         </p>
     </div>
 
-    <!-- MANTRA FOOTER LOOP -->
+    <!-- MANTRA FOOTER LOOP WITH INTEGRATED EMAIL -->
     <div class="footer-mantra reveal-line">
         <span class="mantra-prefix">SYS_MANTRA // </span>
         <span id="mantraWord" class="mantra-active">CREATE</span>
@@ -397,7 +397,7 @@
             <p style="margin-bottom: 0px !important;">
                 [CLASSIFIED SCREENPLAY ARCHIVE]<br><br>
                 Status: In active development.<br>
-                Atmospheric visual environment: Coastal tension, procedural terror, and psychological horror.
+                Atmospheric visual environment: Coastal tension, procedural terror and body horror.
             </p>
         </div>
     </div>
@@ -754,7 +754,6 @@
                     link.dataset.isExploding = "true";
                     link.classList.add('exploding');
 
-                    // DELAY FIJADO EN 5 SEGUNDOS (5000 MS)
                     setTimeout(() => {
                         window.open(targetUrl, '_blank');
                     }, 5000);
@@ -764,30 +763,31 @@
             });
         });
 
-        // LOGO CLICK TRIGGER (SÓLO EXPLOSIÓN VISUAL, NO NAVEGA)
+        // LOGO CLICK TRIGGER (EXPLOSIÓN QUE SE REENSAMBLA INTACTA)
         const logoTrigger = document.getElementById('logoTrigger');
         if (logoTrigger) {
             logoTrigger.addEventListener('click', (e) => {
                 e.preventDefault();
-                e.stopPropagation(); // Previene la propagación del evento
+                e.stopPropagation();
 
                 const allChars = document.querySelectorAll('.raster-char');
                 allChars.forEach((char, i) => {
                     const angle = (getNoise(i * 3.7) * Math.PI * 2);
-                    const distance = 30 + getNoise(i * 7.1) * 50;
+                    const distance = 40 + getNoise(i * 7.1) * 70;
 
                     char.dataset.impulseX = Math.cos(angle) * distance;
                     char.dataset.impulseY = Math.sin(angle) * distance;
-                    char.dataset.impulseRt = (getNoise(i * 1.3) - 0.5) * 90;
-                    char.dataset.impulseSk = (getNoise(i * 2.9) - 0.5) * 45;
+                    char.dataset.impulseRt = (getNoise(i * 1.3) - 0.5) * 140;
+                    char.dataset.impulseSk = (getNoise(i * 2.9) - 0.5) * 60;
                     char.dataset.isExploding = "true";
                 });
 
+                // Reconstrucción progresiva
                 setTimeout(() => {
                     allChars.forEach(char => {
                         char.dataset.isExploding = "false";
                     });
-                }, 4000);
+                }, 3500);
 
                 return false;
             });
@@ -846,7 +846,7 @@
             }, 2000);
         }
 
- // LOADER & SEQUENTIAL REVEAL CONTROLLER (FORCED PROD SAFE)
+        // LOADER & SEQUENTIAL REVEAL CONTROLLER (SERVERSAFE RELIABLE)
         function startSystemReveal() {
             const counterElement = document.getElementById('loader-counter');
             const overlay = document.getElementById('loader-overlay');
@@ -859,7 +859,7 @@
                 progress += Math.floor(Math.random() * 12) + 6;
                 if (progress >= 100) {
                     progress = 100;
-                    counterElement.innerText = '100%';
+                    if (counterElement) counterElement.innerText = '100%';
                     clearInterval(interval);
 
                     setTimeout(() => {
@@ -871,18 +871,16 @@
                         });
                     }, 200);
                 } else {
-                    counterElement.innerText = (progress < 10 ? '0' : '') + progress + '%';
+                    if (counterElement) counterElement.innerText = (progress < 10 ? '0' : '') + progress + '%';
                 }
             }, 30);
         }
 
-        // Ejecutar inmediatamente al cargar el DOM o en load completo
-        if (document.readyState === 'complete') {
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
             startSystemReveal();
         } else {
-            window.addEventListener('load', startSystemReveal);
-            // Fallback de seguridad por si el servidor frena algún asset
-            setTimeout(startSystemReveal, 1500);
+            window.addEventListener('DOMContentLoaded', startSystemReveal);
+            setTimeout(startSystemReveal, 1200);
         }
     </script>
 
