@@ -282,6 +282,44 @@
                 margin-top: 30px !important;
             }
         }
+        /* HEADER EXEMPTIONS & MARGINS */
+        h2.static-text {
+            cursor: default;
+            margin-top: 50px !important;
+            margin-bottom: 15px !important;
+        }
+
+        /* MANTRA FOOTER ENGINE */
+        .footer-mantra {
+            font-family: 'Source Code Pro', monospace !important;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            user-select: none;
+        }
+
+        .mantra-prefix {
+            opacity: 0.4;
+        }
+
+        .mantra-active {
+            display: inline-block;
+            color: #000000;
+            background-color: transparent;
+            padding: 2px 6px;
+            border: 1px solid #000000;
+            min-width: 90px;
+            text-align: center;
+            transition: color 0.15s ease, background-color 0.15s ease;
+        }
+
+        .mantra-active.pulse {
+            background-color: #000000;
+            color: #ffffff !important;
+        }
     </style>
 </head>
 <body>
@@ -299,9 +337,9 @@
         </a>
     </div>
 
-    <!-- MAIN CONTENT BLOCK: POLYMATH TEXT & POPUP TRIGGER -->
+<!-- MAIN CONTENT BLOCK -->
     <div class="apply-chaos">
-        <h2 class="reveal-line">Vman - VFX/AI Technical Director & Polymath Enthusiast</h2>
+        <h2 class="reveal-line static-text">[<b>VMAN</bold> - VFX/AI Technical Director & Polymath Enthusiast]</h2>
 
         <p class="reveal-line">
             Like Larry from Gumball, I wear a different uniform every time you see me. I started in fine arts, but physical canvas took too long to dry. Once I switched to digital, I didn't have to wait for paint to dry, but everything felt way too still. Once things were moving, they lacked smoke and skulls on fire, so I started connecting nodes and coding VEX. But that part lacked any real meaning, so I decided to write some different lines to give it a motive. And... when I asked the machine for help, it answered: 'I'm afraid I can't do that, Dave'—leaving me with no logical choice but to spend the next few few few moments later proving to the AI that yes, it absolutely could do that. Pure efficiency of standard procedure... but you know that.
@@ -313,10 +351,33 @@
 
         <p class="reveal-line">
             Since we don't have a DeLorean to bend time and fix the hours we just wasted on brilliant nonsense, we have to hurry up. After all, we create not because we need, but because we fucking can. And I don't want all those ideas to be lost in time, like tears in rain. <span class="static-text">Time to bye</span>.
-            <br>
-            <a href="https://github.com" target="_blank" class="inline-link magnetic-node" data-tx="0" data-ty="0">[SOURCE: GH/PROJECT_X00]</a>
-            <a href="https://instagram.com" target="_blank" class="inline-link magnetic-node" data-tx="0" data-ty="0">[LOGS: @INSTAGRAM]</a>
         </p>
+
+        <!-- SECTION 1: SMOKE AND MIRRORS -->
+        <h2 class="reveal-line static-text">[ SMOKE AND MIRRORS ]</h2>
+        <p class="reveal-line">
+            VFX portfolio, VEX simulations, and creative clutter.
+            <br>
+            <a href="https://www.instagram.com/videorgasmatron/" target="_blank" class="inline-link magnetic-node" data-tx="0" data-ty="0">[Target: Instagram]</a>
+        </p>
+
+        <!-- SECTION 2: STANDARD PROCEDURE -->
+        <h2 class="reveal-line static-text">[ STANDARD PROCEDURE & DIGITAL ARCHAEOLOGY ]</h2>
+        <p class="reveal-line">
+            Custom text processor & machine learning tools repository.
+            <br>
+            Open-source VFX history. Preserving Ramen and Synapse source code.
+            <br>
+            <a href="https://github.com/videorgasmatron" target="_blank" class="inline-link magnetic-node" data-tx="0" data-ty="0">[Target: GitHub]</a>
+        </p>
+    </div>
+
+    <hr class="reveal-line">
+
+    <!-- MANTRA FOOTER LOOP -->
+    <div class="footer-mantra reveal-line">
+        <span class="mantra-prefix">SYS_MANTRA // </span>
+        <span id="mantraWord" class="mantra-active">CREATE</span>
     </div>
 
     <!-- NATIVE BRUTALIST POPUP MODAL -->
@@ -327,7 +388,7 @@
             <p style="margin-bottom: 0px !important;">
                 [CLASSIFIED SCREENPLAY ARCHIVE]<br><br>
                 Status: In active development.<br>
-                Atmospheric visual environment: Coastal tension, procedural terror, and psychological horror.
+                Atmospheric visual environment: Coastal tension, procedural terror, and body horror.
             </p>
         </div>
     </div>
@@ -762,6 +823,24 @@
                 }
             }, 40);
         });
+
+        // MANTRA WORD LOOP CONTROLLER
+        const mantraWords = ['CREATE', 'INSPIRE', 'REMIX', 'SHARE'];
+        let mantraIndex = 0;
+        const mantraElement = document.getElementById('mantraWord');
+
+        if (mantraElement) {
+            setInterval(() => {
+                mantraElement.classList.add('pulse');
+
+                setTimeout(() => {
+                    mantraIndex = (mantraIndex + 1) % mantraWords.length;
+                    mantraElement.innerText = mantraWords[mantraIndex];
+                    mantraElement.classList.remove('pulse');
+                }, 150);
+            }, 2000);
+        }
+
     </script>
 
 </body>
