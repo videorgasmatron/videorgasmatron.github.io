@@ -8,7 +8,7 @@
     <!-- GOOGLE FONTS PRECONNECT & IMPORT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Zilla+Slab:wght@500;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Zilla+Slab:wght@400;700;900&display=swap" rel="stylesheet">
 
     <style type="text/css">
         html { color-scheme: light; background-color: #ffffff; }
@@ -83,18 +83,18 @@
             transform: translateY(0);
         }
 
-        /* HEAVY BRUTALIST HEADINGS */
+        /* HEAVY BRUTALIST HEADINGS - SLAB AT 18PX / WEIGHT 400 */
         h1, h2, h3, .titulo-principal {
             font-family: 'Zilla Slab', serif !important;
-            font-weight: 500 !important;
+            font-weight: 400 !important;
             font-size: 18px !important;
             text-transform: uppercase !important;
-            letter-spacing: 1.8px !important;
+            letter-spacing: 0.8px !important;
             margin-top: 45px !important;
             margin-bottom: 12px !important;
             color: #000000 !important;
             display: block;
-            line-height: 1.1;
+            line-height: 1.2;
         }
 
         body, p, td, a, span {
@@ -133,11 +133,11 @@
             opacity: 1;
         }
 
-        /* OPTICAL STROKE REINFORCEMENT FOR HEAVY SERIFS */
+        /* STROKE CORRECTION FOR TENSIONED SLAB TEXT */
         h2 .raster-char {
             font-family: 'Zilla Slab', serif !important;
-            font-weight: 500 !important;
-            -webkit-text-stroke: 0.4px #000000;
+            font-weight: 400 !important;
+            -webkit-text-stroke: 0px transparent;
         }
 
         /* MAGNETIC INLINE LINK BOXES */
@@ -191,6 +191,79 @@
             width: 100%;
         }
 
+        /* EXCLUDED STATIC TEXT & HIGHLIGHTS */
+        .static-highlight, .static-text {
+            display: inline;
+            font: inherit;
+            color: inherit;
+        }
+
+        .static-highlight {
+            cursor: pointer;
+        }
+
+        /* COLOR HOVER EXCLUSIVO PARA HORROR FEATURE FILM */
+        .static-highlight:hover .raster-char {
+            color: #ffffff !important;
+            background-color: #ff0040 !important;
+        }
+
+        /* BRUTALIST MODAL POPUP */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(2px);
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: #ffffff !important;
+            border: 2px solid #000000;
+            padding: 25px;
+            max-width: 450px;
+            width: 90%;
+            position: relative;
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .modal-title {
+            font-family: 'Zilla Slab', serif;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #000;
+            padding-bottom: 5px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .modal-close:hover {
+            color: #ff0040 !important;
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 40px 18px !important;
@@ -205,7 +278,7 @@
             }
 
             h2 {
-                font-size: 18px !important;
+                font-size: 16px !important;
                 margin-top: 30px !important;
             }
         }
@@ -226,36 +299,46 @@
         </a>
     </div>
 
-    <!-- MAIN CONTENT BLOCK: NARRATIVE CHAOS PIPELINE WITH INLINE MAGNETIC LINKS -->
+    <!-- MAIN CONTENT BLOCK: POLYMATH TEXT & POPUP TRIGGER -->
     <div class="apply-chaos">
-        <h2 class="reveal-line">Standalone Nodal VFX Suite</h2>
+        <h2 class="reveal-line">Vman - VFX/AI Technical Director & Polymath Enthusiast</h2>
+
         <p class="reveal-line">
-            Native C++ pipeline architecture designed for professional-grade rotoscoping and tracking operations. Real-time core performance heavily optimized for production environments.
-            <br>
-            <a href="https://instagram.com" target="_blank" class="inline-link magnetic-node" data-tx="0" data-ty="0">[LOGS: @INSTAGRAM]</a>
+            Like Larry from Gumball, I wear a different uniform every time you see me. I started in fine arts, but physical canvas took too long to dry. Once I switched to digital, I didn't have to wait for paint to dry, but everything felt way too still. Once things were moving, they lacked smoke and skulls on fire, so I started connecting nodes and coding VEX. But that part lacked any real meaning, so I decided to write some different lines to give it a motive. And... when I asked the machine for help, it answered: 'I'm afraid I can't do that, Dave'—leaving me with no logical choice but to spend the next few few few moments later proving to the AI that yes, it absolutely could do that. Pure efficiency of standard procedure... but you know that.
         </p>
 
-        <h2 class="reveal-line">Python-Free AI Generation</h2>
         <p class="reveal-line">
-            Highly optimized AI model inference backend. Complete native execution bypassing Python environment overhead or dependency fragility, controlled via a raw nodal framework.
+            Efficiency is rarely standard procedure. I remember when my smart washing machine refused to sync with my phone, I completely bypassed the initial ticket. Somehow I managed to get that thing to do something, but then I heard it play Schubert and immediately thought: wouldn't it be way more incredible if it played the Silent Hill theme instead? It would be the most amazing thing ever—every single time I go fetch my clean socks, I’d tremble in fear. Naturally, the machine still doesn't connect to my phone, but that fear is the exact motivation to continue writing my <span class="static-highlight popup-trigger" id="filmTrigger">horror feature film</span>. (Which, for the record, has absolutely nothing to do with dirty laundry, but writing a movie isn't exactly the kind of task you just put on hold).
+        </p>
+
+        <p class="reveal-line">
+            Since we don't have a DeLorean to bend time and fix the hours we just wasted on brilliant nonsense, we have to hurry up. After all, we create not because we need, but because we fucking can. And I don't want all those ideas to be lost in time, like tears in rain. <span class="static-text">Time to bye</span>.
             <br>
             <a href="https://github.com" target="_blank" class="inline-link magnetic-node" data-tx="0" data-ty="0">[SOURCE: GH/PROJECT_X00]</a>
+            <a href="https://instagram.com" target="_blank" class="inline-link magnetic-node" data-tx="0" data-ty="0">[LOGS: @INSTAGRAM]</a>
         </p>
+    </div>
 
-        <h2 class="reveal-line">VFX Preservation Archive</h2>
-        <p class="reveal-line">
-            Reverse engineering, source preservation, and binary adaptation of legacy nodal compositors (Natron predecessors, Synapse, Ramen). Modern build toolchains for current Linux distributions.
-        </p>
+    <!-- NATIVE BRUTALIST POPUP MODAL -->
+    <div id="filmModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">[X]</span>
+            <div class="modal-title">PROJECT_LOG // HORROR_FEATURE_FILM</div>
+            <p style="margin-bottom: 0px !important;">
+                [CLASSIFIED SCREENPLAY ARCHIVE]<br><br>
+                Status: In active development.<br>
+                Atmospheric visual environment: Coastal tension, procedural terror, and psychological horror.
+            </p>
+        </div>
     </div>
 
     <hr class="reveal-line">
 
     <script type="text/javascript">
-        // --- 1. MOSAIC CANVAS ENGINE FOR LOGO (IDLE MICRO-GLITCH + CURSOR STOCHASTIC DISINTEGRATION) ---
+        // --- 1. DYNAMIC MOSAIC CANVAS ENGINE FOR LOGO ---
         const LOGO_SRC = 'logo.png';
         const COLS = 44;
         const ROWS = 14;
-        const TARGET_WIDTH = 420;
 
         const BOX_WIDTH = 180;
         const BOX_HEIGHT = 100;
@@ -270,60 +353,70 @@
         const img = new Image();
         img.src = LOGO_SRC;
 
-    img.onload = () => {
-        // 1. Cálculo dinámico del ancho según el contenedor/pantalla
-        const parentWidth = canvas.parentElement.clientWidth || window.innerWidth;
-        const baseTargetWidth = 320; // Tamaño base más compacto para escritorio/móvil
-        const TARGET_WIDTH = Math.min(baseTargetWidth, parentWidth - 40); // Margen de seguridad para móvil
+        function initOrResizeCanvas() {
+            if (!img.complete) return;
 
-        const aspectRatio = img.height / img.width;
-        const targetHeight = TARGET_WIDTH * aspectRatio;
+            const parentWidth = canvas.parentElement.clientWidth || window.innerWidth;
+            const TARGET_WIDTH = Math.min(520, Math.max(280, parentWidth - 32));
 
-        const dpr = window.devicePixelRatio || 1;
-        canvas.width = TARGET_WIDTH * dpr;
-        canvas.height = targetHeight * dpr;
-        canvas.style.width = `${TARGET_WIDTH}px`;
-        canvas.style.height = `${targetHeight}px`;
+            const aspectRatio = img.height / img.width;
+            const targetHeight = TARGET_WIDTH * aspectRatio;
 
-        ctx.scale(dpr, dpr);
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = TARGET_WIDTH * dpr;
+            canvas.height = targetHeight * dpr;
+            canvas.style.width = `${TARGET_WIDTH}px`;
+            canvas.style.height = `${targetHeight}px`;
 
-        const tileWidth = TARGET_WIDTH / COLS;
-        const tileHeight = targetHeight / ROWS;
+            ctx.scale(dpr, dpr);
 
-        const imgTileWidth = img.width / COLS;
-        const imgTileHeight = img.height / ROWS;
+            const tileWidth = TARGET_WIDTH / COLS;
+            const tileHeight = targetHeight / ROWS;
 
-        tiles = []; // Limpieza de buffer por seguridad
+            const imgTileWidth = img.width / COLS;
+            const imgTileHeight = img.height / ROWS;
 
-        for (let r = 0; r < ROWS; r++) {
-            for (let c = 0; c < COLS; c++) {
-                tiles.push({
-                    sx: c * imgTileWidth,
-                    sy: r * imgTileHeight,
-                    sw: imgTileWidth,
-                    sh: imgTileHeight,
-                    x: c * tileWidth,
-                    y: r * tileHeight,
-                    w: tileWidth,
-                    h: tileHeight,
-                    currX: c * tileWidth,
-                    currY: r * tileHeight,
-                    rot: 0,
-                    scale: 1,
+            tiles = [];
 
-                    randOffsetX: (Math.random() - 0.5) * 80,
-                    randOffsetY: (Math.random() - 0.5) * 80,
-                    randRot: (Math.random() - 0.5) * 200,
-                    threshold: 0.2 + Math.random() * 0.4,
+            for (let r = 0; r < ROWS; r++) {
+                for (let c = 0; c < COLS; c++) {
+                    tiles.push({
+                        sx: c * imgTileWidth,
+                        sy: r * imgTileHeight,
+                        sw: imgTileWidth,
+                        sh: imgTileHeight,
+                        x: c * tileWidth,
+                        y: r * tileHeight,
+                        w: tileWidth,
+                        h: tileHeight,
+                        currX: c * tileWidth,
+                        currY: r * tileHeight,
+                        rot: 0,
+                        scale: 1,
 
-                    idlePhase: Math.random() * Math.PI * 2,
-                    idleAmp: 0.3 + Math.random() * 0.7
-                });
+                        randOffsetX: (Math.random() - 0.5) * 80,
+                        randOffsetY: (Math.random() - 0.5) * 80,
+                        randRot: (Math.random() - 0.5) * 200,
+                        threshold: 0.2 + Math.random() * 0.4,
+
+                        idlePhase: Math.random() * Math.PI * 2,
+                        idleAmp: 0.3 + Math.random() * 0.7
+                    });
+                }
             }
+
+            isLogoLoaded = true;
         }
 
-        isLogoLoaded = true;
-    };
+        img.onload = () => {
+            initOrResizeCanvas();
+        };
+
+        window.addEventListener('resize', () => {
+            if (isLogoLoaded) {
+                initOrResizeCanvas();
+            }
+        });
 
         window.addEventListener('mousemove', (e) => {
             const rect = canvas.getBoundingClientRect();
@@ -409,6 +502,11 @@
                 const children = Array.from(element.childNodes);
 
                 children.forEach(child => {
+                    // Si el contenedor es estático, sus hijos Heredan la condición estática
+                    const isParentStatic = element.classList.contains('static-highlight') ||
+                                           element.classList.contains('static-text') ||
+                                           element.dataset.static === "true";
+
                     if (child.nodeType === Node.TEXT_NODE && child.textContent.trim().length > 0) {
                         const words = child.textContent.split(/\s+/);
                         const fragment = document.createDocumentFragment();
@@ -425,6 +523,11 @@
                                 charSpan.className = 'raster-char';
                                 charSpan.dataset.tx = 0; charSpan.dataset.ty = 0;
                                 charSpan.dataset.sk = 0; charSpan.dataset.rt = 0; charSpan.dataset.sc = 1;
+
+                                if (isParentStatic) {
+                                    charSpan.dataset.static = "true";
+                                }
+
                                 wordSpan.appendChild(charSpan);
                             });
 
@@ -433,6 +536,9 @@
 
                         child.replaceWith(fragment);
                     } else if (child.nodeType === Node.ELEMENT_NODE && child.tagName !== 'SCRIPT' && child.tagName !== 'A' && child.tagName !== 'BR') {
+                        if (isParentStatic) {
+                            child.dataset.static = "true";
+                        }
                         rasterizeText(child);
                     }
                 });
@@ -467,6 +573,7 @@
 
             const chars = document.querySelectorAll('.raster-char');
             chars.forEach((char, index) => {
+                if (char.dataset.static === "true") return;
                 let targetTx = 0, targetTy = 0, targetSk = 0, targetRt = 0, targetSc = 1;
 
                 if (char.dataset.isExploding === "true") {
@@ -605,6 +712,27 @@
                 link.classList.remove('exploding');
             });
         });
+
+        // MODAL POPUP CONTROLLER
+        const filmTrigger = document.getElementById('filmTrigger');
+        const filmModal = document.getElementById('filmModal');
+        const modalClose = document.getElementById('modalClose');
+
+        if (filmTrigger && filmModal && modalClose) {
+            filmTrigger.addEventListener('click', () => {
+                filmModal.classList.add('active');
+            });
+
+            modalClose.addEventListener('click', () => {
+                filmModal.classList.remove('active');
+            });
+
+            filmModal.addEventListener('click', (e) => {
+                if (e.target === filmModal) {
+                    filmModal.classList.remove('active');
+                }
+            });
+        }
 
         // LOADER & SEQUENTIAL REVEAL CONTROLLER
         window.addEventListener('load', () => {
