@@ -736,7 +736,7 @@
 
         requestAnimationFrame(renderLoop);
 
-// INTENTIONAL LINK TRIGGER (1.5s EXPLOSION + POPUP-PROOF NEW TAB)
+        // INTENTIONAL LINK TRIGGER (1.5s EXPLOSION THEN NEW TAB)
         document.querySelectorAll('.magnetic-node').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -744,9 +744,6 @@
 
                 const targetUrl = link.getAttribute('href');
                 const parentParagraph = link.closest('p');
-
-                // 1. Abrimos la pestaña vacía de inmediato para capturar el permiso del navegador
-                const newTab = window.open('about:blank', '_blank');
 
                 if (parentParagraph) {
                     const elementsToExplode = parentParagraph.querySelectorAll('.raster-char');
@@ -766,22 +763,18 @@
                     link.dataset.impulseY = (Math.random() - 0.5) * 30;
                     link.dataset.isExploding = "true";
                     link.classList.add('exploding');
-
-                    // 2. Transición ágil de 1.5 segundos (1500ms) y redirección de la pestaña
-                    setTimeout(() => {
-                        if (newTab) {
-                            newTab.location.href = targetUrl;
-                        } else {
-                            window.location.href = targetUrl;
-                        }
-                    }, 1500);
-                } else {
-                    if (newTab) {
-                        newTab.location.href = targetUrl;
-                    } else {
-                        window.location.href = targetUrl;
-                    }
                 }
+
+                // Espera 1.5 segundos exactos viendo la explosión en pantalla antes de abrir la pestaña
+                setTimeout(() => {
+                    const a = document.createElement('a');
+                    a.href = targetUrl;
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                }, 1500);
             });
         });
 
