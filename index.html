@@ -774,6 +774,909 @@
                     document.body.appendChild(a);
                     a.click();
                     a.remove();
+                }, 750);
+            });
+        });
+
+        // LOGO CLICK TRIGGER (EXPLOSIÓN QUE SE REENSAMBLA INTACTA)
+        const logoTrigger = document.getElementById('logoTrigger');
+        if (logoTrigger) {
+            logoTrigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const allChars = document.querySelectorAll('.raster-char');
+                allChars.forEach((char, i) => {
+                    const angle = (getNoise(i * 3.7) * Math.PI * 2);
+                    const distance = 40 + getNoise(i * 7.1) * 70;
+
+                    char.dataset.impulseX = Math.cos(angle) * distance;
+                    char.dataset.impulseY = Math.sin(angle) * distance;
+                    char.dataset.impulseRt = (getNoise(i * 1.3) - 0.5) * 140;
+                    char.dataset.impulseSk = (getNoise(i * 2.9) - 0.5) * 60;
+                    char.dataset.isExploding = "true";
+                });
+
+                // Reconstrucción progresiva
+                setTimeout(() => {
+                    allChars.forEach(char => {
+                        char.dataset.isExploding = "false";
+                    });
+                }, 3500);
+
+                return false;
+            });
+        }
+
+        // RECONSTRUCTION UPON FOCUS RETURN
+        window.addEventListener('focus', () => {
+            const explodingChars = document.querySelectorAll('.raster-char[data-is-exploding="true"]');
+            const explodingLinks = document.querySelectorAll('.magnetic-node[data-is-exploding="true"]');
+
+            explodingChars.forEach(char => {
+                char.dataset.isExploding = "false";
+            });
+
+            explodingLinks.forEach(link => {
+                link.dataset.isExploding = "false";
+                link.classList.remove('exploding');
+            });
+        });
+
+        // MODAL POPUP CONTROLLER
+        const filmTrigger = document.getElementById('filmTrigger');
+        const filmModal = document.getElementById('filmModal');
+        const modalClose = document.getElementById('modalClose');
+
+        if (filmTrigger && filmModal && modalClose) {
+            filmTrigger.addEventListener('click', () => {
+                filmModal.classList.add('active');
+            });
+
+            modalClose.addEventListener('click', () => {
+                filmModal.classList.remove('active');
+            });
+
+            filmModal.addEventListener('click', (e) => {
+                if (e.target === filmModal) {
+                    filmModal.classList.remove('active');
+                }
+            });
+        }
+
+        // MANTRA WORD LOOP CONTROLLER
+        const mantraWords = ['CREATE', 'INSPIRE', 'REMIX', 'SHARE'];
+        let mantraIndex = 0;
+        const mantraElement = document.getElementById('mantraWord');
+
+        if (mantraElement) {
+            setInterval(() => {
+                mantraElement.classList.add('pulse');
+
+                setTimeout(() => {
+                    mantraIndex = (mantraIndex + 1) % mantraWords.length;
+                    mantraElement.innerText = mantraWords[mantraIndex];
+                    mantraElement.classList.remove('pulse');
+                }, 150);
+            }, 2000);
+        }
+
+        // LOADER & SEQUENTIAL REVEAL CONTROLLER (SERVERSAFE RELIABLE)
+        function startSystemReveal() {
+            const counterElement = document.getElementById('loader-counter');
+            const overlay = document.getElementById('loader-overlay');
+            const revealElements = document.querySelectorAll('.reveal-line');
+
+            if (!overlay || overlay.classList.contains('hidden')) return;
+
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.floor(Math.random() * 12) + 6;
+                if (progress >= 100) {
+                    progress = 100;
+                    if (counterElement) counterElement.innerText = '100%';
+                    clearInterval(interval);
+
+                    setTimeout(() => {
+                        overlay.classList.add('hidden');
+                        revealElements.forEach((el, idx) => {
+                            setTimeout(() => {
+                                el.classList.add('visible');
+                            }, idx * 100);
+                        });
+                    }, 200);
+                } else {
+                    if (counterElement) counterElement.innerText = (progress < 10 ? '0' : '') + progress + '%';
+                }
+            }, 30);
+        }
+
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            startSystemReveal();
+        } else {
+            window.addEventListener('DOMContentLoaded', startSystemReveal);
+            setTimeout(startSystemReveal, 1200);
+        }
+    </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<!--
+      ██      ██  ██      ██      ██      ██      ██
+      ██      ██  ████  ████    ██  ██    ████    ██
+      ██      ██  ██  ██  ██  ██      ██  ██  ██  ██
+        ██  ██    ██      ██  ██  ██  ██  ██    ████
+          ██      ██      ██  ██      ██  ██      ██
+
+    [ VIDEORGASMATRON // SYSTEM SOURCE CODE ARCHIVE ]
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videorgasmatron | Pipeline Architect & VFX R&D</title>
+
+    <!-- GOOGLE FONTS PRECONNECT & IMPORT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Zilla+Slab:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style type="text/css">
+        html { color-scheme: light; background-color: #ffffff; }
+        html, body, div, p, span, h2, a, b, img, canvas {
+            background-color: transparent !important;
+            box-shadow: none !important;
+            text-shadow: none !important;
+        }
+
+        img { border: none; }
+
+        body {
+            font-family: 'Source Code Pro', monospace !important;
+            font-size: 13px;
+            padding: 80px 20px 100px 20px;
+            margin: 0px;
+            background-repeat: repeat !important;
+            background-attachment: fixed !important;
+            background-image: url('stripes.gif') !important;
+            background-color: #ffffff !important;
+            color: #000000 !important;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* BRUTALIST SYSTEM OVERLAY LOADER */
+        #loader-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #ffffff;
+            background-image: url('stripes.gif');
+            background-repeat: repeat;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Source Code Pro', monospace;
+            font-weight: 700;
+            color: #000000;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        #loader-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loader-counter {
+            font-size: 32px;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+
+        /* LINE-BY-LINE SEQUENTIAL REVEAL ANIMATION */
+        .reveal-line {
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+            will-change: opacity, transform;
+        }
+
+        .reveal-line.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* HEAVY BRUTALIST HEADINGS - SLAB AT 18PX / WEIGHT 400 */
+        h1, h2, h3, .titulo-principal {
+            font-family: 'Zilla Slab', serif !important;
+            font-weight: 400 !important;
+            font-size: 18px !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.8px !important;
+            margin-top: 45px !important;
+            margin-bottom: 12px !important;
+            color: #000000 !important;
+            display: block;
+            line-height: 1.2;
+        }
+
+        body, p, td, a, span {
+            font-family: 'Source Code Pro', monospace !important;
+            color: #000000 !important;
+        }
+
+        p {
+            line-height: 1.6;
+            text-align: left;
+            margin-top: 0px;
+            margin-bottom: 35px;
+            font-weight: 400;
+            word-spacing: normal;
+        }
+
+        /* WORD-LEVEL WRAPPER FOR PRECISE LINE BREAK CONTROL */
+        .raster-word {
+            display: inline-block;
+            white-space: nowrap;
+            margin-right: 0.3em;
+        }
+
+        /* CHARACTER RASTERIZATION & GPU RENDER PRESERVATION */
+        .raster-char {
+            display: inline-block;
+            white-space: pre;
+            transform-origin: center center;
+            will-change: transform;
+            transform-style: preserve-3d;
+            font-variant-ligatures: none;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            contain: layout style;
+            transform: translate3d(0,0,0);
+            opacity: 1;
+        }
+
+        /* STROKE CORRECTION FOR TENSIONED SLAB TEXT */
+        h2 .raster-char {
+            font-family: 'Zilla Slab', serif !important;
+            font-weight: 400 !important;
+            -webkit-text-stroke: 0px transparent;
+        }
+
+        /* MAGNETIC INLINE LINK BOXES */
+        .inline-link {
+            display: inline-block;
+            font-family: 'Source Code Pro', monospace !important;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            color: #000000 !important;
+            border: 1px solid #000000;
+            padding: 4px 10px;
+            margin-top: 10px;
+            background-color: #ffffff !important;
+            will-change: transform;
+            transform-origin: center center;
+            transition: background-color 0.15s ease, color 0.15s ease;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        .inline-link:hover, .inline-link.exploding {
+            background-color: #000000 !important;
+            color: #ffffff !important;
+        }
+
+        /* LOGO CONTAINER & CANVAS MOSAIC SYSTEM */
+        .logo-box {
+            text-align: center !important;
+            margin-bottom: 70px !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: 100% !important;
+        }
+
+        #mosaicCanvas {
+            display: block;
+            margin: 0 auto;
+            cursor: pointer;
+            user-select: none;
+            filter: invert(13%) sepia(95%) saturate(7489%) hue-rotate(330deg) brightness(101%) contrast(107%);
+        }
+
+        /* EXCLUDED STATIC TEXT & HIGHLIGHTS */
+        .static-highlight, .static-text {
+            display: inline;
+            font: inherit;
+            color: inherit;
+        }
+
+        .static-highlight {
+            cursor: pointer;
+        }
+
+        .static-highlight:hover .raster-char {
+            color: #ffffff !important;
+            background-color: #ff0040 !important;
+        }
+
+        /* HEADER EXEMPTIONS & MARGINS */
+        h2.static-text {
+            cursor: default;
+            margin-top: 50px !important;
+            margin-bottom: 15px !important;
+        }
+
+        /* MANTRA FOOTER ENGINE STACKED */
+        .footer-mantra {
+            font-family: 'Source Code Pro', monospace !important;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-align: center;
+            margin-top: 60px;
+            margin-bottom: 40px;
+            user-select: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .mantra-prefix {
+            opacity: 0.4;
+            font-size: 10px;
+            letter-spacing: 1.5px;
+        }
+
+        .mantra-active {
+            display: inline-block;
+            color: #000000;
+            background-color: transparent;
+            padding: 3px 8px;
+            border: 1px solid #000000;
+            min-width: 90px;
+            text-align: center;
+            transition: color 0.15s ease, background-color 0.15s ease;
+        }
+
+        .mantra-email {
+            font-family: 'Source Code Pro', monospace !important;
+            font-size: 11px;
+            font-weight: 700;
+            color: #000000 !important;
+            text-decoration: none;
+            transition: color 0.15s ease, background-color 0.15s ease;
+            padding: 2px 6px;
+        }
+
+        .mantra-email:hover {
+            color: #ffffff !important;
+            background-color: #ff0040 !important;
+        }
+
+        /* BRUTALIST MODAL POPUP */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(2px);
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: #ffffff !important;
+            border: 2px solid #000000;
+            padding: 25px;
+            max-width: 450px;
+            width: 90%;
+            position: relative;
+            font-family: 'Source Code Pro', monospace;
+        }
+
+        .modal-title {
+            font-family: 'Zilla Slab', serif;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #000;
+            padding-bottom: 5px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .modal-close:hover {
+            color: #ff0040 !important;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 40px 18px 80px 18px !important;
+            }
+
+            p {
+                font-size: 12px !important;
+                line-height: 1.5 !important;
+                border-left: none !important;
+                padding-left: 0 !important;
+                margin-bottom: 25px !important;
+            }
+
+            h2 {
+                font-size: 16px !important;
+                margin-top: 30px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SYSTEM INITIALIZATION OVERLAY -->
+    <div id="loader-overlay">
+        <div>SYS_LOAD_IN_PROGRESS</div>
+        <div class="loader-counter" id="loader-counter">00%</div>
+    </div>
+
+    <!-- LOGO WITH STOCHASTIC CANVAS ENGINE -->
+    <div class="logo-box reveal-line">
+        <a href="javascript:void(0);" id="logoTrigger" onclick="return false;" title="Videorgasmatron">
+            <canvas id="mosaicCanvas"></canvas>
+        </a>
+    </div>
+
+    <!-- MAIN CONTENT BLOCK -->
+    <div class="apply-chaos">
+        <h2 class="reveal-line static-text">VFX/AI Technical Director & Polymath Enthusiast</h2>
+
+        <p class="reveal-line">
+            Like Larry from Gumball, I wear a different uniform every time you see me. I started in fine arts, but physical canvas took too long to dry. Once I switched to digital, I didn't have to wait for paint to dry, but everything felt way too still. Once things were moving, they lacked smoke and skulls on fire, so I started connecting nodes and coding VEX. But that part lacked any real meaning, so I decided to write some different lines to give it a motive. And... when I asked the machine for help, it answered: 'I'm afraid I can't do that, Dave'—leaving me with no logical choice but to spend the next few few few moments later proving to the AI that yes, it absolutely could do that. Pure efficiency of standard procedure... but you know that.
+        </p>
+
+        <p class="reveal-line">
+            Efficiency is rarely standard procedure. I remember when my smart washing machine refused to sync with my phone, I completely bypassed the initial ticket. Somehow I managed to get that thing to do something, but then I heard it play Schubert and immediately thought: wouldn't it be way more incredible if it played the Silent Hill theme instead? It would be the most amazing thing ever—every single time I go fetch my clean socks, I’d tremble in fear. Naturally, the machine still doesn't connect to my phone, but that fear is the exact motivation to continue writing my <span class="static-highlight popup-trigger" id="filmTrigger">horror feature film</span>. (Which, for the record, has absolutely nothing to do with dirty laundry, but writing a movie isn't exactly the kind of task you just put on hold).
+        </p>
+
+        <p class="reveal-line">
+            Since we don't have a DeLorean to bend time and fix the hours we just wasted on brilliant nonsense, we have to hurry up. After all, we create not because we need, but because we fucking can. And I don't want all those ideas to be lost in time, like tears in rain. <span class="static-text">Time to bye</span>.
+        </p>
+
+        <!-- SECTION 1: SMOKE AND MIRRORS -->
+        <h2 class="reveal-line static-text">[ SMOKE AND MIRRORS ]</h2>
+        <p class="reveal-line">
+            VFX portfolio, VEX simulations, and creative clutter.
+            <br>
+            <a href="https://www.instagram.com/videorgasmatron/" target="_blank" class="inline-link magnetic-node" data-tx="0" data-ty="0">[Target: Instagram]</a>
+        </p>
+
+        <!-- SECTION 2: STANDARD PROCEDURE -->
+        <h2 class="reveal-line static-text">[ STANDARD PROCEDURE & DIGITAL ARCHAEOLOGY ]</h2>
+        <p class="reveal-line">
+            Custom text processor & machine learning tools repository.
+            <br>
+            Open-source VFX history. Preserving Ramen and Synapse source code.
+            <br>
+            <a href="https://github.com/videorgasmatron" target="_blank" class="inline-link magnetic-node" data-tx="0" data-ty="0">[Target: GitHub]</a>
+        </p>
+    </div>
+
+    <!-- MANTRA FOOTER LOOP WITH INTEGRATED EMAIL -->
+    <div class="footer-mantra reveal-line">
+        <span class="mantra-prefix">SYS_MANTRA </span>
+        <span id="mantraWord" class="mantra-active">CREATE</span>
+        <a href="mailto:vmanfilm@gmail.com" class="mantra-email">vmanfilm@gmail.com</a>
+    </div>
+
+    <!-- NATIVE BRUTALIST POPUP MODAL -->
+    <div id="filmModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" id="modalClose">[X]</span>
+            <div class="modal-title">PROJECT_LOG // HORROR_FEATURE_FILM</div>
+            <p style="margin-bottom: 0px !important;">
+                [CLASSIFIED SCREENPLAY ARCHIVE]<br><br>
+                Status: In active development.<br>
+                Atmospheric visual environment: Coastal tension, procedural terror and body horror.
+            </p>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // --- 1. DYNAMIC MOSAIC CANVAS ENGINE FOR LOGO ---
+        const LOGO_SRC = 'logo.png';
+        const COLS = 44;
+        const ROWS = 14;
+
+        const BOX_WIDTH = 180;
+        const BOX_HEIGHT = 100;
+
+        const canvas = document.getElementById('mosaicCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let logoMouse = { x: -1000, y: -1000 };
+        let tiles = [];
+        let isLogoLoaded = false;
+
+        const img = new Image();
+        img.src = LOGO_SRC;
+
+        function initOrResizeCanvas() {
+            if (!img.complete) return;
+
+            const parentWidth = canvas.parentElement.clientWidth || window.innerWidth;
+            const TARGET_WIDTH = Math.min(520, Math.max(280, parentWidth - 32));
+
+            const aspectRatio = img.height / img.width;
+            const targetHeight = TARGET_WIDTH * aspectRatio;
+
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = TARGET_WIDTH * dpr;
+            canvas.height = targetHeight * dpr;
+            canvas.style.width = `${TARGET_WIDTH}px`;
+            canvas.style.height = `${targetHeight}px`;
+
+            ctx.scale(dpr, dpr);
+
+            const tileWidth = TARGET_WIDTH / COLS;
+            const tileHeight = targetHeight / ROWS;
+
+            const imgTileWidth = img.width / COLS;
+            const imgTileHeight = img.height / ROWS;
+
+            tiles = [];
+
+            for (let r = 0; r < ROWS; r++) {
+                for (let c = 0; c < COLS; c++) {
+                    tiles.push({
+                        sx: c * imgTileWidth,
+                        sy: r * imgTileHeight,
+                        sw: imgTileWidth,
+                        sh: imgTileHeight,
+                        x: c * tileWidth,
+                        y: r * tileHeight,
+                        w: tileWidth,
+                        h: tileHeight,
+                        currX: c * tileWidth,
+                        currY: r * tileHeight,
+                        rot: 0,
+                        scale: 1,
+
+                        randOffsetX: (Math.random() - 0.5) * 80,
+                        randOffsetY: (Math.random() - 0.5) * 80,
+                        randRot: (Math.random() - 0.5) * 200,
+                        threshold: 0.2 + Math.random() * 0.4,
+
+                        idlePhase: Math.random() * Math.PI * 2,
+                        idleAmp: 0.3 + Math.random() * 0.7
+                    });
+                }
+            }
+
+            isLogoLoaded = true;
+        }
+
+        img.onload = () => {
+            initOrResizeCanvas();
+        };
+
+        window.addEventListener('resize', () => {
+            if (isLogoLoaded) {
+                initOrResizeCanvas();
+            }
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            logoMouse.x = e.clientX - rect.left;
+            logoMouse.y = e.clientY - rect.top;
+        });
+
+        window.addEventListener('mouseleave', () => {
+            logoMouse.x = -1000;
+            logoMouse.y = -1000;
+        });
+
+        function renderLogoMosaic(time) {
+            if (!isLogoLoaded) return;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            tiles.forEach(tile => {
+                const tileCenterX = tile.x + tile.w / 2;
+                const tileCenterY = tile.y + tile.h / 2;
+
+                const dx = Math.abs(logoMouse.x - tileCenterX);
+                const dy = Math.abs(logoMouse.y - tileCenterY);
+
+                let targetX = tile.x;
+                let targetY = tile.y;
+                let targetRot = 0;
+                let targetScale = 1;
+
+                if (dx < BOX_WIDTH / 2 && dy < BOX_HEIGHT / 2) {
+                    const influenceX = 1 - (dx / (BOX_WIDTH / 2));
+                    const influenceY = 1 - (dy / (BOX_HEIGHT / 2));
+                    const rawFactor = influenceX * influenceY;
+
+                    if (rawFactor > tile.threshold * 0.3) {
+                        targetX = tile.x + tile.randOffsetX * rawFactor;
+                        targetY = tile.y + tile.randOffsetY * rawFactor;
+                        targetRot = tile.randRot * rawFactor;
+                        targetScale = 1 - (rawFactor * 0.2);
+                    }
+                } else {
+                    const idlePulse = Math.sin((time * 0.002) + tile.idlePhase);
+
+                    if (idlePulse > 0.82) {
+                        const idleFactor = ((idlePulse - 0.82) / 0.18) * tile.idleAmp;
+
+                        targetX = tile.x + (tile.randOffsetX * 0.25 * idleFactor);
+                        targetY = tile.y + (tile.randOffsetY * 0.25 * idleFactor);
+                        targetRot = tile.randRot * 0.2 * idleFactor;
+                        targetScale = 1 - (idleFactor * 0.1);
+                    }
+                }
+
+                tile.currX += (targetX - tile.currX) * 0.14;
+                tile.currY += (targetY - tile.currY) * 0.14;
+                tile.rot += (targetRot - tile.rot) * 0.14;
+                tile.scale += (targetScale - tile.scale) * 0.14;
+
+                ctx.save();
+                ctx.translate(tile.currX + tile.w / 2, tile.currY + tile.h / 2);
+                ctx.rotate((tile.rot * Math.PI) / 180);
+                ctx.scale(tile.scale, tile.scale);
+
+                ctx.drawImage(
+                    img,
+                    tile.sx, tile.sy, tile.sw, tile.sh,
+                    -tile.w / 2, -tile.h / 2, tile.w + 0.6, tile.h + 0.6
+                );
+
+                ctx.restore();
+            });
+        }
+
+        // --- 2. TEXT RASTERIZATION & PHYSICAL CHAOS PIPELINE ---
+        let mouse = { x: -1000, y: -1000 };
+        let targetMouse = { x: -1000, y: -1000 };
+
+        const isMobile = window.innerWidth <= 768 || ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+        function rasterizeText(element) {
+            if (element.hasChildNodes()) {
+                const children = Array.from(element.childNodes);
+
+                children.forEach(child => {
+                    const isParentStatic = element.classList.contains('static-highlight') ||
+                                           element.classList.contains('static-text') ||
+                                           element.dataset.static === "true";
+
+                    if (child.nodeType === Node.TEXT_NODE && child.textContent.trim().length > 0) {
+                        const words = child.textContent.split(/\s+/);
+                        const fragment = document.createDocumentFragment();
+
+                        words.forEach((word) => {
+                            if (word.length === 0) return;
+
+                            const wordSpan = document.createElement('span');
+                            wordSpan.className = 'raster-word';
+
+                            [...word].forEach(char => {
+                                const charSpan = document.createElement('span');
+                                charSpan.innerText = char;
+                                charSpan.className = 'raster-char';
+                                charSpan.dataset.tx = 0; charSpan.dataset.ty = 0;
+                                charSpan.dataset.sk = 0; charSpan.dataset.rt = 0; charSpan.dataset.sc = 1;
+
+                                if (isParentStatic) {
+                                    charSpan.dataset.static = "true";
+                                }
+
+                                wordSpan.appendChild(charSpan);
+                            });
+
+                            fragment.appendChild(wordSpan);
+                        });
+
+                        child.replaceWith(fragment);
+                    } else if (child.nodeType === Node.ELEMENT_NODE && child.tagName !== 'SCRIPT' && child.tagName !== 'A' && child.tagName !== 'BR') {
+                        if (isParentStatic) {
+                            child.dataset.static = "true";
+                        }
+                        rasterizeText(child);
+                    }
+                });
+            }
+        }
+
+        rasterizeText(document.querySelector('.apply-chaos'));
+
+        document.addEventListener('mousemove', (e) => {
+            targetMouse.x = e.clientX;
+            targetMouse.y = e.clientY;
+        });
+
+        document.addEventListener('mouseleave', () => {
+            targetMouse.x = -1000;
+            targetMouse.y = -1000;
+        });
+
+        function getNoise(seed) {
+            const x = Math.sin(seed) * 10000;
+            return x - Math.floor(x);
+        }
+
+        // UNIFIED REAL-TIME PHYSICS LOOP
+        function renderLoop(time) {
+            renderLogoMosaic(time);
+
+            mouse.x += (targetMouse.x - mouse.x) * 0.12;
+            mouse.y += (targetMouse.y - mouse.y) * 0.12;
+
+            const chars = document.querySelectorAll('.raster-char');
+            chars.forEach((char, index) => {
+                if (char.dataset.static === "true") return;
+
+                let targetTx = 0, targetTy = 0, targetSk = 0, targetRt = 0, targetSc = 1;
+
+                if (char.dataset.isExploding === "true") {
+                    targetTx = parseFloat(char.dataset.impulseX);
+                    targetTy = parseFloat(char.dataset.impulseY);
+                    targetRt = parseFloat(char.dataset.impulseRt);
+                    targetSk = parseFloat(char.dataset.impulseSk);
+                } else if (!isMobile) {
+                    const rect = char.getBoundingClientRect();
+                    const charX = rect.left + rect.width / 2;
+                    const charY = rect.top + rect.height / 2;
+
+                    const diffX = mouse.x - charX;
+                    const diffY = mouse.y - charY;
+                    const distance = Math.sqrt(diffX * diffX + diffY * diffY);
+
+                    if (distance < 140) {
+                        const ratio = (140 - distance) / 140;
+
+                        const groupNoiseY = getNoise(index * 1.5) > 0.5 ? 1 : -1;
+                        const groupNoiseX = getNoise(index * 2.8) > 0.5 ? 1 : -1;
+                        const rotationDirection = getNoise(index * 4.2) > 0.5 ? 1 : -1;
+
+                        targetTx = groupNoiseX * (ratio * 18) * getNoise(index * 3.3);
+                        targetTy = groupNoiseY * (ratio * 28) * getNoise(index * 5.5);
+                        targetSk = ratio * (groupNoiseX * 24);
+
+                        if (getNoise(index * 9.1) > 0.85) {
+                            targetRt = rotationDirection * (180 * ratio);
+                            targetSc = 1 - (ratio * 0.12);
+                        } else {
+                            targetRt = rotationDirection * (ratio * 28) * getNoise(index * 7.7);
+                            targetSc = 1 + (ratio * 0.22) * groupNoiseY;
+                        }
+                    }
+                }
+
+                const easing = char.dataset.isExploding === "true" ? 0.14 : 0.07;
+
+                let currentTx = parseFloat(char.dataset.tx) + (targetTx - parseFloat(char.dataset.tx)) * easing;
+                let currentTy = parseFloat(char.dataset.ty) + (targetTy - parseFloat(char.dataset.ty)) * easing;
+                let currentSk = parseFloat(char.dataset.sk) + (targetSk - parseFloat(char.dataset.sk)) * easing;
+                let currentRt = parseFloat(char.dataset.rt) + (targetRt - parseFloat(char.dataset.rt)) * easing;
+                let currentSc = parseFloat(char.dataset.sc) + (targetSc - parseFloat(char.dataset.sc)) * easing;
+
+                char.dataset.tx = currentTx; char.dataset.ty = currentTy;
+                char.dataset.sk = currentSk; char.dataset.rt = currentRt; char.dataset.sc = currentSc;
+
+                char.style.transform = `translateX(${currentTx}px) translateY(${currentTy}px) skewX(${currentSk}deg) rotate(${currentRt}deg) scale(${currentSc})`;
+            });
+
+            // Magnetic Links Handling
+            const magneticLinks = document.querySelectorAll('.magnetic-node');
+            magneticLinks.forEach((link) => {
+                let targetTx = 0, targetTy = 0;
+
+                if (link.dataset.isExploding === "true") {
+                    targetTx = parseFloat(link.dataset.impulseX);
+                    targetTy = parseFloat(link.dataset.impulseY);
+                } else if (!isMobile) {
+                    const rect = link.getBoundingClientRect();
+                    const linkX = rect.left + rect.width / 2;
+                    const linkY = rect.top + rect.height / 2;
+
+                    const diffX = mouse.x - linkX;
+                    const diffY = mouse.y - linkY;
+                    const distance = Math.sqrt(diffX * diffX + diffY * diffY);
+
+                    if (distance < 120) {
+                        const pullFactor = 0.25;
+                        targetTx = diffX * pullFactor;
+                        targetTy = diffY * pullFactor;
+                    }
+                }
+
+                let currentTx = parseFloat(link.dataset.tx) + (targetTx - parseFloat(link.dataset.tx)) * 0.08;
+                let currentTy = parseFloat(link.dataset.ty) + (targetTy - parseFloat(link.dataset.ty)) * 0.08;
+
+                link.dataset.tx = currentTx;
+                link.dataset.ty = currentTy;
+
+                link.style.transform = `translate3d(${currentTx}px, ${currentTy}px, 0)`;
+            });
+
+            requestAnimationFrame(renderLoop);
+        }
+
+        requestAnimationFrame(renderLoop);
+
+        // INTENTIONAL LINK TRIGGER (1.5s EXPLOSION THEN NEW TAB)
+        document.querySelectorAll('.magnetic-node').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const targetUrl = link.getAttribute('href');
+                const parentParagraph = link.closest('p');
+
+                if (parentParagraph) {
+                    const elementsToExplode = parentParagraph.querySelectorAll('.raster-char');
+
+                    elementsToExplode.forEach((char, i) => {
+                        const angle = (getNoise(i * 3.7) * Math.PI * 2);
+                        const distance = 40 + getNoise(i * 7.1) * 60;
+
+                        char.dataset.impulseX = Math.cos(angle) * distance;
+                        char.dataset.impulseY = Math.sin(angle) * distance;
+                        char.dataset.impulseRt = (getNoise(i * 1.3) - 0.5) * 120;
+                        char.dataset.impulseSk = (getNoise(i * 2.9) - 0.5) * 60;
+                        char.dataset.isExploding = "true";
+                    });
+
+                    link.dataset.impulseX = (Math.random() - 0.5) * 30;
+                    link.dataset.impulseY = (Math.random() - 0.5) * 30;
+                    link.dataset.isExploding = "true";
+                    link.classList.add('exploding');
+                }
+
+                // Espera 1.5 segundos exactos viendo la explosión en pantalla antes de abrir la pestaña
+                setTimeout(() => {
+                    const a = document.createElement('a');
+                    a.href = targetUrl;
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
                 }, 1000);
             });
         });
