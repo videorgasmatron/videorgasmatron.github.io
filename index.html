@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VFX/AI TECHNICAL DIRECTOR | POLYMATH ENTHUSIAST</title>
+    <title>Videorgasmatron | Pipeline Architect & VFX R&D</title>
 
     <!-- GOOGLE FONTS PRECONNECT & IMPORT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -736,12 +736,17 @@
 
         requestAnimationFrame(renderLoop);
 
-        // INTENTIONAL LINK TRIGGER AND 5-SECOND DELAY
+// INTENTIONAL LINK TRIGGER (1.5s EXPLOSION + POPUP-PROOF NEW TAB)
         document.querySelectorAll('.magnetic-node').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
+                e.stopPropagation();
+
                 const targetUrl = link.getAttribute('href');
                 const parentParagraph = link.closest('p');
+
+                // 1. Abrimos la pestaña vacía de inmediato para capturar el permiso del navegador
+                const newTab = window.open('about:blank', '_blank');
 
                 if (parentParagraph) {
                     const elementsToExplode = parentParagraph.querySelectorAll('.raster-char');
@@ -762,11 +767,20 @@
                     link.dataset.isExploding = "true";
                     link.classList.add('exploding');
 
+                    // 2. Transición ágil de 1.5 segundos (1500ms) y redirección de la pestaña
                     setTimeout(() => {
-                        window.open(targetUrl, '_blank');
-                    }, 5000);
+                        if (newTab) {
+                            newTab.location.href = targetUrl;
+                        } else {
+                            window.location.href = targetUrl;
+                        }
+                    }, 1500);
                 } else {
-                    window.open(targetUrl, '_blank');
+                    if (newTab) {
+                        newTab.location.href = targetUrl;
+                    } else {
+                        window.location.href = targetUrl;
+                    }
                 }
             });
         });
